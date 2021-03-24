@@ -1,0 +1,236 @@
+
+<div class="wrapper">
+<app-header></app-header>
+ <!-- Navbar -->
+ <br>
+<!-- /.navbar -->
+
+
+
+
+
+
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+     <br>
+      <span class="brand-text font-weight-light"> </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            
+            
+            <ul class="nav nav-treeview">
+             
+              <li class="nav-item">
+                <a (click)="toggleflag2()"class="nav-link ">
+                  <i class="nav-icon fa fa-home"></i>
+                  <p>Home </p>
+                </a>
+              </li>
+            
+            </ul>
+
+            <li class="nav-item has-treeview">
+              <a  (click)="toggleflag14()"  class="nav-link">
+                <i class="nav-icon fa fa-user"></i>
+                <p>
+                  Profile
+               
+                </p>
+              </a>
+          
+          </li>
+
+            <li class="nav-item has-treeview">
+              <a  (click)="toggleflag3()"  class="nav-link">
+                <i class="nav-icon fa fa-lock"></i>
+                <p>
+                  Tenant
+               
+                </p>
+              </a>
+          
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a  (click)="toggleflag12()"  class="nav-link">
+              <i class="nav-icon fa fa-university"></i>
+              <p>
+                Academia
+             
+              </p>
+            </a>
+        
+        </li>
+
+          <li class="nav-item has-treeview">
+            <a  (click)="toggleflag1()"  class="nav-link">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Users
+             
+              </p>
+            </a>
+        
+        </li>
+          <li class="nav-item">
+            <a (click)="toggleflag4()" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Measurement
+              
+              </p>
+            </a>
+
+          </li>
+          <li class="nav-item has-treeview">
+            <a  (click)="toggleflag5()" class="nav-link">
+              <i class="nav-icon fa fa-bullseye"></i>
+              <p>
+                Sensors
+             
+              </p>
+            </a>
+        
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag7()" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+               Irrigation
+              
+              </p>
+            </a>
+           
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a  (click)="toggleflag6()" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+               Plants
+             
+              </p>
+            </a>
+           
+          </li>
+        
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag8()" class="nav-link">
+              <i class="nav-icon fa fa-chart-pie"></i>
+              <p>
+                 Visualization
+             
+              </p>
+            </a>
+          
+          </li>
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag9()" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+               Automation
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag13()" class="nav-link">
+              <i class="nav-icon fa fa-bell"></i>
+              <p>
+             
+                Notifications
+               
+              </p>
+            </a>
+          
+          </li>
+         
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag10()" class="nav-link">
+              <i class="nav-icon fa fa-certificate"></i>
+              <p>
+              Social 
+               
+              </p>
+            </a>
+          
+          </li>
+      
+        
+          <li class="nav-item has-treeview">
+            <a (click)="toggleflag11()" class="nav-link">
+              <i class="nav-icon fa fa-envelope"></i>
+              <p>
+                Contact
+              
+              </p>
+            </a>
+           
+          </li>
+         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+ <!-- start  -->
+ 
+ 
+   <app-userprofile *ngIf="profile"></app-userprofile>
+    <app-dashboad *ngIf="homeflag"></app-dashboad>
+    <app-tenent  *ngIf="tenentflag"></app-tenent>
+    <app-academia *ngIf="academiaflag"></app-academia>
+    <app-users  *ngIf="user" ></app-users>
+    <app-measurement  *ngIf="measurement"></app-measurement>
+    <app-sensors *ngIf="flag"></app-sensors>
+    <app-irrigation *ngIf="irrigation"></app-irrigation>
+    <app-plants *ngIf="plantflag"></app-plants>
+    <app-visualization *ngIf="visualization" ></app-visualization>
+    <app-automation *ngIf="automation"></app-automation>
+    <app-notification *ngIf="notification" ></app-notification>
+    <app-soicalpage  *ngIf="social"></app-soicalpage>
+    <app-contact *ngIf="contact"></app-contact>
+    </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    
+    
+  </aside>
+  <!-- /.control-sidebar -->
+
+  
+   
+   
+<app-footer></app-footer>
+
+  <!-- Main Footer -->
+
+</div>
+<!-- ./wrapper -->
