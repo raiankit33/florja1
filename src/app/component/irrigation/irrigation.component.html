@@ -1,11 +1,8 @@
 
+ <div class="content-header">
 <h3 class="ml-4 text-dark">Irrigation</h3>
+</div>
 <br>
-
-
-
-
-
       
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -180,18 +177,21 @@
               </div>
 
               <div class="search_wrap search_wrap_1">
-                <div class="search_box" style="margin-left: 20px;">
+                <div class="search_box" style="margin-left: 15px;">
                   <input type="text" class="input" placeholder="search...">
                   <div class="btn btn_common">
                     <i  class="fas fa-search"></i>
                   </div>
                 </div>
               </div>
-              <button type="button"  style="margin-left: 750px;" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Irrigation </button>
+              </div>
+              <div class="card-tools">
+              <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Irrigation </button>
               </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body p-0">
+            <div style="overflow-x:auto;">
             <table class="table">
               <thead>
                 <tr>
@@ -386,7 +386,7 @@
                 </tr>
 
 
-                <tr>
+                <!-- <tr>
                   <td>
                     <input type="checkbox" [checked]="checks">
                   </td>
@@ -419,11 +419,12 @@
                       </li>
                   </ul>
                 </td>
-                </tr>
+                </tr> -->
              
               
               </tbody>
             </table>
+            </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer text-center">
@@ -439,5 +440,4 @@
           </div>
         </div>
         <!-- /.card -->
-
 

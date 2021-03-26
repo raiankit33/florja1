@@ -1,4 +1,4 @@
-.container1{
+.container{
     max-width: 700px;
     width: 100%;
     background-color: #fff;
@@ -6,12 +6,12 @@
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
   }
-  .container1 .title{
+  .container .title{
     font-size: 25px;
     font-weight: 500;
     position: relative;
   }
-  .container1 .title::before{
+  .container .title::before{
     content: "";
     position: absolute;
     left: 0;
@@ -151,3 +151,4 @@
 .table tr{
   text-align: center;
 }
+

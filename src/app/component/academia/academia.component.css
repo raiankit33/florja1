@@ -139,7 +139,7 @@ hr.style1{
   display: flex;
   direction: row;
   
-  justify-content: right;
+  
   
 }
 
@@ -151,3 +151,4 @@ hr.style1{
 .table tr{
   text-align: center;
 }
+

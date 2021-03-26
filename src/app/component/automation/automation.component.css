@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  
 }
 body{
   display: flex;
@@ -14,18 +14,18 @@ body{
 ::selection{
   background: rgb(0,123,255,0.3);
 }
-.wrapper{
+.wrapp{
   max-width: 98%;
   padding: 0 20px;
 }
-.wrapper .parent-tab,
-.wrapper .child-tab{
+.wrapp .parent-tab,
+.wrapp .child-tab{
   margin-bottom: 8px;
   border-radius: 3px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.18);
 }
-.wrapper .parent-tab label,
-.wrapper .child-tab label{
+.wrapp .parent-tab label,
+.wrapp .child-tab label{
   background:grey;
   padding: 10px 20px;
   display: flex;
@@ -37,7 +37,7 @@ body{
   z-index: 99;
   transition: all 0.3s ease;
 }
-.wrapper .parent-tab label:hover{
+.wrapp .parent-tab label:hover{
   background: #006fe6;
 }
 .parent-tab input:checked ~ label,
@@ -45,13 +45,13 @@ body{
   border-radius: 3px 3px 0 0;
   background: #006fe6;
 }
-.wrapper label span{
+.wrapp label span{
   color: #fff;
   font-size: 18px;
   font-weight: 500;
   text-shadow: 0 -1px 1px #0056b3;
 }
-.wrapper .child-tab label span{
+.wrapp .child-tab label span{
   font-size: 17px;
 }
 .parent-tab label .icon{
@@ -65,7 +65,7 @@ body{
   border-radius: 50%;
   text-shadow: 0 -1px 1px #0056b3;
 }
-.wrapper .child-tab label .icon{
+.wrapp .child-tab label .icon{
   height: 27px;
   width: 27px;
 }
@@ -79,8 +79,8 @@ body{
 .child-tab input:checked ~ label .icon i:before{
   content: '\f068';
 }
-.wrapper .parent-tab .content,
-.wrapper .child-tab .sub-content{
+.wrapp .parent-tab .content,
+.wrapp .child-tab .sub-content{
   max-height: 0px;
   overflow: hidden;
   background: #fff;

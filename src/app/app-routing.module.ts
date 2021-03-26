@@ -5,6 +5,7 @@ import { SensorsComponent } from './sensors/sensors.component';
 import { DashboadComponent } from './dashboad/dashboad.component';
 import { LoginsignupComponent } from './loginsignup/loginsignup.component';
 import { UserprofileComponent } from './component/userprofile/userprofile.component';
+import { SignupComponent } from './component/signup/signup.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   ]
 
 },
-  
+
+{path:'signup',component:SignupComponent},
 ];
 
 @NgModule({

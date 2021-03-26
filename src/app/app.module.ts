@@ -27,6 +27,7 @@ import { AcademiaComponent } from './component/academia/academia.component';
 import { PlantdetailsComponent } from './component/plantdetails/plantdetails.component';
 import { EmergencycontactComponent } from './component/emergencycontact/emergencycontact.component';
 import { NotificationComponent } from './component/notification/notification.component';
+import { SignupComponent } from './component/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,9 @@ import { NotificationComponent } from './component/notification/notification.com
 
     EmergencycontactComponent,
 
-    NotificationComponent
+    NotificationComponent,
+
+    SignupComponent
   ],
   imports: [
     BrowserModule,

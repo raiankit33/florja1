@@ -1,8 +1,8 @@
 
-<h3 class="ml-4 text-dark">Plants</h3>
+ <div class="content-header">
+<h3 class="ml-4 mt-6 text-dark">Plants</h3>
+</div>
 <br>
-
-
 
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -106,23 +106,26 @@
               </div>
 
               <div class="search_wrap search_wrap_1">
-                <div class="search_box" style="margin-left: 20px;">
+                <div class="search_box" style="margin-left: 15px;">
                   <input type="text" class="input" placeholder="search...">
                   <div class="btn btn_common">
                     <i  class="fas fa-search"></i>
                   </div>
                 </div>
               </div>
-              <button type="button"  style="margin-left: 800px;" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Plant </button>
+              </div>
+              <div class="card-tools">
+              <button type="button"   data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Plant </button>
               </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body p-0">
+            <div style="overflow-x:auto;">
             <table class="table">
               <thead>
                 <tr >
-                  <th scope="col"> Plant Id <i class="fa fa-sort"></i></th>
-                  <th scope="col">  Name <i class="fa fa-sort"></i></th>
+                  <th scope="col">Plant Id <i class="fa fa-sort"></i></th>
+                  <th scope="col" aria-colspan="2">Name <i class="fa fa-sort"></i></th>
                   <th scope="col">Sensor Status <i class="fa fa-sort"></i></th>
                   <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
                  
@@ -292,7 +295,7 @@
                 </td>
                 </tr>
 
-                <tr >
+                <!-- <tr >
                   <td>P-0005</td>
                   <td>plant 6</td>
                   <td><span class="badge bg-success">good </span></td>
@@ -322,11 +325,12 @@
                   </ul>
                 </td>
                 </tr>
-             
+              -->
               
               </tbody>
         
             </table>
+            </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer text-center">

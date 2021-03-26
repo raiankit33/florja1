@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare const chartContainer,  mContainer: any;
+
 
 @Component({
   selector: 'app-dashboad',
@@ -15,8 +15,7 @@ export class DashboadComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    new chartContainer();
-     new mContainer();
+  
      
 
 
