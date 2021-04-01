@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+
 import { SensorsComponent } from './sensors/sensors.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboadComponent } from './dashboad/dashboad.component';
@@ -28,6 +28,8 @@ import { PlantdetailsComponent } from './component/plantdetails/plantdetails.com
 import { EmergencycontactComponent } from './component/emergencycontact/emergencycontact.component';
 import { NotificationComponent } from './component/notification/notification.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SensorRequestComponent } from './component/sensor-request/sensor-request.component';
 
 @NgModule({
   declarations: [
@@ -76,12 +78,16 @@ import { SignupComponent } from './component/signup/signup.component';
 
     NotificationComponent,
 
-    SignupComponent
+    SignupComponent,
+
+    SidebarComponent,
+
+    SensorRequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxPaginationModule
+  
    
   ],
   providers: [],

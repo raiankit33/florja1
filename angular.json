@@ -32,7 +32,6 @@
               "./node_modules/admin-lte/dist/css/adminlte.css"
             ],
             "scripts": [
-              "src/assets/js/chart.js",
               "src/assets/js/multi.js",
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/jquery/dist/jquery.min.js",
@@ -47,7 +46,8 @@
               "./node_modules/admin-lte/plugins/raphael/raphael.js",
               "./node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
               "./node_modules/admin-lte/plugins/chart.js/Chart.js",
-              "./node_modules/admin-lte/dist/js/pages/dashboard2.js"
+              "./node_modules/admin-lte/dist/js/pages/dashboard2.js",
+              
             ]
           },
           "configurations": {

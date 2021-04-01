@@ -1,4 +1,4 @@
-.container{
+.container1{
     max-width: 700px;
     width: 100%;
     background-color: #fff;
@@ -6,12 +6,12 @@
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
   }
-  .container .title{
+  .container1 .title{
     font-size: 25px;
     font-weight: 500;
     position: relative;
   }
-  .container .title::before{
+  .container1 .title::before{
     content: "";
     position: absolute;
     left: 0;
@@ -130,36 +130,25 @@
     }
   }
   
-
+  
   hr.style1{
     border-top: 2px solid #8c8b8b;
   }
-
+  
   .searchbox{
     display: flex;
     direction: row;
     
-    justify-content: right;
+    
     
   }
-
-  .drop{
-    display: flex;
-    margin: auto;
-    flex-direction: row;
-    margin-left: 5px;
-}
-
-.option{
-  margin-left: 4px;
-}
-
-
- /* table */
-.table{
-  width: 100%;
-}
-
-.table tr{
-  text-align: center;
-}
+  
+   /* table */
+   .table{
+    width: 100%;
+  }
+  
+  .table tr{
+    text-align: center;
+  }
+  

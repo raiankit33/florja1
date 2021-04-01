@@ -1,30 +1,54 @@
-window.onload = function () {
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        theme: "light2",
-        title:{
-            text: "Simple Line Chart"
-        },
-        data: [{        
-            type: "line",
-              indexLabelFontSize: 16,
-            dataPoints: [
-                { y: 450 },
-                { y: 414},
-                { y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-                { y: 460 },
-                { y: 450 },
-                { y: 500 },
-                { y: 480 },
-                { y: 480 },
-                { y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-                { y: 500 },
-                { y: 480 },
-                { y: 510 }
-            ]
-        }]
-    });
-    chart.render();
+// csv file we want to load
+var filename = './assets/data/data.csv';
+
+// all of your code should be inside this command
+d3.csv(filename).then(function(loadedData) {
+  
+  // let's see if our data loaded correctly
+
+  // empty lists for our data and the labels
+  let data =   [];
+  let labels = [];
+  
+  // use a for-loop to load the data from the
+  // file into our lists
+  for (let i=0; i<loadedData.length; i++) {
+    // console.log(loadedData[i]);
     
+    // get the year and mean temp for each listing
+    // note: the 'keys' here correspond to the headers
+    // in our file and need to be typed exactly
+    let year =     loadedData[i].year;
+    let meanTemp = loadedData[i].rcp45_weighted_mean;
+    // console.log(meanTemp);
+    
+    // add the year to our labels
+    labels.push(year);
+    
+    // and mean temp to the data
+    data.push(meanTemp);    
+  }
+  
+  // basic line chart settings
+  let options = {
+    type: 'line',
+    data: {
+      
+      labels: labels,  // the labels we loaded!
+      datasets: [{
+       
+        data: data,    // the data we loaded!
+        fill: false,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderColor: 'rgb(100,100,100)',
+        backgroundColor:'red'
+      }]
     }
+  };
+  
+  // with all that done, we can create our chart!
+  let chart = new Chart(document.getElementById('canvas'), options);
+});
+

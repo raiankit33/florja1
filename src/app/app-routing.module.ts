@@ -6,6 +6,19 @@ import { DashboadComponent } from './dashboad/dashboad.component';
 import { LoginsignupComponent } from './loginsignup/loginsignup.component';
 import { UserprofileComponent } from './component/userprofile/userprofile.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { TenentComponent } from './component/tenent/tenent.component';
+import { AcademiaComponent } from './component/academia/academia.component';
+import { UsersComponent } from './component/users/users.component';
+import { MeasurementComponent } from './component/measurement/measurement.component';
+import { SensorRequestComponent } from './component/sensor-request/sensor-request.component';
+import { IrrigationComponent } from './component/irrigation/irrigation.component';
+import { PlantdetailsComponent } from './component/plantdetails/plantdetails.component';
+import { PlantsComponent } from './component/plants/plants.component';
+import { VisualizationComponent } from './component/visualization/visualization.component';
+import { AutomationComponent } from './component/automation/automation.component';
+import { NotificationComponent } from './component/notification/notification.component';
+import { SoicalpageComponent } from './component/soicalpage/soicalpage.component';
+import { ContactComponent } from './component/contact/contact.component';
 
 
 const routes: Routes = [
@@ -13,8 +26,22 @@ const routes: Routes = [
   {path:'home',component:HomeComponent,
   children: [
     {path:'dashboad',component:DashboadComponent},
-    {path:'sensors',component:SensorsComponent},
     {path:'profile',component:UserprofileComponent},
+    {path:'tenant',component:TenentComponent},
+    {path:'academia',component:AcademiaComponent},
+    {path:'users',component:UsersComponent},
+    {path:'measurement',component:MeasurementComponent},
+    {path:'sensors',component:SensorsComponent},
+    {path:'senrequest',component:SensorRequestComponent},
+    {path:'irrigation',component:IrrigationComponent},
+    {path:'plant',component:PlantsComponent},
+    {path:'visualization',component:VisualizationComponent},
+    {path:'automation',component:AutomationComponent},
+    {path:'notification',component:NotificationComponent},
+    {path:'social',component:SoicalpageComponent},
+    {path:'contact',component:ContactComponent},
+
+   
     
   ]
 

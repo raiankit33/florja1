@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-irrigation',
@@ -29,4 +30,26 @@ checks = false;
     this.isEdit = true;
   }
 
+
+   adhoc(){
+  Swal.fire({
+   
+    text: "are you sure you want to start one irrigation cycle? Irrigation black-out times will not be considered and irrigation will start at next cycle !!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    cancelButtonText:'No'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        
+      
+        'success'
+      )
+    }
+  })
+   }
+  
 }

@@ -1,81 +1,54 @@
-window.onload = function () {
 
-    var chart = new CanvasJS.Chart("mContainer", {
-        animationEnabled: true,
-        title:{
-            text: "Daily High Temperature at Different Beaches"
-        },
-        axisX: {
-            valueFormatString: "DD MMM,YY"
-        },
-        axisY: {
-            title: "Temperature (in °C)",
-            suffix: " °C"
-        },
-        legend:{
-            cursor: "pointer",
-            fontSize: 16,
-            itemclick: toggleDataSeries
-        },
-        toolTip:{
-            shared: true
-        },
-        data: [{
-            name: "Myrtle Beach",
-            type: "spline",
-            yValueFormatString: "#0.## °C",
-            showInLegend: true,
-            dataPoints: [
-                { x: new Date(2017,6,24), y: 31 },
-                { x: new Date(2017,6,25), y: 31 },
-                { x: new Date(2017,6,26), y: 29 },
-                { x: new Date(2017,6,27), y: 29 },
-                { x: new Date(2017,6,28), y: 31 },
-                { x: new Date(2017,6,29), y: 30 },
-                { x: new Date(2017,6,30), y: 29 }
-            ]
-        },
-        {
-            name: "Martha Vineyard",
-            type: "spline",
-            yValueFormatString: "#0.## °C",
-            showInLegend: true,
-            dataPoints: [
-                { x: new Date(2017,6,24), y: 20 },
-                { x: new Date(2017,6,25), y: 20 },
-                { x: new Date(2017,6,26), y: 25 },
-                { x: new Date(2017,6,27), y: 25 },
-                { x: new Date(2017,6,28), y: 25 },
-                { x: new Date(2017,6,29), y: 25 },
-                { x: new Date(2017,6,30), y: 25 }
-            ]
-        },
-        {
-            name: "Nantucket",
-            type: "spline",
-            yValueFormatString: "#0.## °C",
-            showInLegend: true,
-            dataPoints: [
-                { x: new Date(2017,6,24), y: 22 },
-                { x: new Date(2017,6,25), y: 19 },
-                { x: new Date(2017,6,26), y: 23 },
-                { x: new Date(2017,6,27), y: 24 },
-                { x: new Date(2017,6,28), y: 24 },
-                { x: new Date(2017,6,29), y: 23 },
-                { x: new Date(2017,6,30), y: 23 }
-            ]
-        }]
-    });
-    chart.render();
+// csv file we want to load
+var filename = './assets/data/data.csv';
+
+// all of your code should be inside this command
+d3.csv(filename).then(function(lodData) {
+  
+  // let's see if our data loaded correctly
+
+  // empty lists for our data and the labels
+  let data =   [];
+  let labels = [];
+  
+  // use a for-loop to load the data from the
+  // file into our lists
+  for (let i=0; i<lodData.length; i++) {
+    // console.log(loadedData[i]);
     
-    function toggleDataSeries(e){
-        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-            e.dataSeries.visible = false;
-        }
-        else{
-            e.dataSeries.visible = true;
-        }
-        chart.render();
-    }
+    // get the year and mean temp for each listing
+    // note: the 'keys' here correspond to the headers
+    // in our file and need to be typed exactly
+    let year =     lodData[i].year;
+    let meanTemp = lodData[i].rcp45_weighted_mean;
+    // console.log(meanTemp);
     
+    // add the year to our labels
+  
+    labels.push(year);
+    // and mean temp to the data
+    data.push(meanTemp);    
+  }
+  
+  // basic line chart settings
+  let options = {
+    type: 'bar',
+    data: {
+        labels: labels,  // the labels we loaded!
+      datasets: [{
+        data: data,  
+           // the data we loaded!
+        fill: false,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderColor: 'blue',
+        backgroundColor:'skyblue'
+
+      }]
     }
+  };
+  
+  // with all that done, we can create our chart!
+  let mChart = new Chart(document.getElementById('myChart'), options);
+});
+
