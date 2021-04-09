@@ -1,289 +1,170 @@
 
 
  <div class="content-header">
- <h3 class="ml-4 text-dark">Tenant</h3>
- </div>
-      <br>
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          ...
-          <div style="justify-content: center;">
-          <div class="container">
-           
-            <h4 style="background-color: #eee;">User Management</h4>
-            <div class="content">
-          <form action="#">
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">Tenant Id</span>
-                <input type="text" placeholder="Enter Tenant Id" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Name</span>
-                <input type="text" placeholder="Enter Name "  required>
-              </div>
-              <div class="input-box">
-                <span class="details">Email</span>
-                <input type="text" placeholder="Enter Email" required>
-              </div>
-
-              <div class="input-box">
-                <span class="details">Contact</span>
-                <input type="text" placeholder="Enter Contact" required>
-              </div>
-          
-              <div class="input-box">
-                <span class="details">Permission</span>
-                <select name="Product code"  class="form-control" style="width: 200px;">
-                  <option value="">Choose </option>
-                  <option value="">all access</option>
-                  <option value="">	no access</option>
-                 
-              </select>
-              </div>
-            
-            <div class="button">
-              <input type="submit" value="Add">
-            </div>
-            </div>
-          </form>
-          </div>
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-
-    </div>
-
-
-
-
-
-<div class="col-md-12">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"></h3>
-
-     
-       
-
-
-      <div class="searchbox" >
-
-        <div class="dropdown show">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-filter" aria-hidden="true"></i>
-          </a>
-        
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-
-        <div class="search_wrap search_wrap_1">
-          <div class="search_box" style="margin-left: 15px;">
-            <input type="text" class="input" placeholder="search...">
-            <div class="btn btn_common">
-              <i  class="fas fa-search"></i>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="card-tools">
-        <button type="button"   data-toggle="modal" data-target=".bd-example-modal-lg"  class="btn btn-primary">Add Tenant </button>
-       </div>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body p-0">
-      <div style="overflow-x:auto;">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Tenant Id <i class="fa fa-sort"></i></th>
-            <th scope="col">Name <i class="fa fa-sort"></i></th>
-            <th scope="col">Email <i class="fa fa-sort"></i></th>
-            <th scope="col">Contact <i class="fa fa-sort"></i></th>
-            <th scope="col">Permission <i class="fa fa-sort"></i></th>
-            <th scope="col">Action </th>
-          </tr>
-        </thead>
-        <tbody  >
-
-
-          <tr >
-
-            <td>t1</td>
-        <td>Alex</td>
-        <td>alex@gmail.com</td>
-        <td>+918285625999</td>
-        <td><span class="badge bg-success">all access</span></td>
-
-            <td>  
-              <ul class="list-inline m-0">
-            
-                <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                </li>
-                <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" 
-                   
-                 
-                 
-                     type="button" data-toggle="tooltip"
-                    
-                      data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-          </td>
-          </tr>
-         
-          <tr>
-
-            <td>t2</td>
-            <td>John</td>
-            <td>john@gmail.com</td>
-            <td>+917586958626</td>
-            <td><span class="badge bg-success">all access</span></td>
-    
-            
-            <td>  
-              <ul class="list-inline m-0">
-            
-                <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                </li>
-                <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" 
-                   
-                 
-                 
-                     type="button" data-toggle="tooltip"
-                    
-                      data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-          </td>
-          </tr>
-       
-          <tr>
-
-            <td>t3</td>
-            <td>Ashish</td>
-            <td>ashish@gmail.com</td>
-            <td>+916285628890</td>
-            <td><span class="badge bg-success">all access</span></td>
-    
-            
-            <td>  
-              <ul class="list-inline m-0">
-            
-                <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                </li>
-                <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" 
-                   
-                 
-                 
-                     type="button" data-toggle="tooltip"
-                    
-                      data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-          </td>
-          </tr>
-
-          <tr>
-
-            <td>t4</td>
-            <td>Mark</td>
-            <td>mark345@gmail.com</td>
-            <td>+918284442599</td>
-            <td><span class="badge bg-success">all access</span></td>
-    
-            
-            <td>  
-              <ul class="list-inline m-0">
-            
-                <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                </li>
-                <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" 
-                   
-                 
-                 
-                     type="button" data-toggle="tooltip"
-                    
-                      data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-          </td>
-          </tr>
-
-          
-          <tr>
-
-            <td>t5</td>
-            <td>Ankit</td>
-            <td>ankit@gmail.com</td>
-            <td>+918285625999</td>
-            <td><span class="badge bg-success">all access</span></td>
-    
-            
-            <td> 
-              <ul class="list-inline m-0">
-            
-                <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                </li>
-                <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" 
-                   
-                 
-                 
-                     type="button" data-toggle="tooltip"
-                    
-                      data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                </li>
-            </ul>
-          </td>
-          </tr>
-        
-        </tbody>
-       
-      </table>
-      </div>
-    </div>
-    <!-- /.card-body -->
-    <div class="card-footer text-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
-    </div>
+  <h3 class="ml-4 text-dark">Tenant</h3>
   </div>
-  <!-- /.card -->
+       <br>
+ 
+     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+           ...
+           <div style="justify-content: center;">
+           <div class="container">
+            
+             <h4 style="background-color: #eee;">Tenant Management</h4>
+             <div class="content">
+           <form (submit)= "onAddSubmit()" >
+             <div class="user-details">
+               <div class="input-box">
+                 <span class="details">Tenant Id</span>
+                 <input type="number" placeholder="Enter Tenant Id" required  [(ngModel)]="T_ID" name ="T_ID">
+               </div>
+               <div class="input-box">
+                 <span class="details">Name</span>
+                 <input type="text" placeholder="Enter Name "  required  [(ngModel)]="Name" name ="Name">
+               </div>
+               <div class="input-box">
+                 <span class="details">Email</span>
+                 <input type="text" placeholder="Enter Email" required  [(ngModel)]="Email" name ="U_EmailID">
+               </div>
+ 
+               <div class="input-box">
+                 <span class="details">Contact</span>
+                 <input type="text" placeholder="Enter Contact" required  [(ngModel)]="Contact" name ="Contact">
+               </div>
+           
+               <div class="input-box">
+                 <span class="details">Permission</span>
+                 <select name="Product code"  class="form-control"  [(ngModel)]="Permission" name ="Permission" style="width: 200px;">
+                   <option value="">Choose </option>
+                   <option value="All Access">All Access</option>
+                   <option value="No Access">	No Access</option>
+                  
+               </select>
+               </div>
+             
+             <div class="button">
+               <input type="submit" value="Add">
+             </div>
+             </div>
+           </form>
+           </div>
+           </div>
+           
+           
+         </div>
+       </div>
+     </div>
+ 
+     </div>
+ 
+ 
+ 
+ 
+ 
+ <div class="col-md-12">
+   <div class="card">
+     <div class="card-header">
+       <h3 class="card-title"></h3>
+ 
+      
+        
+ 
+ 
+       <div class="searchbox" >
+ 
+         <div class="dropdown show">
+           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fa fa-filter" aria-hidden="true"></i>
+           </a>
+         
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+             <a class="dropdown-item" href="#">Action</a>
+             <a class="dropdown-item" href="#">Another action</a>
+             <a class="dropdown-item" href="#">Something else here</a>
+           </div>
+         </div>
+ 
+         <div class="search_wrap search_wrap_1">
+           <div class="search_box" style="margin-left: 15px;">
+             <input type="text" class="input" placeholder="search...">
+             <div class="btn btn_common">
+               <i  class="fas fa-search"></i>
+             </div>
+           </div>
+         </div>
+         </div>
+         <div class="card-tools">
+         <button type="button"   data-toggle="modal" data-target=".bd-example-modal-lg"  class="btn btn-primary">Add Tenant </button>
+        </div>
+     </div>
+     <!-- /.card-header -->
+     <div class="card-body p-0">
+       <div style="overflow-x:auto;">
+       <table class="table">
+         <thead>
+           <tr>
+             <th scope="col" (click)="sortData('tenant_id')">Tenant Id <i class="fa fa-sort"></i></th>
+             <th scope="col">Name <i class="fa fa-sort"></i></th>
+             <th scope="col">Email <i class="fa fa-sort"></i></th>
+             <th scope="col">Contact <i class="fa fa-sort"></i></th>
+             <th scope="col">Permission <i class="fa fa-sort"></i></th>
+             <th scope="col">Action </th>
+           
+         </thead>
+         <tbody  >
+ 
+ 
+           <tr *ngFor = "let tenant of tenantDetails | orderBy:key:reverse  ">
+ 
+             <td>{{tenant.T_ID}}</td>
+         <td>{{tenant.Name}}</td>
+         <td>{{tenant.Email}}</td>
+         <td>+{{tenant.Contact}}</td>
+         <td><span class="badge bg-success">{{tenant.Permission}}</span></td>
+ 
+             <td>  
+               <ul class="list-inline m-0">
+             
+                 <li class="list-inline-item">
+                     <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                 </li>
+                 <li class="list-inline-item">
+                     <button class="btn text-danger btn-sm rounded-0" 
+                    
+                  
+                  
+                      type="button" data-toggle="tooltip"
+                     
+                       data-placement="top" title="Delete">
+                       <i class="fa fa-trash"></i>
+                     </button>
+                 </li>
+             </ul>
+           </td>
+           </tr>
+          
 
-  
+         
+         </tbody>
+        
+       </table>
+       </div>
+     </div>
+     <!-- /.card-body -->
+     <div class="card-footer text-center">
+       <nav aria-label="Page navigation example">
+         <ul class="pagination">
+           <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+           <li class="page-item"><a class="page-link" href="#">1</a></li>
+           <li class="page-item"><a class="page-link" href="#">2</a></li>
+           <li class="page-item"><a class="page-link" href="#">3</a></li>
+           <li class="page-item"><a class="page-link" href="#">Next</a></li>
+         </ul>
+       </nav>
+     </div>
+   </div>
+   <!-- /.card -->
+ 
+   

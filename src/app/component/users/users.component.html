@@ -14,27 +14,27 @@
                    
                     <h4 style="background-color: #eee;">User Management</h4>
                     <div class="content">
-                  <form action="#">
+                  <form   (submit)= "onAddSubmit()">
                     <div class="user-details">
                       <div class="input-box">
                         <span class="details">User Id</span>
-                        <input type="text" placeholder="Enter User Id" required>
+                        <input type="text" placeholder="Enter User Id" required  [(ngModel)]="U_ID" name ="U_ID">
                       </div>
                       <div class="input-box">
                         <span class="details">Name</span>
-                        <input type="text"  placeholder="Enter Name"  required>
+                        <input type="text"  placeholder="Enter Name"  required  [(ngModel)]="Name" name ="Name">
                       </div>
                       <div class="input-box">
                         <span class="details">	Email</span>
-                        <input type="text"  placeholder="Enter Email"  required>
+                        <input type="text"  placeholder="Enter Email"  required  [(ngModel)]="Email" name ="Email">
                       </div>
                   
                       <div class="input-box">
                         <span class="details">Permission</span>
-                        <select name="Product code"  class="form-control" style="width: 200px;">
-                          <option value="">Choose </option>
-                          <option value="">all access</option>
-                          <option value="">	no access</option>
+                        <select name="Product code"  class="form-control"  [(ngModel)]="Permission" name ="Permission" style="width: 200px;">
+                          <option value="choose">Choose </option>
+                          <option value="All Access">all access</option>
+                          <option value="No Access">	no access</option>
                          
                       </select>
                       </div>

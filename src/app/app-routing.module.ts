@@ -7,10 +7,10 @@ import { LoginsignupComponent } from './loginsignup/loginsignup.component';
 import { UserprofileComponent } from './component/userprofile/userprofile.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { TenentComponent } from './component/tenent/tenent.component';
-import { AcademiaComponent } from './component/academia/academia.component';
+
 import { UsersComponent } from './component/users/users.component';
 import { MeasurementComponent } from './component/measurement/measurement.component';
-import { SensorRequestComponent } from './component/sensor-request/sensor-request.component';
+
 import { IrrigationComponent } from './component/irrigation/irrigation.component';
 import { PlantdetailsComponent } from './component/plantdetails/plantdetails.component';
 import { PlantsComponent } from './component/plants/plants.component';
@@ -28,11 +28,11 @@ const routes: Routes = [
     {path:'dashboad',component:DashboadComponent},
     {path:'profile',component:UserprofileComponent},
     {path:'tenant',component:TenentComponent},
-    {path:'academia',component:AcademiaComponent},
+  
     {path:'users',component:UsersComponent},
     {path:'measurement',component:MeasurementComponent},
     {path:'sensors',component:SensorsComponent},
-    {path:'senrequest',component:SensorRequestComponent},
+    
     {path:'irrigation',component:IrrigationComponent},
     {path:'plant',component:PlantsComponent},
     {path:'visualization',component:VisualizationComponent},
@@ -41,13 +41,16 @@ const routes: Routes = [
     {path:'social',component:SoicalpageComponent},
     {path:'contact',component:ContactComponent},
 
-   
-    
   ]
+
 
 },
 
 {path:'signup',component:SignupComponent},
+
+  { path: 'superadmin', loadChildren: () => import('./superadmin/superadmin.module').then(m => m.SuperadminModule) },
+  { path: 'subadmin', loadChildren: () => import('./subadmin/subadmin.module').then(m => m.SubadminModule) },
+ 
 ];
 
 @NgModule({

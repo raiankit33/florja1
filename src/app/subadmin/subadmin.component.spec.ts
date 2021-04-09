@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SensorRequestComponent } from './sensor-request.component';
+import { SubadminComponent } from './subadmin.component';
 
-describe('SensorRequestComponent', () => {
-  let component: SensorRequestComponent;
-  let fixture: ComponentFixture<SensorRequestComponent>;
+describe('SubadminComponent', () => {
+  let component: SubadminComponent;
+  let fixture: ComponentFixture<SubadminComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SensorRequestComponent ]
+      declarations: [ SubadminComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SensorRequestComponent);
+    fixture = TestBed.createComponent(SubadminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
