@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  user:any;
+  plant:any;
 
   httpRegisterOptions = {
     headers: new HttpHeaders({ 
@@ -16,22 +17,58 @@ export class UserService {
 
 }
 
-
   constructor(private http:HttpClient) { }
 
 
+ //for page refresh on plant page 
+  private _listners = new Subject<any>();
+listen(): Observable<any>{
+   return this._listners.asObservable();
+}
+ filter(filterBy: string){
+   this._listners.next(filterBy);
+ }
 
+//plant api 
 
-  registerUser(user){
+registerPlant(plant){
         
-    return this.http.post('https://pxwrniug13.execute-api.us-east-1.amazonaws.com/dev1',user).pipe(map(res => res));
+  return this.http.post('https://nagk5z6h17.execute-api.us-east-2.amazonaws.com/add_plant',plant).pipe(map(res => res));
 }
 
-registerTenant(tenant){
+getPlantDetails(){
+      
+return this.http.get('https://nagk5z6h17.execute-api.us-east-2.amazonaws.com/get_plant').pipe(map(res => res));
+
+}
+
+deletePlant(P_ID){
         
-  return this.http.post('https://pxwrniug13.execute-api.us-east-1.amazonaws.com/dev1',tenant).pipe(map(res => res));
+  return this.http.post('https://k0qxazb5u2.execute-api.us-east-2.amazonaws.com/Delete_Plant/',{'P_ID':P_ID}).pipe(map(res => res));
+
+}
+
+
+// Irriagtion api
+
+registerIrrigation(irrigation){
+        
+  return this.http.post('https://0yyca22qmk.execute-api.us-east-2.amazonaws.com/add_Irrigation',irrigation).pipe(map(res => res));
+}
+
+getIrrigationDetails(){
+      
+  return this.http.get('https://0yyca22qmk.execute-api.us-east-2.amazonaws.com/get_Irrigation_data').pipe(map(res => res));
+  
+  }
+
+  deleteIrrigation(IR_ID){
+        
+    return this.http.post('https://fzbd618al4.execute-api.us-east-2.amazonaws.com/Delete_Irriegation/',{'IR_ID':IR_ID}).pipe(map(res => res));
+  
+  }
+
+
 }
 
 
-
-}

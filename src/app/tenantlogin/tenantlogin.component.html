@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+
+<div class="background">
+    <br>
+    <div class="center">
+    <div class="wrapper">
+      <div class="title">
+   Tenant Login </div>
+    <form   (submit)="onLoginSubmit()" >
+        <div class="field">
+          <input type="email" required   [(ngModel)]="email" name="email" >
+          <label>Email</label>
+        </div>
+        <div class="field" >
+          <input type="password" required   [(ngModel)]="password" name="password" >
+         
+          <label>Password</label>
+        </div>
+    
+      
+        <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+          </div>
+    <div class="pass-link">
+    <a href="#">Forgot password?</a></div>
+    </div>
+    <div class="field">
+          <input type="submit" value="Login">
+        </div>
+    
+        <div class="signup-link">
+       <a routerLink="home/dashboad">user</a>
+       <a routerLink="superadmin">superadmin</a>
+       <a routerLink="subadmin">tenant</a>
+        </div>
+    <div class="signup-link">
+    Not a member? <a routerLink="/signup">Signup now</a></div>
+    </form>
+    </div>
+    </div>
+    </div>

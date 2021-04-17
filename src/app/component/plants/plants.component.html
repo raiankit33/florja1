@@ -14,24 +14,28 @@
             
             <h4 style="background-color:#eee;">Information</h4>
             <div class="content">
-          <form action="#">
+          <form [formGroup]="form" >
             <div class="user-details">
+            
+
               <div class="input-box">
                 <span class="details">*Plant-Name</span>
-                <input type="text" required>
+                <input type="text"  required  name ="P_name" formControlName="P_name" [ngClass]="
+                { 'is-invalid': form.get('P_name').touched && form.get('P_name').invalid}">
               </div>
               <div class="input-box">
                 <span class="details">Owner</span>
                 
-              </div>
-              <div class="input-box">
+            </div>
+              <!-- <div class="input-box">
                 <span class="details">Measurement</span>
-                <input type="text"  required>
-              </div>
-             
+                <input type="text"  required  name ="Name" formControlName="Name" [ngClass]="
+                { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+              </div> -->
+              
 
           
-          <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+          <!-- <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4> -->
           <hr class="style1">
           <br>
 <br>
@@ -39,17 +43,19 @@
 <div class="input-box">
    
   </div>
-          <div class="input-box">
+          <!-- <div class="input-box">
             <span class="details">Air Humidity Min</span>
-            <input type="text" required>
+            <input type="text" formControlName="Air_humidity_min" [ngClass]="
+            { 'is-invalid': form.get('Air_humidity_min').touched && form.get('Air_humidity_min').invalid}">
           </div>
 
           <div class="input-box">
             <span class="details">Air Humidity Max</span>
-            <input type="text" required>
-          </div>
+            <input type="text" formControlName="Air_humidity" [ngClass]="
+            { 'is-invalid': form.get('Air_humidity').touched && form.get('Air_humidity').invalid}">
+          </div> -->
 
-          <div class="input-box">
+          <!-- <div class="input-box">
             <span class="details">Air Temp Min</span>
             <input type="text" required>
           </div>
@@ -58,17 +64,17 @@
             <span class="details">Air Temp Max
              </span>
             <input type="text" required>
-          </div>
+          </div> -->
 
-          <div class="input-box">
+          <!-- <div class="input-box">
             <span class="details">
                 Soil Humidity MAX</span>
             <input type="text" required>
-          </div>
+          </div> -->
       
             
             <div class="button">
-              <input type="submit" value="Add">
+              <input type="submit" (click)=" onAddSubmit()" value="Add">
             </div>
             </div>
           </form>
@@ -107,11 +113,14 @@
 
               <div class="search_wrap search_wrap_1">
                 <div class="search_box" style="margin-left: 15px;">
-                  <input type="text" class="input" placeholder="search...">
+                  <input type="text" class="input" name="name" [(ngModel)]="name"
+                    (ngModelChange)="Search()" placeholder="search...">
                   <div class="btn btn_common">
                     <i  class="fas fa-search"></i>
-                  </div>
+                  </div> 
+                  
                 </div>
+              
               </div>
               </div>
               <div class="card-tools">
@@ -123,10 +132,10 @@
             <div style="overflow-x:auto;">
             <table class="table">
               <thead>
-                <tr >
+                <tr  >
                   <th scope="col">Plant Id <i class="fa fa-sort"></i></th>
-                  <th scope="col" aria-colspan="2">Name <i class="fa fa-sort"></i></th>
-                  <th scope="col">Sensor Status <i class="fa fa-sort"></i></th>
+                  <th scope="col" aria-colspan="2" >Name <i class="fa fa-sort"></i></th>
+                  <th scope="col">Sensor Count <i class="fa fa-sort"></i></th>
                   <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
                  
                   <th scope="col">Last Measurement <i class="fa fa-sort"></i></th>
@@ -136,14 +145,14 @@
               </thead>
               <tbody >
 
-                
-                <tr  >
-                  <td>P-0000</td>
-                  <td>plant 1</td>
-                  <td><span class="badge bg-success">good </span></td>
+               
+                <tr *ngFor ="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no" >
+                  <td>{{no+1}}</td>
+                  <td ><a (click)="plants()">{{plant.P_name}}</a></td>
+                  <td><span >{{plant.count}} </span></td>
                   <td><span class="badge bg-success">unit 1 running</span></td>
                  
-                  <td>3/16/21,11:00</td>
+                  <td>{{plant.Created_at}}</td>
                   <td>
                     <input type="checkbox">
                   </td>
@@ -156,7 +165,7 @@
                       <li class="list-inline-item">
                         <button class=" btn text-danger btn-sm rounded-0" 
                        
-                     
+                      (click)="deletePlant(plant.P_ID)"
                      
                          type="button" data-toggle="tooltip"
                         
@@ -168,7 +177,7 @@
                 </td>
                 </tr>
                
-                <tr>
+ <!--               <tr>
                   <td>P-0001</td>
                   <td>plant 2</td>
                   <td><span class="badge bg-success">good </span></td>
@@ -293,7 +302,7 @@
                     </li>
                   </ul>
                 </td>
-                </tr>
+                </tr> -->
 
                 <!-- <tr >
                   <td>P-0005</td>
@@ -334,16 +343,11 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer text-center">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-          </div>
+           
+            <div class="pagination">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+           
         </div>
         <!-- /.card -->
 

@@ -1,255 +1,192 @@
+<div class="content-header">
+
+  <h3 class="ml-4 text-dark">Academia</h3>
+</div>
+<br>
 
 
- <div class="content-header">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+      <div style="justify-content: center;">
+        <div class="container1">
 
-    <h3 class="ml-4 text-dark">Academia</h3>
+          <h4 style="background-color: #eee;">Academia Management</h4>
+          <div class="content">
+            <form [formGroup]="form">
+              <div class="user-details">
+                <!-- <div class="input-box">
+                  <span class="details">Tenant Id</span>
+                  <input type="number" placeholder="Enter Tenant Id" required  [(ngModel)]="T_ID" name ="T_ID" formControlName="T_ID" [ngClass]="
+                  { 'is-invalid': form.get('T_ID').touched && form.get('T_ID').invalid}">
+                  <div class="invalid-feedback">
+                   <div > This field is required</div>
+                 </div>
+                </div> -->
+                <div class="input-box">
+                  <span class="details">Name</span>
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.Name" required name="Name"
+                    formControlName="Name" [ngClass]="
+                  { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <span class="details">Email</span>
+                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.Email" required name="Email"
+                    formControlName="Email" [ngClass]="
+                  { 'is-invalid': form.get('Email').touched && form.get('Email').invalid}">
+                  <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="invalid-feedback">
+                    <div *ngIf="form.get('Email').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('Email').errors.email"> Email must be valid email address</div>
+                  </div>
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Contact</span>
+                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.Contact" required name="Contact"
+                    formControlName="Contact" [ngClass]="
+                  { 'is-invalid': form.get('Contact').touched && form.get('Contact').invalid}">
+                  <div class="invalid-feedback" *ngIf="form.get('Contact').touched && form.get('Contact').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('Contact').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('Contact').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Permission</span>
+                  <select name="Product code" class="form-control" [(ngModel)]="userObj.Permission" name="Permission"
+                    style="width: 200px;" formControlName="Permission" [ngClass]="
+                  { 'is-invalid': form.get('Permission').touched && form.get('Permission').invalid}">
+                    <option value="">Choose </option>
+                    <option value="All Access">All Access</option>
+                    <option value="No Access"> No Access</option>
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> Permission is required</div>
+                  </div>
+                </div>
+
+                <div class="button">
+                  <input type="submit" (click)="onAddSubmit()" [disabled]="!form.valid" *ngIf="!isEdit" value="Add">
+                  <input type="submit" (click)="updateAcademia()" *ngIf="isEdit" value="update">
+                </div>
+
+                <div class="card-tools">
+                  <button type="button" class="button" style="margin: 5px;" class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
     </div>
-    <br>
-   
-   
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg">
-       <div class="modal-content">
-         ...
-         <div style="justify-content: center;">
-         <div class="container1">
-          
-           <h4 style="background-color: #eee;">User Management</h4>
-           <div class="content">
-         <form action="#">
-           <div class="user-details">
-             <div class="input-box">
-               <span class="details">Academia Id</span>
-               <input type="text" placeholder="Enter Academia Id" required>
-             </div>
-             <div class="input-box">
-               <span class="details"> Name</span>
-               <input type="text" placeholder="Enter Name "  required>
-             </div>
-             <div class="input-box">
-               <span class="details">	Email</span>
-               <input type="text" placeholder="Enter  Email" required>
-             </div>
-         
-             <div class="input-box">
-               <span class="details">Permission</span>
-               <select name="Product code"  class="form-control" style="width: 200px;">
-                 <option value="">Choose </option>
-                 <option value="">all access</option>
-                 <option value="">	no access</option>
-                
-             </select>
-             </div>
-           
-           <div class="button">
-             <input type="submit" value="Add">
-           </div>
-           </div>
-         </form>
-         </div>
-         </div>
-         
-         
-       </div>
-     </div>
-   </div>
-   
-   </div>
-   
-   
-   <div class="col-md-12">
-   <div class="card">
-   <div class="card-header">
-    <h3 class="card-title"></h3>
-   
-    <div class="searchbox" >
-   
-     <div class="dropdown show">
-       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <i class="fa fa-filter" aria-hidden="true"></i>
-       </a>
-     
-       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-         <a class="dropdown-item" href="#">Action</a>
-         <a class="dropdown-item" href="#">Another action</a>
-         <a class="dropdown-item" href="#">Something else here</a>
-       </div>
-     </div>
-   
-      <div class="search_wrap search_wrap_1">
-        <div class="search_box"style="margin-left: 15px;">
-          <input type="text" class="input" placeholder="search...">
-          <div class="btn btn_common">
-            <i  class="fas fa-search"></i>
+  </div>
+
+</div>
+
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+      <div class="searchbox">
+
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="search_wrap search_wrap_1">
+          <div class="search_box" style="margin-left: 15px;">
+            <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+              placeholder="search...">
+            <div class="btn btn_common">
+              <i class="fas fa-search"></i>
+            </div>
           </div>
         </div>
       </div>
-     </div>
-     <div class="card-tools">
-      <button type="button"   data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Academia </button>
-     </div>
-   </div>
-   
-   
-   <div class="card-body p-0">
-     <div style="overflow-x:auto;">
-    <table class="table" >
-      <thead>
-        <tr>
-          <th scope="col"  >Academia Id <i class="fa fa-sort"></i></th>
-          <th scope="col" >Name <i class="fa fa-sort"></i></th>
-          <th scope="col">Email <i class="fa fa-sort"></i></th>
-          <th scope="col">Contact <i class="fa fa-sort"></i></th>
-          <th scope="col">Permission <i class="fa fa-sort"></i></th>
-          <th scope="col">Action </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-   
-      <td r>a1</td>
-      <td>Alex</td>
-      <td>alex@gmail.com</td>
-      <td>+918285625999</td>
-      <td><span class="badge bg-success">all access</span></td>
-      <td>  
-           <ul class="list-inline m-0">
-               
-             <li class="list-inline-item">
-                 <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-             </li>
-             <li class="list-inline-item">
-                 <button class="btn text-danger btn-sm rounded-0" 
-                
-              
-              
-                  type="button" data-toggle="tooltip"
-                 
-                   data-placement="top" title="Delete">
-                   <i class="fa fa-trash"></i>
-                 </button>
-             </li>
-         </ul>
-     </td>
-      </tr>
-      
-      <tr>
-          <td>a2</td>
-          <td>John</td>
-          <td>john@gmail.com</td>
-          <td>+918285625999</td>
-          <td><span class="badge bg-success">all access</span></td>
-          <td>  
-           <ul class="list-inline m-0">
-               
-             <li class="list-inline-item">
-                 <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-             </li>
-             <li class="list-inline-item">
-                 <button class="btn text-danger btn-sm rounded-0" 
-                
-              
-              
-                  type="button" data-toggle="tooltip"
-                 
-                   data-placement="top" title="Delete">
-                   <i class="fa fa-trash"></i>
-                 </button>
-             </li>
-         </ul>
-        </td>
-        </tr>
-     
-        <tr>
-   
-         <td>a3</td>
-         <td>Ashish</td>
-         <td>ashish@gmail.com</td>
-         <td>+918285625999</td>
-         <td><span class="badge bg-success">all access</span></td>
-         <td>  
-           <ul class="list-inline m-0">
-               
-             <li class="list-inline-item">
-                 <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-             </li>
-             <li class="list-inline-item">
-                 <button class="btn text-danger btn-sm rounded-0" 
-                  type="button" data-toggle="tooltip"        
-                   data-placement="top" title="Delete">
-                   <i class="fa fa-trash"></i>
-                 </button>
-             </li>
-         </ul>
-       </td>
-       </tr>
-   
-   
-       <tr>
-   
-         <td>a4</td>
-         <td>Ankit</td>
-         <td>ankit@gmail.com</td>
-         <td>+918285625999</td>
-         <td><span class="badge bg-success">all access</span></td>
-         <td>  
-           <ul class="list-inline m-0">
-               
-             <li class="list-inline-item">
-                 <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-             </li>
-             <li class="list-inline-item">
-                 <button class="btn text-danger btn-sm rounded-0" 
-                  type="button" data-toggle="tooltip"
-                 
-                   data-placement="top" title="Delete">
-                   <i class="fa fa-trash"></i>
-                 </button>
-             </li>
-         </ul>
-       </td>
-       </tr>
-   
-       <tr>
-         <td>a5</td>
-         <td>Mohit</td>
-         <td>mohit@gmail.com</td>
-         <td>+918285625999</td>
-         <td><span class="badge bg-success">all access</span></td>
-         <td> 
-           <ul class="list-inline m-0">
-         
-             <li class="list-inline-item">
-                 <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-             </li>
-             <li class="list-inline-item">
-                 <button class="btn text-danger btn-sm rounded-0" 
-                  type="button" data-toggle="tooltip" 
-                   data-placement="top" title="Delete">
-                   <i class="fa fa-trash"></i>
-                 </button>
-             </li>
-         </ul>
-       </td>
-       </tr>
-      
-      </tbody>
-    </table>
+      <div class="card-tools">
+        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add
+          Academia </button>
+      </div>
     </div>
-   </div>
-   <!-- /.card-body -->
-   <div class="card-footer text-center">
-     <nav aria-label="Page navigation example">
-       <ul class="pagination">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
-       </ul>
-     </nav>
-   </div>
-   </div>
-   <!-- /.card -->
-   
-   
+
+
+    <div class="card-body p-0">
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Academia Id <i class="fa fa-sort"></i></th>
+              <th scope="col">Name <i class="fa fa-sort"></i></th>
+              <th scope="col">Email <i class="fa fa-sort"></i></th>
+              <th scope="col">Contact <i class="fa fa-sort"></i></th>
+              <th scope="col">Permission <i class="fa fa-sort"></i></th>
+              <th scope="col">Created at <i class="fa fa-sort"></i></th>
+              <th scope="col">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let academia of academiaDetails |  filter:name |  paginate: { itemsPerPage: 5, currentPage: p } ;  index as no">
+              <td>{{no+1}}</td>
+              <td>{{academia.Name}}</td>
+              <td>{{academia.Email}}</td>
+              <td>+91{{academia.Contact}}</td>
+              <td class="Permission"><span class="badge" [ngClass]="{'badge-success': academia.Permission =='All Access',
+         'badge-danger' : academia.Permission !='All Access'}">{{academia.Permission}}</span></td>
+         <td>{{academia.Created_at}}</td>    
+         <td>
+              
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
+                      (click)="editAcademia(academia)" title="Edit">
+                      <i class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" (click)="deleteAcademia(academia.A_ID)"
+                      type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer text-center">
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->

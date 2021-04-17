@@ -152,4 +152,6 @@
     text-align: center;
   }
   
-  
+  pagination{
+    justify-content: left;
+  }

@@ -6,7 +6,9 @@ import { SuperadminComponent } from './superadmin.component';
 import { SenrequestComponent } from './senrequest/senrequest.component';
 import { AcademiaComponent } from './academia/academia.component';
 
-import { TenentComponent } from '../component/tenent/tenent.component';
+import { TenantComponent} from './tenant/tenant.component';
+import { from } from 'rxjs';
+import { EdittenComponent } from './editten/editten.component';
 
 const routes: Routes = [
   { path: '', component: SuperadminComponent,
@@ -14,7 +16,8 @@ const routes: Routes = [
     { path: 'admindash', component: AdmindashComponent},
     { path: 'sensorreq', component: SenrequestComponent},
     { path: 'academia', component: AcademiaComponent},
-    { path: 'tenant', component:TenentComponent},
+    { path: 'tenant', component:TenantComponent},
+    { path: 'edit', component:EdittenComponent},
     
   ] 
 }];

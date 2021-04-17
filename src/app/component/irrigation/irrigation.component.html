@@ -13,11 +13,12 @@
             
             <h4 style="background-color:#eee;">Irrigation Unit Cockpit</h4>
             <div class="content">
-          <form action="#">
+          <form [formGroup]="form" >
             <div class="user-details">
               <div class="input-box">
                 <span class="details">*Irrigation Unit Name</span>
-                <input type="text" required>
+                <input type="text" required name ="IR_name" formControlName="IR_name" [ngClass]="
+                { 'is-invalid': form.get('IR_name').touched && form.get('IR_name').invalid}">
               </div>
               <div class="input-box">
                 <span class="details">Watering Duration Time (minutes)</span>
@@ -60,16 +61,16 @@
           <div class="input-box">
             <span class="details">Sync System Time
             </span>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <input type="number" class="form-control" placeholder="date" name="">
                 <input type="number" class="form-control" placeholder="Time" name="">
-            </div>
-          </div>
+            </div>-->
+          </div> 
 
           <div class="input-box">
             <span class="details"></span>
           </div>
-
+<!-- 
 
           
           <h4 style="background-color:#eee;width: 850px;">Intelligent Field Irrigation</h4>
@@ -124,9 +125,9 @@
             <span class="details">Country</span>
             <input type="text" required>
           </div>
-            
+        -->          
             <div class="button">
-              <input type="submit" value="Add">
+              <input type="submit" (click)=" onAddSubmit()" value="Add">
             </div>
             </div>
           </form>
@@ -210,15 +211,15 @@
               <tbody>
 
 
-         <tr>
+         <tr *ngFor ="let irrigation of irrigationDetails">
                   <td >
                     <input type="checkbox" [checked]="checks">
                   </td>
-                  <td>I-0001</td>
-                  <td>test 1</td>
+                  <td>{{irrigation.IR_ID}}</td>
+                  <td>{{irrigation.IR_name}}</td>
                   <td>plant 1</td>
                  
-                  <td>4/15/2021, 4:00 AM</td>
+                  <td>{{irrigation.Created_at}}</td>
                   <td><span class="badge bg-success">active</span></td>
                   <td><span class="badge bg-success">80%</span></td>
                   <td>
@@ -232,7 +233,7 @@
                       </li>
                       <li class="list-inline-item">
                           <button class="btn text-danger btn-sm rounded-0" 
-                         
+                           (click)="deleteIrrigation(irrigation.IR_ID)"
                        
                        
                            type="button" data-toggle="tooltip"
@@ -244,7 +245,7 @@
                   </ul>
                 </td>
         </tr>
-               
+<!--                
          <tr>
                   <td>
                     <input type="checkbox" [checked]="checks">
@@ -278,9 +279,9 @@
                       </li>
                   </ul>
                 </td>
-         </tr>
+         </tr> -->
 
-          <tr>
+          <!-- <tr>
                   <td>
                     <input type="checkbox" [checked]="checks">
                   </td>
@@ -386,7 +387,6 @@
                 </tr>
 
 
-                <!-- <tr>
                   <td>
                     <input type="checkbox" [checked]="checks">
                   </td>
@@ -419,7 +419,7 @@
                       </li>
                   </ul>
                 </td>
-                </tr> -->
+                </tr>  -->
              
               
               </tbody>

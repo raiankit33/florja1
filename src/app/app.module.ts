@@ -13,24 +13,30 @@ import { LoginsignupComponent } from './loginsignup/loginsignup.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { ServiceService } from './service/service.service';
+import { UserService } from './service/user.service';
+import { ValidateService } from './service/ValidateService';
+import { AuthService } from './service/auth.service';
 import { MeasurementComponent } from './component/measurement/measurement.component';
 import { IrrigationComponent } from './component/irrigation/irrigation.component';
 import { UserprofileComponent } from './component/userprofile/userprofile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlantsComponent } from './component/plants/plants.component';
-import { TenentComponent } from './component/tenent/tenent.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AutomationComponent } from './component/automation/automation.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { VisualizationComponent } from './component/visualization/visualization.component';
-import { UsersComponent } from './component/users/users.component';
+
 import { SoicalpageComponent } from './component/soicalpage/soicalpage.component';
-import { MapComponent } from './map/map.component';
+
 import { PlantdetailsComponent } from './component/plantdetails/plantdetails.component';
-import { EmergencycontactComponent } from './component/emergencycontact/emergencycontact.component';
+
 import { NotificationComponent } from './component/notification/notification.component';
 import { SignupComponent } from './component/signup/signup.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { TenantloginComponent } from './tenantlogin/tenantlogin.component';
+
 
 
 @NgModule({
@@ -58,7 +64,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 
     PlantsComponent,
 
-    TenentComponent,
+   
 
     AutomationComponent,
 
@@ -66,23 +72,26 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 
     VisualizationComponent,
 
-    UsersComponent,
 
     SoicalpageComponent,
 
-    MapComponent,
+
 
  
 
     PlantdetailsComponent,
 
-    EmergencycontactComponent,
+   
 
     NotificationComponent,
 
     SignupComponent,
 
-    SidebarComponent,
+    TenantloginComponent,
+
+    
+
+   
 
     
   ],
@@ -91,11 +100,13 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     AppRoutingModule,
     FormsModule,
     Ng2OrderModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     HttpClientModule, 
    
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,UserService,ValidateService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
