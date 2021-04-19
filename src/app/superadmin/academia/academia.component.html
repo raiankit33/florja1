@@ -27,42 +27,42 @@
                 </div> -->
                 <div class="input-box">
                   <span class="details">Name</span>
-                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.Name" required name="Name"
-                    formControlName="Name" [ngClass]="
-                  { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name"
+                    formControlName="name" [ngClass]="
+                  { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
                   <div class="invalid-feedback">
                     <div> This field is required</div>
                   </div>
                 </div>
                 <div class="input-box">
                   <span class="details">Email</span>
-                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.Email" required name="Email"
-                    formControlName="Email" [ngClass]="
-                  { 'is-invalid': form.get('Email').touched && form.get('Email').invalid}">
-                  <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="invalid-feedback">
-                    <div *ngIf="form.get('Email').errors.required"> This field is required</div>
-                    <div *ngIf="form.get('Email').errors.email"> Email must be valid email address</div>
+                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.email" required name="email"
+                    formControlName="email" [ngClass]="
+                  { 'is-invalid': form.get('email').touched && form.get('email').invalid}">
+                  <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                    <div *ngIf="form.get('email').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('email').errors.email"> Email must be valid email address</div>
                   </div>
 
                 </div>
 
                 <div class="input-box">
                   <span class="details">Contact</span>
-                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.Contact" required name="Contact"
-                    formControlName="Contact" [ngClass]="
-                  { 'is-invalid': form.get('Contact').touched && form.get('Contact').invalid}">
-                  <div class="invalid-feedback" *ngIf="form.get('Contact').touched && form.get('Contact').invalid"
+                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.phone" required name="phone"
+                    formControlName="phone" [ngClass]="
+                  { 'is-invalid': form.get('phone').touched && form.get('phone').invalid}">
+                  <div class="invalid-feedback" *ngIf="form.get('phone').touched && form.get('phone').invalid"
                     class="invalid-feedback">
-                    <div *ngIf="form.get('Contact').errors.required"> This field is required</div>
-                    <div *ngIf="form.get('Contact').errors.pattern"> Invalid Number </div>
+                    <div *ngIf="form.get('phone').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('phone').errors.pattern"> Invalid Number </div>
                   </div>
                 </div>
 
                 <div class="input-box">
                   <span class="details">Permission</span>
-                  <select name="Product code" class="form-control" [(ngModel)]="userObj.Permission" name="Permission"
-                    style="width: 200px;" formControlName="Permission" [ngClass]="
-                  { 'is-invalid': form.get('Permission').touched && form.get('Permission').invalid}">
+                  <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
+                    style="width: 200px;" formControlName="permission" [ngClass]="
+                  { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
                     <option value="">Choose </option>
                     <option value="All Access">All Access</option>
                     <option value="No Access"> No Access</option>
@@ -150,12 +150,12 @@
             <tr
               *ngFor="let academia of academiaDetails |  filter:name |  paginate: { itemsPerPage: 5, currentPage: p } ;  index as no">
               <td>{{no+1}}</td>
-              <td>{{academia.Name}}</td>
-              <td>{{academia.Email}}</td>
-              <td>+91{{academia.Contact}}</td>
-              <td class="Permission"><span class="badge" [ngClass]="{'badge-success': academia.Permission =='All Access',
-         'badge-danger' : academia.Permission !='All Access'}">{{academia.Permission}}</span></td>
-         <td>{{academia.Created_at}}</td>    
+              <td>{{academia.name}}</td>
+              <td>{{academia.email}}</td>
+              <td>+91{{academia.phone}}</td>
+              <td class="permission"><span class="badge" [ngClass]="{'badge-success': academia.permission =='All Access',
+         'badge-danger' : academia.permission !='All Access'}">{{academia.permission}}</span></td>
+         <td>{{academia.created_at}}</td>    
          <td>
               
                 <ul class="list-inline m-0">
@@ -167,7 +167,7 @@
                       <i class="fa fa-edit"></i></button>
                   </li>
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" (click)="deleteAcademia(academia.A_ID)"
+                    <button class="btn text-danger btn-sm rounded-0" (click)="deleteAcademia(academia.id)"
                       type="button" data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>

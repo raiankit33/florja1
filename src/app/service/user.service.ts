@@ -33,12 +33,12 @@ listen(): Observable<any>{
 
 registerPlant(plant){
         
-  return this.http.post('https://nagk5z6h17.execute-api.us-east-2.amazonaws.com/add_plant',plant).pipe(map(res => res));
+  return this.http.post('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/insertPlant/insertPlant',plant).pipe(map(res => res));
 }
 
 getPlantDetails(){
       
-return this.http.get('https://nagk5z6h17.execute-api.us-east-2.amazonaws.com/get_plant').pipe(map(res => res));
+return this.http.get('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/getPlant/getPlant').pipe(map(res => res));
 
 }
 

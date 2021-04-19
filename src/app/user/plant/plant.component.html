@@ -1,0 +1,351 @@
+<div class="content-header">
+    <h3 class="ml-4 mt-6 text-dark">Plants</h3>
+  </div>
+  <br>
+  
+  
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        ...
+        <div style="justify-content: center;">
+          <div class="container1">
+  
+            <h4 style="background-color:#eee;">Information</h4>
+            <div class="content">
+              <form [formGroup]="form">
+                <div class="user-details">
+  
+  
+                  <div class="input-box">
+                    <span class="details">*Plant-Name</span>
+                    <input type="text" required name="name" formControlName="name" [ngClass]="
+                  { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Owner</span>
+  
+                  </div>
+                  <!-- <div class="input-box">
+                  <span class="details">Measurement</span>
+                  <input type="text"  required  name ="Name" formControlName="Name" [ngClass]="
+                  { 'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+                </div> -->
+  
+  
+  
+                  <!-- <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4> -->
+                  <hr class="style1">
+                  <br>
+                  <br>
+  
+                  <div class="input-box">
+  
+                  </div>
+                  <!-- <div class="input-box">
+              <span class="details">Air Humidity Min</span>
+              <input type="text" formControlName="Air_humidity_min" [ngClass]="
+              { 'is-invalid': form.get('Air_humidity_min').touched && form.get('Air_humidity_min').invalid}">
+            </div>
+  
+            <div class="input-box">
+              <span class="details">Air Humidity Max</span>
+              <input type="text" formControlName="Air_humidity" [ngClass]="
+              { 'is-invalid': form.get('Air_humidity').touched && form.get('Air_humidity').invalid}">
+            </div> -->
+  
+                  <!-- <div class="input-box">
+              <span class="details">Air Temp Min</span>
+              <input type="text" required>
+            </div>
+  
+            <div class="input-box">
+              <span class="details">Air Temp Max
+               </span>
+              <input type="text" required>
+            </div> -->
+  
+                  <!-- <div class="input-box">
+              <span class="details">
+                  Soil Humidity MAX</span>
+              <input type="text" required>
+            </div> -->
+  
+  
+                  <div class="button">
+                    <input type="submit" (click)=" onAddSubmit()" value="Add">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"></h3>
+  
+  
+        <div class="searchbox">
+  
+  
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+            </a>
+  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+  
+          <div class="search_wrap search_wrap_1">
+            <div class="search_box" style="margin-left: 15px;">
+              <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+                placeholder="search...">
+              <div class="btn btn_common">
+                <i class="fas fa-search"></i>
+              </div>
+  
+            </div>
+  
+          </div>
+        </div>
+        <div class="card-tools">
+          <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Plant
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div style="overflow-x:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Plant Id <i class="fa fa-sort"></i></th>
+                <th scope="col" aria-colspan="2">Name <i class="fa fa-sort"></i></th>
+                <th scope="col">Sensor Count <i class="fa fa-sort"></i></th>
+                <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
+  
+                <th scope="col">Last Measurement <i class="fa fa-sort"></i></th>
+                <th scope="col">Notification <i class="fa fa-sort"></i></th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+  
+  
+              <tr
+                *ngFor="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
+                <td>{{no+1}}</td>
+                <td><a (click)="plants()">{{plant.name}}</a></td>
+                <td><span>{{plant.count}} </span></td>
+                <td><span class="badge bg-success">unit 1 running</span></td>
+  
+                <td>{{plant.created_at}}</td>
+                <td>
+                  <input type="checkbox">
+                </td>
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class=" btn text-danger btn-sm rounded-0" (click)="deletePlant(plant.P_ID)" type="button"
+                        data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <!--               <tr>
+                    <td>P-0001</td>
+                    <td>plant 2</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
+                    
+                    <td>3/16/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+  
+                  <tr>
+                    <td>P-0002</td>
+                    <td>plant 3</td>
+                    <td><span class="badge "style="background-color: orange;color: white;">need check</span></td>
+                    <td><span class="badge bg-danger">unit 2 blackout</span></td>
+                    
+                    <td>3/16/21,12:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+  
+                  <tr>
+                    <td>P-0003</td>
+                    <td>plant 4</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge bg-success">unit 1 running</span></td>
+                   
+                    <td>3/06/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+  
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+  
+                
+                  </tr>
+  
+                  <tr>
+                    <td>P-0004</td>
+                    <td>plant 5</td>
+                    <td><span class="badge " style="background-color: darkorange;color: white;">need check</span></td>
+                    <td><span class="badge bg-success">unit 2 running</span></td>
+                  
+                    <td>3/16/21,11:40</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr> -->
+  
+              <!-- <tr >
+                    <td>P-0005</td>
+                    <td>plant 6</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
+                    
+                    <td>5/16/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+                -->
+  
+            </tbody>
+  
+          </table>
+        </div>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer text-center">
+  
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+  
+      </div>
+      <!-- /.card -->

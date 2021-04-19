@@ -2,23 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 
-
-
 @Component({
-  selector: 'app-tenantlogin',
-  templateUrl: './tenantlogin.component.html',
-  styleUrls: ['./tenantlogin.component.css']
+  selector: 'app-ulogin',
+  templateUrl: './ulogin.component.html',
+  styleUrls: ['./ulogin.component.css']
 })
-export class TenantloginComponent implements OnInit {
-  error :string;
+export class UloginComponent implements OnInit {
+  error = 'server error';
 
   email: String;
   password: String;
 
   constructor(
     private authService: AuthService,
-
-
     private router: Router,) { }
 
   ngOnInit(): void {
@@ -31,23 +27,24 @@ export class TenantloginComponent implements OnInit {
 
     }
 
-    this.authService.authenticateTenant(user)
+    this.authService.authenticateUser(user)
       .subscribe(
         (data) => {
-          if(data.statusCode==200){
-          localStorage.setItem('TenantToken', data.token);
-          this.router.navigate(['subadmin']);
-          alert('Success ! logged In')
-          }else{
+          if (data) {
+            // localStorage.setItem('userToken', data.token);
+            this.authService.storeUserData(data.token, data.user);
+            this.router.navigate(['user/dashboad']);
+            alert('Success ! logged In')
+          } else {
             console.log('error');
             alert("fail to logged In")
             this.router.navigate(['login']);
           }
         },
         (error) => {
-          this.error = 'Server Down Please try After Sometime ..! '
-          
-         
+          console.log(error);
+
+
         }
       );
   }

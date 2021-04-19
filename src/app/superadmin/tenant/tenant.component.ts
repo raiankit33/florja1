@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServiceService } from '../../service/service.service';
 import { SharedService } from "../../service/shared.service";
 import Swal from 'sweetalert2';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-tenant',
@@ -18,6 +19,7 @@ export class TenantComponent implements OnInit {
     email: new FormControl('',[Validators.required, Validators.email]),
     phone: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
     permission: new FormControl('',Validators.required),
+  
    
 
   })
@@ -56,6 +58,8 @@ export class TenantComponent implements OnInit {
  
 
   ngOnInit(): void {
+
+
     
     this.getTenantDetails( );
   }

@@ -1,0 +1,315 @@
+<div class="content-header">
+    <h3 class="ml-4 text-dark">Sensors</h3>
+  </div>
+  <br>
+  
+  
+  
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        ...
+  
+        <div class="container1">
+  
+          <h4 style="background-color: #eee;">Information</h4>
+          <div class="content">
+            <form action="#">
+              <div class="user-details">
+                <div class="input-box">
+                  <span class="details">*Sensor Type</span>
+                  <select name="Product code" class="form-control" style="width: 200px;">
+                    <option value="">Choose </option>
+                    <option value="">Moist Sensors</option>
+                    <option value=""> Water Meter Sensor</option>
+                    <option value=""> GPS Tracker Sensor</option>
+                    <option value=""> Weather Station Sensor</option>
+                  </select>
+                </div>
+                <div class="input-box">
+                  <span class="details">Sensor Name</span>
+                  <input type="text" placeholder=" Enter Sensor Name" required>
+                </div>
+                <div class="input-box">
+                  <span class="details">Sensor ID</span>
+                  <input type="text" placeholder=" Enter Sensor ID" required>
+                </div>
+  
+  
+  
+  
+  
+                <div class="button">
+                  <input type="submit" value="Next">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+  
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"></h3>
+  
+  
+  
+  
+  
+        <div class="searchbox">
+  
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+            </a>
+  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+  
+          <div class="search_wrap search_wrap_1">
+            <div class="search_box" style="margin-left: 15px;">
+              <input type="text" class="input" placeholder="search...">
+              <div class="btn btn_common">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-tools">
+          <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Sensor
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div style="overflow-x:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sensor Id <i class="fa fa-sort"></i></th>
+                <th scope="col"> Name <i class="fa fa-sort"></i></th>
+                <th scope="col">Plant Name <i class="fa fa-sort"></i></th>
+                <th scope="col">Last Measurement <i class="fa fa-sort"></i></th>
+                <th scope="col">Device <i class="fa fa-sort"></i></th>
+                <th scope="col"> Status <i class="fa fa-sort"></i> </th>
+                <th scope="col">Battery Status <i class="fa fa-sort"></i></th>
+                <th scope="col">Notification <i class="fa fa-sort"></i></th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+  
+  
+              <tr>
+                <td>S-0001</td>
+                <td>Sensor 1</td>
+                <td>plant 1</td>
+                <td>3/16/21,11:00</td>
+                <td>GPS Tracker</td>
+                <td><span class="badge bg-success">active</span></td>
+                <td><span class="badge bg-success">80%</span></td>
+                <td>
+                  <input type="checkbox">
+                </td>
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>S-0002</td>
+                <td>Sensor 2</td>
+                <td>plant 1</td>
+                <td>3/10/21,9:00</td>
+                <td> Moist Sensor </td>
+                <td><span class="badge " style="background-color: darkorange;color: white;">inactive </span></td>
+                <td><span class="badge " style="background-color: darkorange;color: white;">40% </span></td>
+                <td>
+                  <input type="checkbox">
+                </td>
+  
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>S-0003</td>
+                <td>Sensor 3</td>
+                <td>plant 3</td>
+                <td>3/11/21,11:00</td>
+                <td> Water Meter Sensor</td>
+                <td><span class="badge bg-success">active</span></td>
+                <td><span class="badge bg-success">80%</span></td>
+                <td>
+                  <input type="checkbox">
+                </td>
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>S-0004</td>
+                <td>Sensor 4</td>
+                <td>plant 4</td>
+                <td>4/16/21,10:10</td>
+                <td>Moist Sensor</td>
+                <td><span class="badge " style="background-color: darkorange;color: white;">inactive</span></td>
+                <td><span class="badge bg-success">80%</span></td>
+                <td>
+                  <input type="checkbox">
+                </td>
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>S-0005</td>
+                <td>Sensor 5</td>
+                <td>plant 4</td>
+                <td>3/20/21,10:00</td>
+                <td>GPS Tracker</td>
+                <td><span class="badge bg-success">active</span></td>
+                <td><span class="badge " style="background-color: darkorange;color: white;">20%</span></td>
+                <td>
+                  <input type="checkbox">
+                </td>
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                        data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+              <!-- <tr>
+                    <td>S-0006</td>
+                    <td>Sensor 6</td>
+                    <td>plant 5</td>
+                    <td>3/16/21,12:00</td>
+                    <td>GPS Tracker</td>
+                    <td><span class="badge bg-success">active</span></td>
+                    <td><span class="badge "style="background-color: orange;color: white;">20%</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                            <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button class="btn text-danger btn-sm rounded-0" 
+                           
+                         
+                         
+                             type="button" data-toggle="tooltip"
+                            
+                              data-placement="top" title="Delete">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                        </li>
+                    </ul>
+                  </td>
+                  </tr> -->
+  
+  
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer text-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- /.card -->

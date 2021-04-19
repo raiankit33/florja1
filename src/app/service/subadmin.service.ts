@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { AuthService} from '../service/auth.service';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -31,15 +32,14 @@ export class SubadminService {
  
 
   registerUser(user){
-     let  payload =({"id":'31d322eca5cd404ab437c39451df5c1e',
-     'user':user});
+   
     
-    return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/insertUser/insertUser',payload).pipe(map(res => res));
+    return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/insertUser/insertUser',user).pipe(map(res => res));
 }
 
 getUserDetails(){
-        
-  return this.http.get('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/getUser/getUser').pipe(map(res => res));
+  // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/getUser/getUser',).pipe(map(res => res));
 
 }
 

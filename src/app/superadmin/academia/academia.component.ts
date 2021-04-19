@@ -18,11 +18,11 @@ export class AcademiaComponent implements OnInit {
 isEdit = false;
 p: number = 1;
   userObj = {
-    T_ID:"",
-    Name :"",
-    Email : "",
-    Contact: "",
-    Permission :""
+   
+    name :"",
+    email : "",
+    phone: "",
+    permission :""
   };
   academiaDetails=[];
 name:any;
@@ -42,11 +42,11 @@ name:any;
   }
 
   form = new FormGroup({
-    T_ID: new FormControl(''),
-    Name: new FormControl('',Validators.required),
-    Email: new FormControl('',[Validators.required, Validators.email]),
-    Contact: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
-    Permission: new FormControl('All Access',Validators.required),
+    id: new FormControl(''),
+    name: new FormControl('',Validators.required),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    phone: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
+    permission: new FormControl('All Access',Validators.required),
    
 
   })
@@ -114,7 +114,7 @@ name:any;
      
   }
 
-  deleteAcademia(A_ID){
+  deleteAcademia(id){
    
 
 
@@ -128,7 +128,7 @@ name:any;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.serviceService.deleteAcademia(A_ID).subscribe( (res:any)=>{
+        this.serviceService.deleteAcademia(id).subscribe( (res:any)=>{
           this.getAcademiaDetails();
           
         

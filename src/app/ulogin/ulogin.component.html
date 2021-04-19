@@ -10,13 +10,13 @@
     <div class="wrapper">
       <div class="title">
     Login </div>
-    <form   [formGroup]="Form" >
+    <form   (submit)="onLoginSubmit()" >
         <div class="field">
-          <input type="email" required  formControlName="email" >
+          <input type="email" required   [(ngModel)]="email" name="email" >
           <label>Email</label>
         </div>
         <div class="field" >
-          <input type="password" required   formControlName="password" >
+          <input type="password" required   [(ngModel)]="password" name="password" >
          
           <label>Password</label>
         </div>
@@ -35,7 +35,7 @@
         </div>
     
         <div class="signup-link">
-       <a routerLink="user">user</a>
+       <a routerLink="home/dashboad">user</a>
        <a routerLink="superadmin">superadmin</a>
        <a routerLink="subadmin">tenant</a>
         </div>

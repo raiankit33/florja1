@@ -70,25 +70,25 @@ updateTenant(tenant){
 
 registerAcademia(academia){
         
-  return this.http.post('https://vil368z1j3.execute-api.us-east-2.amazonaws.com/put_v1',academia).pipe(map(res => res))
+  return this.http.post('https://615daw6n88.execute-api.us-east-2.amazonaws.com/insertAcademia/insertAcademia',academia).pipe(map(res => res))
   .pipe(catchError(this.handleError));
  }
 
  getAcademiaDetails(){
         
-  return this.http.get('https://vil368z1j3.execute-api.us-east-2.amazonaws.com/get_v1').pipe(map(res => res));
+  return this.http.get('https://615daw6n88.execute-api.us-east-2.amazonaws.com/getAcademia/getAcademia').pipe(map(res => res));
 
 }
 
 
-deleteAcademia(A_ID){
+deleteAcademia(id){
         
-  return this.http.post('https://x7o6jyoax2.execute-api.us-east-2.amazonaws.com/Delete_Academia_Web/',{'A_ID':A_ID}).pipe(map(res =>
+  return this.http.post('https://615daw6n88.execute-api.us-east-2.amazonaws.com/deleteAcademia/deleteAcademia/',{'id':id}).pipe(map(res =>
    res));
 }
 
 updateAcademia(academia){
-  return this.http.put('https://f5j9wcu4r8.execute-api.us-east-2.amazonaws.com/academia_update_web?A_ID='+academia.A_ID,academia).pipe(map(res =>
+  return this.http.put('https://615daw6n88.execute-api.us-east-2.amazonaws.com/updateAcademia/updateAcademia?id='+academia.id,academia).pipe(map(res =>
   res));
 }
 
