@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UserService } from '../../service/user.service';
+import { SharedService } from "../../service/shared.service";
 
 @Component({
   selector: 'app-plant',
@@ -12,10 +13,35 @@ import { UserService } from '../../service/user.service';
 export class PlantComponent implements OnInit {
   plantDetails = [];
   name:any;
+  isEdit=false;
   p: number =1 ;
+  userObj ={
+    name: "",
+    soil_humidity_min:"",
+    soil_humidity_max: "",
+    soil_temp_max: "",
+    soil_temp_min: "",
+    air_humidity_min:"",
+    air_humidity_max: "",
+    ec_min: "",
+    ec_max:"",
+    air_temp_max: "",
+    air_temp_min: "",
+    fertilization_interval: "",
+    autumn_end: "",
+    autumn_start: "",
+    spring_end:"",
+    spring_start: "",
+    summer_end: "",
+    summer_start:"",
+    winter_end:"",
+    winter_start: ""
+  }
+  user: any;
  
    constructor(
      private userService : UserService,
+        private sharedData : SharedService,
      private router: Router, )
    {
      this.userService.listen().subscribe((m:any)=>{
@@ -27,21 +53,43 @@ export class PlantComponent implements OnInit {
  
  
    ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
      this.getPlantDetails();
    }
  
-   plants(){
-     this.router.navigate(['home/details']);
+   plantPage(plant){
+    this.sharedData.updateSharedData(plant);
+   
+    this.router.navigate(['user/pDetail',{id:plant.id}]);
+     
    }
  
  
    form = new FormGroup({
      // P_ID: new FormControl(''),
+     
      name: new FormControl('',Validators.required),
-     // Air_humidity_min: new FormControl('',[Validators.required]),
-     // Air_humidity: new FormControl(null, [Validators.required,]),
-     // Permission: new FormControl('All Access',Validators.required),
-    
+   
+     soil_humidity_min: new FormControl('',Validators.required),
+     soil_humidity_max: new FormControl('',Validators.required),
+     soil_temp_max: new FormControl('',Validators.required),
+     soil_temp_min: new FormControl('',Validators.required),
+     air_humidity_min: new FormControl('',Validators.required),
+     air_humidity_max: new FormControl('',Validators.required),
+     ec_min: new FormControl('',Validators.required),
+     ec_max: new FormControl('',Validators.required),
+     air_temp_max: new FormControl('',Validators.required),
+     air_temp_min: new FormControl('',Validators.required),
+     fertilization_interval: new FormControl('',Validators.required),
+     autumn_end: new FormControl('',Validators.required),
+     autumn_start: new FormControl('',Validators.required),
+     spring_end: new FormControl('',Validators.required),
+     spring_start: new FormControl('',Validators.required),
+     summer_end: new FormControl('',Validators.required),
+     summer_start: new FormControl('',Validators.required),
+     winter_end: new FormControl('',Validators.required),
+     winter_start: new FormControl('',Validators.required),
+     
  
    })
  
@@ -55,12 +103,38 @@ export class PlantComponent implements OnInit {
        })
      }
    }
+
+
  
    onAddSubmit(){
  
      if(this.form.valid){
- 
-     this.userService.registerPlant(this.form.value).subscribe( res=> {
+
+      let createPlant ={
+        id:this.user.id,
+        name: this.form.value.name,
+        soil_humidity_min: this.form.value.soil_humidity_min,
+        soil_humidity_max: this.form.value.soil_humidity_max,
+        soil_temp_max: this.form.value.soil_temp_max,
+        soil_temp_min: this.form.value.soil_temp_min,
+        air_humidity_min:this.form.value.air_humidity_min,
+        air_humidity_max: this.form.value.soil_humidity_max,
+        ec_min: this.form.value.ec_min,
+        ec_max:this.form.value.ec_max,
+        air_temp_max: this.form.value.air_temp_max,
+        air_temp_min: this.form.value.air_temp_min,
+        fertilization_interval: this.form.value.fertilization_interval,
+        autumn_end: this.form.value.autumn_end,
+        autumn_start: this.form.value.autumn_start,
+        spring_end: this.form.value.spring_end,
+        spring_start: this.form.value.spring_start,
+        summer_end: this.form.value.summer_end,
+        summer_start:this.form.value.summer_start,
+        winter_end:this.form.value.winter_end,
+        winter_start: this.form.value.winter_start
+      }
+  console.log(createPlant);
+     this.userService.registerPlant(createPlant).subscribe( res=> {
        console.log(res);
        this.userService.filter('added click');
        this.form.reset();
@@ -75,7 +149,11 @@ export class PlantComponent implements OnInit {
    }
  
    getPlantDetails(){
-     this.userService.getPlantDetails().subscribe((res:any)=>{
+    let createToken ={
+      AuthToken:this.user.token,
+      u_id:this.user.id
+    }
+     this.userService.getPlantDetails(createToken).subscribe((res:any)=>{
        this.plantDetails = res.data;
       
      }
@@ -83,7 +161,7 @@ export class PlantComponent implements OnInit {
      );
    } 
  
-   deletePlant(P_ID){
+   deletePlant(id){
     
      Swal.fire({
        title: 'Are you sure?',
@@ -95,7 +173,7 @@ export class PlantComponent implements OnInit {
        confirmButtonText: 'Yes, delete it!'
      }).then((result) => {
        if (result.isConfirmed) {
-         this.userService.deletePlant(P_ID).subscribe( (res:any)=>{
+         this.userService.deletePlant(id).subscribe( (res:any)=>{
            this.getPlantDetails();
            
          
@@ -110,6 +188,28 @@ export class PlantComponent implements OnInit {
      })
    }
     
+
+   
+   editPlant(plant){
+    this.userObj = plant;
+    this.isEdit =true;
+  
+   // this.sharedData.updateSharedData(tenant);
+   // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
+   }
+ 
+   updateTen(){
+    
+     this.userService.updatePlant(this.userObj).subscribe(()=>{
+ 
+    Swal.fire(
+     'Success!',
+     'plant has been Updated.',
+     'success'
+   )
+     })
+   }
+ 
  
  }
  

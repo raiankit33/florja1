@@ -5,6 +5,8 @@ import { SubadminComponent } from './subadmin.component';
 import { TenantdashComponent } from './tenantdash/tenantdash.component';
 import { UsersComponent } from './users/users.component';
 import { TenprofileComponent } from './tenprofile/tenprofile.component';
+import { SubNotificationComponent } from './sub-notification/sub-notification.component';
+import { SubTenantComponent } from './sub-tenant/sub-tenant.component';
 
 const routes: Routes = [{ 
   path: '', component: SubadminComponent,
@@ -12,6 +14,9 @@ const routes: Routes = [{
     { path: 'tendash', component:TenantdashComponent},
     { path: 'users', component:UsersComponent},
     { path: 'tenprofile', component:TenprofileComponent},
+     { path: 'subTenant', component:SubTenantComponent},
+     { path: 'notification', component:SubNotificationComponent},
+     
   ]
 
 

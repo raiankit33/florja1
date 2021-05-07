@@ -1,12 +1,137 @@
 
  <div class="content-header">
 
-    <h3 class="ml-4 text-dark">Sensor Request </h3>
+    <h3 class="ml-4 text-dark">Sensor  </h3>
     </div>
     <br>
+
+    
    
-   
-   
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Sensor</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div style="justify-content: center;">
+          <div class="container">
+  
+            <h4 style="background-color: #eee;"> Sensor </h4>
+            <div class="content">
+              <form  [formGroup]="form">
+                <div class="user-details">
+
+                  <div class="input-box">
+                    <span class="details">* Sensor Type</span>
+                    <select name="plant_name" class="form-control" formControlName="sensor_type" (change)="showField($event)" name="sensor_type"  
+                    [ngClass]=  "  { 'is-invalid': form.get('sensor_type').touched && form.get('sensor_type').invalid}" style="width: 100%;">
+                        <option value="">---Select---</option>
+                      <option value="{{sensor.sensor_type}}" *ngFor = "let sensor of sensorType">{{sensor.sensor_type}} </option>
+                 
+                    </select>
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Plant Name</span>
+                    <select class="form-control" aria-placeholder="Enter Plant Name" formControlName="plant_name"  name="plant_name" 
+                    [ngClass]=  "  { 'is-invalid': form.get('plant_name').touched && form.get('plant_name').invalid}" 
+                     style="width: 100%;">
+                        <option value="">---Select--- </option>
+                      <option value="{{plant.name}}" *ngFor = "let plant of plantDetails ">{{plant.name}} </option>
+                 
+                    </select>
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Sensor Name</span>
+                    <input type="text" required name="name" placeholder="Enter Sensor Name"  formControlName="name" [ngClass]="
+                    { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+                 
+               
+
+                  <div class="input-box">
+                    <span class="details">* Interval Moist Sensor (minutes)</span>
+                    <input type="text" required name="interval"  placeholder="Enter Interval Time" formControlName="interval" [ngClass]="
+                    { 'is-invalid': form.get('interval').touched && form.get('interval').invalid}">
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+
+  
+                  <div class="input-box"  >
+                    <span class="details">Latitude</span>
+                    <input type="number"  name="latitude"  placeholder="Enter Latitude"  formControlName="latitude"  [ngClass]="
+                    { 'is-invalid': form.get('latitude').touched && form.get('latitude').invalid}" style="width: 300px;">
+                  
+                  </div>
+
+                  <div class="input-box"  >
+                    <span class="details">Longitude</span>
+                    <input type="number"  name="longitude" placeholder="Enter Longitude" formControlName="longitude" [ngClass]="
+                    { 'is-invalid': form.get('longitude').touched && form.get('longitude').invalid}" style="width: 300px;" >
+                   
+                  </div>
+
+    
+                  <div class="form-group">
+                    <label for="exampleInputFile">* End Point URL</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="url"  name="url"  placeholder="Enter End Point URl" formControlName="url" class="form-control" [ngClass]="
+                        { 'is-invalid': form.get('url').touched && form.get('url').invalid}" style="width: 300px;">
+                       
+                      </div>
+                      <div class="invalid-feedback">
+                        <div> This field is required</div>
+                      </div>
+                      <button class="btn btn-primary" [disabled]="isLoading" (click)="toggleLoading()">
+                        <img *ngIf="isLoading" style="width : 24px" src="../../../assets/icons8-spinner.gif" />
+                        Test 
+                      </button>
+                     
+                    </div>
+                 
+                  </div>
+
+
+                  <div class="input-box"  >
+              
+                   
+                  </div>
+
+    
+                     {{error}}
+                  <div class="button">
+                    <input type="submit" (click)="onAddSubmit()"  value="Add">
+                   
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+
+  </div>
+ 
    
    <div class="col-md-12">
    <div class="card">
@@ -16,7 +141,8 @@
     <div class="searchbox" >
    
      <div class="dropdown show">
-       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
          <i class="fa fa-filter" aria-hidden="true"></i>
        </a>
      
@@ -36,43 +162,56 @@
         </div>
       </div>
      </div>
- 
+   <div class="card-tools">
+          <button type="button" data-toggle="modal" *ngIf="parent"   data-target=".bd-example-modal-lg"
+            class="btn btn-primary">Add Sensor </button>
+        </div>
    </div>
    
    
    <div class="card-body p-0">
      <div style="overflow-x:auto;">
-    <table class="table" >
+    <table class="table"  >
       <thead>
         <tr>
-          <th scope="col"  >Request Id <i class="fa fa-sort"></i></th>
-          <th scope="col" >Tenant <i class="fa fa-sort"></i></th>
-          <th scope="col">User <i class="fa fa-sort"></i></th>
-          <th scope="col">Sensor Type <i class="fa fa-sort"></i></th>
+          <th scope="col"  >Id <i class="fa fa-sort"></i></th>
+          <th scope="col" >Sensor Name <i class="fa fa-sort"></i></th>
+          <th scope="col">Type <i class="fa fa-sort"></i></th>
+          <th scope="col">Plant Type <i class="fa fa-sort"></i></th>
+         
           <th scope="col">Date <i class="fa fa-sort"></i></th>
          
-          <th scope="col">Action </th>
+          <th scope="col" *ngIf="parent" >Action </th>
+          
+          <th scope="col" *ngIf="editParent" >Action </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let sens of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
    
-      <td r>011</td>
-      <td>Ankit</td>
-      <td>Alex</td>
-      <td>Moist Sensor</td>
-      <td><span >3/20/21</span></td>
+      <td >{{no+1}}</td>
+      <td>{{sens.name}}</td>
+      <td>{{sens.sensor_type}}</td>
+      <td>{{sens.plant_name}}</td>
+      <td><span >{{sens.created_at}}</span></td>
      
       <td>   
         <ul class="list-inline m-0">
       
           <li class="list-inline-item">
-              <button class="btn btn-success btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit">proceed</button>
+            <button class="btn text-warning btn-sm rounded-0"  type="button"
+              data-toggle="tooltip" data-toggle="modal" *ngIf="parent" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
+              title="Edit"><i class="fa fa-edit"></i></button>
+          </li>
+          <li class="list-inline-item" *ngIf="editParent" >
+            <button class="btn text-warning btn-sm rounded-0"  type="button"
+              data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
+              title="Edit"><i class="fa fa-edit"></i></button>
           </li>
           <li class="list-inline-item">
               <button class="btn text-danger btn-sm rounded-0" 
-             
-           
+              (click)="deleteSensor(sens.id)"
+              *ngIf="parent" 
            
                type="button" data-toggle="tooltip"
               
@@ -84,125 +223,7 @@
     </td>
       </tr>
       
-      <tr>
-   
-        <td r>012</td>
-        <td>Ankit</td>
-        <td>Mohit</td>
-        <td>GPS Tracker Sensor</td>
-        <td><span >4/11/21</span></td>
-      
-       
-        <td>   
-          <ul class="list-inline m-0">
-        
-            <li class="list-inline-item">
-                <button class="btn btn-success btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit">proceed</button>
-            </li>
-            <li class="list-inline-item">
-                <button class="btn text-danger btn-sm rounded-0" 
-               
-             
-             
-                 type="button" data-toggle="tooltip"
-                
-                  data-placement="top" title="Delete">
-                  <i class="fa fa-trash"></i>
-                </button>
-            </li>
-        </ul>
-      </td>
-        </tr>
-     
-        <tr>
-   
-            <td r>013</td>
-            <td>Ankit</td>
-            <td>Alex</td>
-            <td>Weather Station Sensor</td>
-            <td><span >3/20/21</span></td>
-         
-           
-      <td>   
-        <ul class="list-inline m-0">
-      
-          <li class="list-inline-item">
-              <button class="btn btn-success btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit">proceed</button>
-          </li>
-          <li class="list-inline-item">
-              <button class="btn text-danger btn-sm rounded-0" 
-             
-           
-           
-               type="button" data-toggle="tooltip"
-              
-                data-placement="top" title="Delete">
-                <i class="fa fa-trash"></i>
-              </button>
-          </li>
-      </ul>
-    </td>
-            </tr>
-   
-            <tr>
-   
-                <td r>014</td>
-                <td>Ankit</td>
-                <td>jhon</td>
-                <td>GPS  Sensor</td>
-                <td><span >3/20/21</span></td>
-             
-            
-      <td>   
-        <ul class="list-inline m-0">
-      
-          <li class="list-inline-item">
-              <button class="btn btn-success btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit">proceed</button>
-          </li>
-          <li class="list-inline-item">
-              <button class="btn text-danger btn-sm rounded-0" 
-             
-           
-           
-               type="button" data-toggle="tooltip"
-              
-                data-placement="top" title="Delete">
-                <i class="fa fa-trash"></i>
-              </button>
-          </li>
-      </ul>
-    </td>
-                </tr>
-   
-                <tr>
-   
-                    <td >015</td>
-                    <td>Ankit</td>
-                    <td>Ashish</td>
-                    <td>Water Meter Sensor</td>
-                    <td><span >3/02/21</span></td>
-                   
-                  
-      <td>   
-        <ul class="list-inline m-0">
-      
-          <li class="list-inline-item">
-              <button class="btn btn-success btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit">proceed</button>
-          </li>
-          <li class="list-inline-item">
-              <button class="btn text-danger btn-sm rounded-0" 
-             
-           
-           
-               type="button" data-toggle="tooltip"
-              
-                data-placement="top" title="Delete">
-                <i class="fa fa-trash"></i>
-              </button>
-          </li>
-      </ul>
-    </td>
-                    </tr>
+
       
       </tbody>
     </table>
@@ -210,17 +231,126 @@
    </div>
    <!-- /.card-body -->
    <div class="card-footer text-center">
-     <nav aria-label="Page navigation example">
-       <ul class="pagination">
-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-         <li class="page-item"><a class="page-link" href="#">1</a></li>
-         <li class="page-item"><a class="page-link" href="#">2</a></li>
-         <li class="page-item"><a class="page-link" href="#">3</a></li>
-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
-       </ul>
-     </nav>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
    </div>
    </div>
    <!-- /.card -->
    
    
+
+   
+   <div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title">Edit Sensor</h4>
+         <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div style="justify-content: center;">
+         <div class="container">
+ 
+           <h4 style="background-color: #eee;"> Sensor </h4>
+           <div class="content">
+             <form  >
+               <div class="user-details">
+
+                 <div class="input-box">
+                   <span class="details">* Sensor Type</span>
+                   <select name="plant_name" class="form-control"  name="sensor_type" [(ngModel)]="userObj.sensor_type" 
+                    style="width: 100%;">
+                       <option value="">---Select---</option>
+                     <option value="{{sensor.sensor_type}}" *ngFor = "let sensor of sensorType">{{sensor.sensor_type}} </option>
+                
+                   </select>
+                  
+                 </div>
+
+                 <div class="input-box">
+                   <span class="details">* Plant Name</span>
+                   <select class="form-control"   name="plant_name" aria-placeholder="Enter Plant Name" [(ngModel)]="userObj.plant_name" 
+ style="width: 100%;">
+                       <option value="">---Select--- </option>
+                     <option value="{{plant.name}}" *ngFor = "let plant of plantDetails ">{{plant.name}} </option>
+                
+                   </select>
+                  
+                 </div>
+
+                 <div class="input-box">
+                   <span class="details">* Sensor Name</span>
+                   <input type="text" required name="name" placeholder="Enter Sensor Name" [(ngModel)]="userObj.name" >
+                   
+                 </div>
+                
+              
+
+                 <div class="input-box">
+                   <span class="details">* Interval Moist Sensor (minutes)</span>
+                   <input type="text" required name="interval" placeholder="Enter Interval Time"  [(ngModel)]="userObj.interval" >
+                  
+                 </div>
+
+             
+
+
+                 <div class="input-box"  >
+                   <span class="details">Latitude</span>
+                   <input type="number"  name="latitude" placeholder="Enter Latitude"  [(ngModel)]="userObj.latitude" >
+                 
+                 </div>
+
+                 <div class="input-box"  >
+                   <span class="details">Longitude</span>
+                   <input type="number"  name="longitude" placeholder="Enter Longitude" [(ngModel)]="userObj.longitude"  >
+                  
+                 </div>
+
+   
+                 <div class="form-group">
+                   <label for="exampleInputFile">* End Point URL</label>
+                   <div class="input-group">
+                     <div class="custom-file">
+                       <input type="url"  name="url"  placeholder="Enter End Point URl"  [(ngModel)]="userObj.url"  class="form-control" >
+                      
+                     </div>
+                    
+                     <button class="btn btn-primary" [disabled]="isLoading" (click)="toggleLoading()">
+                       <img *ngIf="isLoading" style="width : 24px" src="../../../assets/icons8-spinner.gif" />
+                       Test 
+                     </button>
+                    
+                   </div>
+                
+                 </div>
+
+   
+                   
+                 <div class="button">
+                  
+                   <input type="submit" (click)="updateSens()"  value="Update">
+                 </div>
+               </div>
+             </form>
+           </div>
+         </div>
+ 
+ 
+       </div>
+     </div>
+   </div>
+
+ </div>
+
+
+
+
+
+
+
+
+  

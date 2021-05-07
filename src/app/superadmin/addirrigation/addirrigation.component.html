@@ -1,0 +1,531 @@
+<div class="content-header">
+  <h3 class="ml-4 text-dark">Irrigation</h3>
+</div>
+<br>
+
+<div class="modal fade bd-example-modal-lg" id="create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+        <div class="container">
+
+          <h4 style="background-color:#eee;">Irrigation Unit Cockpit</h4>
+          <div class="content">
+            <form [formGroup]="form">
+              <div class="user-details">
+
+                <div class="input-box">
+                  <span class="details">*Irrigation Unit Name</span>
+                  <input type="text" required name="name" placeholder="Enter Irrigation Unit Name " formControlName="name" [ngClass]="
+                    { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details"> Watering Duration Time (minutes)</span>
+                  <input type="text" required name="watering_duration" placeholder=" Enter Watering Duration Time " formControlName="watering_duration" [ngClass]="
+                  { 'is-invalid': form.get('watering_duration').touched && form.get('watering_duration').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Irrigation Ping Interval (minute)</span>
+                  <input type="text" required name="irrigation_ping_interval" placeholder="Enter Irrigation Ping Interval" formControlName="irrigation_ping_interval"
+                    [ngClass]="
+                  { 'is-invalid': form.get('irrigation_ping_interval').touched && form.get('irrigation_ping_interval').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+
+                <div class="input-box">
+                  <span class="details">* Plant Name</span>
+                  <select class="form-control" formControlName="p_id" name="p_id" 
+                    [ngClass]="  { 'is-invalid': form.get('p_id').touched && form.get('p_id').invalid}"
+                    style="width: 100%;">
+                    <option value="">---Select--- </option>
+                    <option value="{{plant.id}}"  *ngFor="let plant of plantDetails ">{{plant.name}}
+                    </option>
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Last Ping
+                  </span>
+                  <div class="input-group">
+                    <input type="date" formControlName="last_ping_date" name="last_ping_date" class="form-control"
+                      placeholder="date">
+                    <input type="time" formControlName="last_ping_time" name="last_ping_time" class="form-control"
+                      placeholder="Time" name="">
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div class="input-box">
+                  <span class="details">* Water Usage (in liter)</span>
+                  <input type="text" required name="water_usage" formControlName="water_usage" placeholder="Enter Water Usage "
+                    [ngClass]=" { 'is-invalid': form.get('water_usage').touched && form.get('water_usage').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Sync System Time
+                  </span>
+                  <div class="input-group">
+                    <input type="date" formControlName="sync_system_date" name="sync_system_date" class="form-control"
+                      name=""
+                      [ngClass]=" { 'is-invalid': form.get('sync_system_date').touched && form.get('sync_system_date').invalid}">
+                    <input type="time" formControlName="sync_system_time" name="sync_system_time" class="form-control"
+                      name=""
+                      [ngClass]=" { 'is-invalid': form.get('sync_system_time').touched && form.get('sync_system_time').invalid}">
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+
+
+                <div class="input-box">
+                  <span class="details">*
+                    Irrigation Unit Cluster</span>
+                  <input type="text" required name="irrigation_unit_cluster" placeholder="Enter Irrigation Unit Cluster " formControlName="irrigation_unit_cluster"
+                    [ngClass]="
+                  { 'is-invalid': form.get('irrigation_unit_cluster').touched && form.get('irrigation_unit_cluster').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Payload</span>
+                  <input type="text" required name="payload" placeholder="Enter Payload" formControlName="payload" [ngClass]="
+                  { 'is-invalid': form.get('payload').touched && form.get('payload').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+
+                <div class="input-box">
+                  <span class="details">* Irrigation Latitude</span>
+                  <input type="text" required name="irrigation_unit_latitude" placeholder="Enter Irrigation Latitude" formControlName="irrigation_unit_latitude"
+                    [ngClass]="
+                  { 'is-invalid': form.get('irrigation_unit_latitude').touched && form.get('irrigation_unit_latitude').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Irrigation longitude</span>
+                  <input type="text" required name="irrigation_unit_longitude"
+                    formControlName="irrigation_unit_longitude" placeholder="Enter Irrigation longitude "
+                    [ngClass]="
+                  { 'is-invalid': form.get('irrigation_unit_longitude').touched && form.get('irrigation_unit_longitude').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="input-box">
+                  <span class="details">* Schedule</span>
+                  <input type="text" required name="schedule" placeholder="Enter Schedule" formControlName="schedule" [ngClass]="
+                  { 'is-invalid': form.get('schedule').touched && form.get('schedule').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Valve</span>
+                  <input type="text" required name="valve" placeholder="Enter Valve " formControlName="valve" [ngClass]="
+                  { 'is-invalid': form.get('valve').touched && form.get('valve').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Vent Type</span>
+                  <input type="text" required name="vent_type" placeholder="Enter Vent Type" formControlName="vent_type" [ngClass]="
+                  { 'is-invalid': form.get('vent_type').touched && form.get('vent_type').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Strega URL</span>
+                  <input type="url" required name="strega_URL" placeholder="Enter Strega URL " formControlName="strega_URL" [ngClass]="
+                  { 'is-invalid': form.get('strega_URL').touched && form.get('strega_URL').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Status</span>
+                  <input type="text" required name="status" placeholder="Enter Status" formControlName="status" [ngClass]="
+                  { 'is-invalid': form.get('status').touched && form.get('status').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="button">
+                  <input type="submit" (click)=" onAddSubmit()" value="Add">
+
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="afterClick">
+  <div class="card-header">
+    <h3 class="card-title"></h3>
+
+
+
+    <div class="card-tools">
+      <div class='drop'>
+        <button type="button" class="btn btn-primary option" (click)='adhoc()'>Ad hoc Irrigation</button>
+
+        <button type="button" class="btn btn-primary option">Quick Black-out</button>
+
+        <button type="button" class="btn btn-primary option">Schedule Irrigation</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+
+      <div class="searchbox">
+
+
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="search_wrap search_wrap_1">
+          <div class="search_box" style="margin-left: 15px;">
+            <input type="text" class="input" placeholder="search...">
+            <div class="btn btn_common">
+              <i class="fas fa-search"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-tools">
+        <button type="button" data-toggle="modal" *ngIf="parent" data-target=".bd-example-modal-lg"
+          class="btn btn-primary">Add
+          Irrigation </button>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"> <input type="checkbox" (change)="bulk($event)"></th>
+              <th scope="col">  Id <i class="fa fa-sort"></i></th>
+              <th scope="col">Irrigation Name <i class="fa fa-sort"></i></th>
+              <th scope="col"> Plant Name <i class="fa fa-sort"></i></th>
+
+              <th scope="col">Last Action Date <i class="fa fa-sort"></i> </th>
+              <th scope="col">Status <i class="fa fa-sort"></i></th>
+              <th scope="col"> Battery Status <i class="fa fa-sort"></i></th>
+              <th scope="col">Notification <i class="fa fa-sort"></i></th>
+              <th scope="col" *ngIf="parent">Action</th>
+              <th scope="col" *ngIf="editParent">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr
+              *ngFor="let irrigation of irrigationDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              <td>
+                <input type="checkbox" (change)=powerButton($event) [checked]="checks">
+              </td>
+              <td>{{(p-1) * count+i+1}}</td>
+              <td><a (click)="irrigationPage(irrigation)" style="color: blue;">{{irrigation.name}}</a></td>
+              <td>{{irrigation.plant_name}}</td>
+
+              <td>{{irrigation.created_at}}</td>
+              <td><span class="badge bg-success">active</span></td>
+              <td><span class="badge bg-success">80%</span></td>
+              <td>
+                <input type="checkbox">
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="editParent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"
+                      (click)="deleteIrrigation(irrigation.id)" type="button" data-toggle="tooltip" data-placement="top"
+                      title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer text-center">
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->
+
+
+  <div class="modal fade bd-edit-modal-lg" id="create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div style="justify-content: center;">
+          <div class="container">
+
+            <h4 style="background-color:#eee;">Irrigation Unit Cockpit</h4>
+            <div class="content">
+              <form>
+                <div class="user-details">
+
+                  <div class="input-box">
+                    <span class="details">*Irrigation Unit Name</span>
+                    <input type="text" required name="name" [(ngModel)]="userObj.name">
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details"> Watering Duration Time (minutes)</span>
+                    <input type="text" [(ngModel)]="userObj.watering_duration" required name="watering_duration">
+
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Irrigation Ping Interval (minute)</span>
+                    <input type="text" [(ngModel)]="userObj.irrigation_ping_interval" required
+                      name="irrigation_ping_interval">
+
+                  </div>
+
+
+
+                  <div class="input-box">
+                    <span class="details">* Plant Name</span>
+                    <select class="form-control" name="p_id" [(ngModel)]="userObj.p_id"
+                      style="width: 100%;">
+                      <option value="">---Select--- </option>
+                      <option value="{{plant.id}}" [value]="plant.id" *ngFor="let plant of plantDetails ">{{plant.name}}
+                      </option>
+
+                    </select>
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">Last Ping
+                    </span>
+                    <div class="input-group">
+                      <input type="date" class="form-control" [(ngModel)]="userObj.last_ping_date"  name="last_ping_date">
+                      <input type="time" class="form-control" [(ngModel)]="userObj.last_ping_time" name="last_ping_time ">
+                    </div>
+
+                  </div>
+
+
+
+
+
+                  <div class="input-box">
+                    <span class="details">* Water Usage (in liter)</span>
+                    <input type="text" [(ngModel)]="userObj.water_usage" required name="water_usage">
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Sync System Time
+                    </span>
+                    <div class="input-group">
+                      <input type="date" [(ngModel)]="userObj.sync_system_date" class="form-control"
+                        name="sync_system_time">
+                      <input type="time" [(ngModel)]="userObj.sync_system_time" class="form-control"
+                        name="sync_system_time">
+
+                    </div>
+
+                  </div>
+
+
+                  <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+
+
+                  <div class="input-box">
+                    <span class="details">*
+                      Irrigation Unit Cluster</span>
+                    <input type="text" [(ngModel)]="userObj.irrigation_unit_cluster" required
+                      name="irrigation_unit_cluster">
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Payload</span>
+                    <input type="text" [(ngModel)]="userObj.payload" required name="payload">
+
+                  </div>
+
+
+
+                  <div class="input-box">
+                    <span class="details">* Irrigation Latitude</span>
+                    <input type="text" [(ngModel)]="userObj.irrigation_unit_latitude" required
+                      name="irrigation_unit_latitude">
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Irrigation longitude</span>
+                    <input type="text" [(ngModel)]="userObj.irrigation_unit_longitude" required
+                      name="irrigation_unit_longitude">
+
+                  </div>
+
+
+
+
+
+
+                  <div class="input-box">
+                    <span class="details">* Schedule</span>
+                    <input type="text" [(ngModel)]="userObj.schedule" required name="schedule">
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Valve</span>
+                    <input type="text" [(ngModel)]="userObj.valve" required name="valve">
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Vent Type</span>
+                    <input type="text" [(ngModel)]="userObj.vent_type" required name="vent_type">
+
+                  </div>
+
+                  <div class="input-box">
+                    <span class="details">* Strega URL</span>
+                    <input type="url" [(ngModel)]="userObj.strega_URL" required name="strega_URL">
+
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Status</span>
+                    <input type="text" [(ngModel)]="userObj.status" required name="status">
+
+                  </div>
+
+
+                  <div class="button">
+
+                    <input type="submit" (click)="updateTen()" value="Update">
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 
+
 @Component({
   selector: 'app-admindash',
   templateUrl: './admindash.component.html',
   styleUrls: ['./admindash.component.css']
 })
 export class AdmindashComponent implements OnInit {
+  show: any;
+  message: any;
 
   constructor() { }
 
@@ -46,7 +49,13 @@ export class AdmindashComponent implements OnInit {
           }
       }
   });
+
+
+
+
   }
+
+
   }
 
 

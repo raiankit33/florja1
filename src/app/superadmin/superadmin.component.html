@@ -43,7 +43,7 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown  ">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell " > Ankit Rai </i>
+          <i class="far fa-bell " > {{user.name}} </i>
           
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -58,7 +58,7 @@
             
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Log Out</a>
+          <a (click)="onLogoutClick()" class="dropdown-item dropdown-footer">Log Out</a>
         </div>
       </li>
       <li class="nav-item ml-2">
@@ -122,10 +122,21 @@
                   </a>
               
               </li> -->
+
+              <li class="nav-item has-treeview">
+                <a  routerLink ="adminUser"   class="nav-link">
+                  <i class="nav-icon fa fa-user"></i>
+                  <p>
+                    Admin User
+                 
+                  </p>
+                </a>
+            
+            </li>
     
               <li class="nav-item has-treeview">
                 <a  routerLink ="tenant"   class="nav-link">
-                  <i class="nav-icon fa fa-lock"></i>
+                  <i class="nav-icon fa fa-user"></i>
                   <p>
                     Tenant
                  
@@ -134,9 +145,22 @@
             
             </li>
   
+
+
+            <li class="nav-item has-treeview">
+              <a  routerLink ="user"   class="nav-link">
+                <i class="nav-icon fa fa-lock"></i>
+                <p>
+                  Users
+               
+                </p>
+              </a>
+          
+          </li>
+
             <li class="nav-item has-treeview">
                 <a  routerLink ="academia"  class="nav-link">
-                  <i class="nav-icon fa fa-university"></i>
+                  <i  class="nav-icon fa fa-university" ></i>
                   <p>
                     Academia
                  
@@ -147,15 +171,59 @@
 
             <li class="nav-item has-treeview">
                 <a  routerLink ="sensorreq"   class="nav-link">
-                  <i class="nav-icon fa fa-lock"></i>
+                  <i class="nav-icon fa fa-sun"></i>
                   <p>
-                    Sensor Request
+                    Sensors
                  
                   </p>
                 </a>
             
             </li>
 
+
+            <li class="nav-item has-treeview">
+              <a  routerLink ="stype"   class="nav-link">
+                <i class="nav-icon fa fa-bullseye"></i>
+                <p>
+                  Sensor type
+               
+                </p>
+              </a>
+          
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a  routerLink ="plant"   class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+               Plants
+             
+              </p>
+            </a>
+        
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a  routerLink ="irrigation"   class="nav-link">
+            <i class="nav-icon fa fa-book"></i>
+            <p>
+             Irrigation
+           
+            </p>
+          </a>
+      
+      </li>
+
+      <li class="nav-item has-treeview">
+        <a  routerLink ="notification"   class="nav-link">
+          <i class="nav-icon fa fa-bullseye"></i>
+          <p>
+            Notification
+         
+          </p>
+        </a>
+    
+    </li>
     
    
             </ul>

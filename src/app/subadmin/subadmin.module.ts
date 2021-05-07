@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubadminService } from '../service/subadmin.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TenprofileComponent } from './tenprofile/tenprofile.component';
+import { SubTenantComponent } from './sub-tenant/sub-tenant.component';
+
+import { SubNotificationComponent } from './sub-notification/sub-notification.component';
 
 
 @NgModule({
@@ -18,7 +21,13 @@ import { TenprofileComponent } from './tenprofile/tenprofile.component';
      
       UsersComponent,
      
-      TenprofileComponent],
+      TenprofileComponent,
+     
+      SubTenantComponent,
+     
+   
+     
+      SubNotificationComponent],
   imports: [
     CommonModule,
     FormsModule,

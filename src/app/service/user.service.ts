@@ -31,20 +31,29 @@ listen(): Observable<any>{
 
 //plant api 
 
+apiKey ={
+  "id" : '0b23256409ed40358fbb302fb35f83ed'
+};
+
 registerPlant(plant){
-        
+      
   return this.http.post('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/insertPlant/insertPlant',plant).pipe(map(res => res));
 }
 
-getPlantDetails(){
+getPlantDetails(createToken){
       
-return this.http.get('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/getPlant/getPlant').pipe(map(res => res));
+return this.http.post('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/getPlant/getPlant',createToken).pipe(map(res => res));
 
 }
 
-deletePlant(P_ID){
+updatePlant(plant){
+  return this.http.put('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/updatePlant/updatePlant?id='+plant.id,plant).pipe(map(res =>
+  res));
+}
+
+deletePlant(id){
         
-  return this.http.post('https://k0qxazb5u2.execute-api.us-east-2.amazonaws.com/Delete_Plant/',{'P_ID':P_ID}).pipe(map(res => res));
+  return this.http.post('https://jd3bl8nyyf.execute-api.us-east-2.amazonaws.com/deletePlant/deletePlant/',{'id':id}).pipe(map(res => res));
 
 }
 
@@ -53,20 +62,28 @@ deletePlant(P_ID){
 
 registerIrrigation(irrigation){
         
-  return this.http.post('https://0yyca22qmk.execute-api.us-east-2.amazonaws.com/add_Irrigation',irrigation).pipe(map(res => res));
+  return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/insertIrrigation/insertIrrigation',irrigation).pipe(map(res => res));
 }
 
 getIrrigationDetails(){
       
-  return this.http.get('https://0yyca22qmk.execute-api.us-east-2.amazonaws.com/get_Irrigation_data').pipe(map(res => res));
+  return this.http.get('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/getIrrigation/getIrrigation').pipe(map(res => res));
   
   }
 
-  deleteIrrigation(IR_ID){
+  deleteIrrigation(id){
         
-    return this.http.post('https://fzbd618al4.execute-api.us-east-2.amazonaws.com/Delete_Irriegation/',{'IR_ID':IR_ID}).pipe(map(res => res));
+    return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/deleteIrrigation/deleteIrrigation/',{'id':id}).pipe(map(res => res));
   
   }
+  
+
+  updateIrrigation(sensor){
+    return this.http.put('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/updateIrrigation/updateIrrigation?id='+sensor.id,sensor).pipe(map(res =>
+    res));
+  }
+
+  
 
 
 }

@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+
+
+<div class="alert alert-danger text-center" *ngIf="error" role="alert">
+  {{error}}
+</div>
+    
+
+
+<div class="background">
+    <br>
+    <div class="center">
+    <div class="wrapper">
+      <div class="title">
+  Academia Login </div>
+    <form [formGroup]="form"  (ngSubmit)="onLoginSubmit()" >
+        <div class="field">
+          <input type="email" required class="form-control"  name="email" formControlName="email" [ngClass]="
+          { 'is-invalid': form.get('email').touched && form.get('email').invalid}"  >
+         <div class="invalid-feedback">
+           <div > Email is required</div>
+         </div>
+          <label>Email</label>
+        </div>
+       
+        <div class="field" >
+          <input type="password" required class="form-control"  name="password" formControlName="password" [ngClass]="
+          { 'is-invalid': form.get('password').touched && form.get('password').invalid}"  >
+         <div class="invalid-feedback">
+           <div > Password is required</div>
+         </div>
+         
+          <label>Password</label>
+        </div>
+    
+      
+        <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+          </div>
+    <div class="pass-link">
+    <a href="#">Forgot password?</a></div>
+    </div>
+    <div class="field">
+          <input type="submit" value="Login">
+        </div>
+        <br>
+        <br>
+    </form>
+    </div>
+    </div>
+    </div>

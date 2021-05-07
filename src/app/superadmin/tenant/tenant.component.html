@@ -2,12 +2,24 @@
   <h3 class="ml-4 text-dark">Tenant</h3>
 </div>
 <br>
+<div class="alert alert-warning alert-dismissible fade show" *ngIf="error" style="width: 60%;" role="alert">
+  <strong>Error!</strong> {{error}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+      <div class="modal-header">
+        <h4 class="modal-title">Add Tenant</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div style="justify-content: center;">
         <div class="container">
 
@@ -15,17 +27,10 @@
           <div class="content">
             <form [formGroup]="form">
               <div class="user-details">
-                <!-- <div class="input-box">
-                 <span class="details">Tenant Id</span>
-                 <input type="number" placeholder="Enter Tenant Id" required  [(ngModel)]="T_ID" name ="T_ID" formControlName="T_ID" [ngClass]="
-                 { 'is-invalid': form.get('T_ID').touched && form.get('T_ID').invalid}">
-                 <div class="invalid-feedback">
-                  <div > This field is required</div>
-                </div>
-               </div> -->
+
                 <div class="input-box">
-                  <span class="details">Name</span>
-                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name"
+                  <span class="details">* Name</span>
+                  <input type="text" placeholder="Enter Name " required name="name"
                     formControlName="name" [ngClass]="
                  { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
                   <div class="invalid-feedback">
@@ -33,21 +38,22 @@
                   </div>
                 </div>
                 <div class="input-box">
-                  <span class="details">Email</span>
-                  <input type="text" placeholder="Enter email" [(ngModel)]="userObj.email" required name="email"
-                    formControlName="email" [ngClass]="
+                  <span class="details">* Email</span>
+                  <input type="text" placeholder="Enter Email"  required uniqueEmail
+                    name="email" formControlName="email" [ngClass]="
                  { 'is-invalid': form.get('email').touched && form.get('email').invalid}">
                   <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
                     <div *ngIf="form.get('email').errors.required"> This field is required</div>
                     <div *ngIf="form.get('email').errors.email"> Email must be valid email address</div>
-                    <div *ngIf="form.get('email').errors.existingEmail"> Email must be valid email address</div>
-                  </div>
 
+                  </div>
+                  <div *ngIf="err">
+                    <span *ngIf="open" style="color: red;"> {{err}}</span></div>
                 </div>
 
                 <div class="input-box">
-                  <span class="details">Contact</span>
-                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.phone" required name="phone"
+                  <span class="details">* Contact</span>
+                  <input type="text" placeholder="Enter Contact"  required name="phone"
                     formControlName="phone" [ngClass]="
                  { 'is-invalid': form.get('phone').touched && form.get('phone').invalid}">
                   <div class="invalid-feedback" *ngIf="form.get('phone').touched && form.get('phone').invalid"
@@ -55,35 +61,35 @@
                     <div *ngIf="form.get('phone').errors.required"> This field is required</div>
                     <div *ngIf="form.get('phone').errors.pattern"> Invalid Number </div>
                   </div>
-                </div>
-
-                <div class="input-box">
-                  <span class="details">Permission</span>
-                  <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
-                    style="width: 200px;" formControlName="permission" [ngClass]="
-                 { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
-                    <option value="">Choose </option>
-                    <option value="All Access">All Access</option>
-                    <option value="Limited Access"> Limited Access</option>
-                    <option value="No Access"> No Access</option>
-
-                  </select>
-                  <div class="invalid-feedback">
-                    <div> Permission is required</div>
+                  <div *ngIf="message">
+                    <span *ngIf="mess" style="color: red;"> {{message}}</span>
                   </div>
+
                 </div>
 
             
+                <div class="input-box">
+                
+
+                </div>
+
 
                 <div class="button">
-                  <input type="submit" (click)="onAddSubmit()" [disabled]="!form.valid" *ngIf="!isEdit" value="Add">
-                  <input type="submit" (click)="updateTen()" *ngIf="isEdit" value="update">
+                  <input type="submit" (click)="onAddSubmit()"  value="Add">
+                 
                 </div>
 
-                <div class="card-tools">
-                  <button type="button" class="button" style="margin: 5px;" class="btn btn-secondary"
-                    data-dismiss="modal">Close</button>
-                </div>
+                <!-- <div class="alert alert-warning alert-dismissible fade show"  *ngIf="err" role="alert">
+                  <strong>Error!</strong> {{err}}
+                  <button type="button" class="close" (click)="close()" data-dismiss="alert" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div> -->
+
+                <!-- <div class="card-tools">
+                  <button type="button" class="button" style="margin: 5px;" (click)="refresh()"
+                    class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
               </div>
             </form>
           </div>
@@ -130,8 +136,9 @@
           </div>
         </div>
       </div>
-      <div class="card-tools">
-        <button type="button" data-toggle="modal" (click)="openModel()" data-target=".bd-example-modal-lg"
+      <div class="card-tools">  
+ 
+        <button type="button" data-toggle="modal"  *ngIf="parent"  (click)="openModel()" data-target=".bd-example-modal-lg"
           class="btn btn-primary">Add Tenant </button>
       </div>
     </div>
@@ -141,40 +148,42 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" (click)="sortData('tenant_id')">Tenant Id <i class="fa fa-sort"></i></th>
-              <th scope="col">Name <i class="fa fa-sort"></i></th>
+              <th scope="col" (click)="sortData('tenant_id')"> Id <i class="fa fa-sort"></i></th>
+              <th scope="col"> Tenant Name <i class="fa fa-sort"></i></th>
               <th scope="col">Email <i class="fa fa-sort"></i></th>
               <th scope="col">Contact <i class="fa fa-sort"></i></th>
-              <th scope="col">Password <i class="fa fa-sort"></i></th>
-              <th scope="col">Permission <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sortData('tenant_id')">Created at<i class="fa fa-sort"></i></th>
-              <th scope="col">Action </th>
+              <th scope="col" (click)="sortData('tenant_id')">Created at <i class="fa fa-sort"></i></th>
+              <th scope="col" *ngIf="parent " >Action </th>
+              <th scope="col" *ngIf="editParent">Action </th>
 
           </thead>
           <tbody>
 
             <tr
-              *ngFor="let tenant of tenantDetails | orderBy:key:reverse |  filter:name | paginate: { itemsPerPage: 5, currentPage: p } ; let no = index">
+              *ngFor="let tenant of tenantDetails | orderBy:key:reverse |  filter:name | paginate: { itemsPerPage: count, currentPage: p } ; let i = index">
 
-              <td>{{no + 1}}</td>
+              <td>{{(p-1) * count+i+1}}</td>
               <td>{{tenant.name}}</td>
               <td>{{tenant.email}}</td>
               <td>+91{{tenant.phone}}</td>
-              <td>{{tenant.password}}</td>
-              <td><span class="badge"
-                  [ngClass]="{'badge-success': tenant.permission =='All Access', 'badge-warning' : tenant.permission !='All Access'}">{{tenant.permission}}</span>
-              </td>
               <td>{{tenant.created_at}}</td>
               <td>
                 <ul class="list-inline m-0">
 
                   <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
-                      (click)="editTen(tenant)" title="Edit"><i class="fa fa-edit"></i></button>
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
                   </li>
+                  <!-- sub admin for edit only  -->
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" (click)="deleteTen(tenant.id)" type="button"
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"  (click)="deleteTen(tenant.id)" type="button"
                       data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -191,13 +200,85 @@
     <!-- /.card-body -->
     <div class="card-footer text-center">
       <div class="pagination">
-        <pagination-controls  (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
-      
+
     </div>
   </div>
   <!-- /.card -->
 
- 
 
+
+</div>
+
+
+<!-- Edit form -->
+
+<div class="modal fade bd-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Tenant</h4>
+        <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+        <div class="container">
+
+          <h4 style="background-color: #eee;">Tenant Management</h4>
+          <div class="content">
+            <form>
+              <div class="user-details">
+
+                <div class="input-box">
+                  <span class="details">* Name</span>
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name">
+
+                </div>
+                <div class="input-box">
+                  <span class="details">* Email</span>
+                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.email" required uniqueEmail
+                    name="email">
+
+                  <div *ngIf="err">
+                    <span *ngIf="open" style="color: red;"> {{err}}</span>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Contact</span>
+                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.phone" required name="phone">
+
+
+                  <div *ngIf="message">
+                    <span *ngIf="mess" style="color: red;"> {{message}}</span>
+                  </div>
+
+                </div>
+
+                <div class="input-box">
+                
+
+                </div>
+
+
+                <div class="button">
+
+                  <input type="submit" (click)="updateTen()" value="update">
+                </div>
+
+
+
+              
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
   </div>
+
+</div>

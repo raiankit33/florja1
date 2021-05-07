@@ -23,6 +23,11 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
+import { MeasurementdetailsComponent } from './measurementdetails/measurementdetails.component';
+import { SeconddetailComponent } from './measurementdetails/seconddetail/seconddetail.component';
+import { ThirddetailComponent } from './measurementdetails/thirddetail/thirddetail.component';
+import { FourthdetailComponent } from './measurementdetails/fourthdetail/fourthdetail.component';
+import { PlantdetailComponent } from './plant/plantdetail/plantdetail.component';
 
 
 @NgModule({
@@ -38,7 +43,12 @@ import { HttpClientModule } from '@angular/common/http';
      NotificationsComponent,
      VisualizationsComponent,
      UserdashComponent,
-     IrrigationsComponent],
+     IrrigationsComponent,
+     MeasurementdetailsComponent,
+     SeconddetailComponent,
+     ThirddetailComponent,
+     FourthdetailComponent,
+     PlantdetailComponent],
      
   imports: [
   

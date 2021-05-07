@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-ulogin',
   templateUrl: './ulogin.component.html',
@@ -12,32 +16,44 @@ export class UloginComponent implements OnInit {
 
   email: String;
   password: String;
+ 
 
   constructor(
     private authService: AuthService,
-    private router: Router,) { }
+    private router: Router,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  form = new FormGroup({
+    
+    email: new FormControl('',[Validators.required, Validators.email]),
+    password: new FormControl('',Validators.required),
+    
+
+  })
+
   onLoginSubmit() {
-    const user = {
-      email: this.email,
-      password: this.password
+    // const user = {
+    //   email: this.email,
+    //   password: this.password
 
-    }
-
-    this.authService.authenticateUser(user)
+    // }
+    if(this.form.valid){
+    this.authService.authenticateUser(this.form.value)
       .subscribe(
         (data) => {
-          if (data) {
-            // localStorage.setItem('userToken', data.token);
+          if(data.statusCode==200){
+            // localStorage.setItem('AuthToken', data.token);
             this.authService.storeUserData(data.token, data.user);
+            this.toastr.success('Success ! logged In');
             this.router.navigate(['user/dashboad']);
-            alert('Success ! logged In')
+        
           } else {
             console.log('error');
-            alert("fail to logged In")
+            this.toastr.error('Oops','Failed to logged In');
             this.router.navigate(['login']);
           }
         },
@@ -48,6 +64,7 @@ export class UloginComponent implements OnInit {
         }
       );
   }
+}
 
 }
 

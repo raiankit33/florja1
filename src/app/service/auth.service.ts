@@ -14,12 +14,16 @@ export class AuthService {
 token:any;
   authToken: any;
   user: any;
+  tenant:any;
+  academia:any;
+  admin:any;
   httpRegisterOptions = {
       headers: new HttpHeaders({ 
           'Content-Type': 'application/json',
-           'Authorization': 'Bearer ' + localStorage.getItem('token')
+          //  'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
   }
+  adm: any;
 
 
   constructor(private http:HttpClient) {}
@@ -28,13 +32,6 @@ token:any;
     return throwError(error.message || "server error...........!")
 }
 
-    //  authenticateUser(user){
-    //   //  let headers = new Headers();
-    //   //  headers.append('Content-Type','application/json');
-     
-    //    return this.http.post('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginTenant/loginTenant',user,this.httpRegisterOptions).pipe(map(res => res));
-       
-    //  }
 
      authenticateTenant(tenant) {
       return this.http.post<any>('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginTenant/loginTenant', tenant)
@@ -42,19 +39,55 @@ token:any;
     }
 
     authenticateUser(user) {
-      return this.http.post<any>('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginUser/loginUser', user,this.httpRegisterOptions)
+      return this.http.post<any>('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginUser/loginUser', user)
+    }
+
+
+    authenticateAcademia(academia) {
+      return this.http.post<any>('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginAcademia/loginAcademia', academia)
+    }
+    
+
+    
+    authenticateAdmin(admin) {
+      return this.http.post<any>('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/loginSuperAdmin/loginSuperAdmin', admin)
     }
  
-      getToken(){
-        return localStorage.getItem('token');
+      // getToken(){
+      //   return localStorage.getItem('token');
       
-      }
+      // }
      storeUserData(token,user){
           localStorage.setItem('token',token);
           localStorage.setItem('user', JSON.stringify(user));
+         
+          // localStorage.setItem('currentUser', JSON.stringify({ token: token, user: user }));
+          // localStorage.setItem('user', JSON.stringify(tenant));
+          // localStorage.setItem('academia', JSON.stringify(academia));
+          // localStorage.setItem('admin', JSON.stringify(admin));
           this.authToken = token;
           this.user = user;
+          
      }
+
+//      storeAminData(token,adm){
+//       localStorage.setItem('token',token);
+      
+//       localStorage.setItem('adm', JSON.stringify(adm));
+     
+//       this.authToken = token;
+//       this.adm = adm;
+      
+//  }
+
+//      storeTenantData(token,tenant){
+//       localStorage.setItem('token',token);
+//       localStorage.setItem('tenant', JSON.stringify(tenant));
+    
+//       this.authToken = token;
+//       this.tenant = tenant;
+//  }
+
 
 
        logout(){

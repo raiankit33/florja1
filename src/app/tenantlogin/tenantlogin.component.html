@@ -13,13 +13,22 @@
     <div class="wrapper">
       <div class="title">
    Tenant Login </div>
-    <form   (submit)="onLoginSubmit()" >
+    <form [formGroup]="form"  (ngSubmit)="onLoginSubmit()" >
         <div class="field">
-          <input type="email" required   [(ngModel)]="email" name="email" >
+          <input type="email" required class="form-control"  name="email" formControlName="email" [ngClass]="
+          { 'is-invalid': form.get('email').touched && form.get('email').invalid}"  >
+         <div class="invalid-feedback">
+           <div > Email is required</div>
+         </div>
           <label>Email</label>
         </div>
+       
         <div class="field" >
-          <input type="password" required   [(ngModel)]="password" name="password" >
+          <input type="password" required class="form-control"  name="password" formControlName="password" [ngClass]="
+          { 'is-invalid': form.get('password').touched && form.get('password').invalid}"  >
+         <div class="invalid-feedback">
+           <div > Password is required</div>
+         </div>
          
           <label>Password</label>
         </div>
@@ -37,13 +46,8 @@
           <input type="submit" value="Login">
         </div>
     
-        <div class="signup-link">
-       <a routerLink="home/dashboad">user</a>
-       <a routerLink="superadmin">superadmin</a>
-       <a routerLink="subadmin">tenant</a>
-        </div>
-    <div class="signup-link">
-    Not a member? <a routerLink="/signup">Signup now</a></div>
+        <br>
+        <br>
     </form>
     </div>
     </div>

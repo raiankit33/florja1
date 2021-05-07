@@ -1,0 +1,670 @@
+<div class="content-header">
+  <h3 class="ml-4 mt-6 text-dark">Plants</h3>
+</div>
+<br>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Plant</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+
+        <div class="container">
+
+          <h4 style="background-color:#eee;">Information</h4>
+          <div class="content">
+            <form [formGroup]="form">
+              <div class="user-details">
+
+
+
+
+                <div class="input-box">
+                  <span class="details">* Tenant Name</span>
+                  <select class="form-control" (change)="onChange($event)" formControlName="t_id" name="t_id"
+                    [ngClass]="  { 'is-invalid': form.get('t_id').touched && form.get('t_id').invalid}"
+                    style="width: 100%;">
+                    <option value="">---Select--- </option>
+                    <option value="{{tenant.id}}" [value]="tenant.id" *ngFor="let tenant of tenantDetails ">
+                      {{tenant.name}} </option>
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* User Name</span>
+                  <select class="form-control" formControlName="u_name" name="u_name" [ngClass]="
+                    { 'is-invalid': form.get('u_name').touched && form.get('u_name').invalid}" style="width:100%;">
+                    <option value="">---Select--- </option>
+                    <option value="{{user.name}}" *ngFor="let user of userDetails ">{{user.name}} </option>
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Plant-Name</span>
+                  <input type="text" required name="name" placeholder="Enter Plant Name" formControlName="name" [ngClass]="
+                    { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+
+                <div class="input-box">
+                  <span class="details">* Soil Humidity MIN</span>
+                  <input type="number" required name="soil_humidity_min" placeholder="Enter Soil Humidity MIN " formControlName="soil_humidity_min" [ngClass]="
+                    { 'is-invalid': form.get('soil_humidity_min').touched && form.get('soil_humidity_min').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('soil_humidity_min').touched && form.get('soil_humidity_min').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('soil_humidity_min').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('soil_humidity_min').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Soil Humidity MAX</span>
+                  <input type="number" required name="soil_humidity_max " placeholder="Enter Soil Humidity MAX" formControlName="soil_humidity_max" [ngClass]="
+                    { 'is-invalid': form.get('soil_humidity_max').touched && form.get('soil_humidity_max').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('soil_humidity_max').touched && form.get('soil_humidity_max').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('soil_humidity_max').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('soil_humidity_max').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Soil Temp MIN</span>
+                  <input type="number" required name="soil_temp_min" placeholder="Enter Soil Temp MIN " formControlName="soil_temp_min" [ngClass]="
+                    { 'is-invalid': form.get('soil_temp_min').touched && form.get('soil_temp_min').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('soil_temp_min').touched && form.get('soil_temp_min').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('soil_temp_min').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('soil_temp_min').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Soil Temp MAX</span>
+                  <input type="number" required name="soil_temp_max" placeholder="Enter Soil Temp MAX " formControlName="soil_temp_max" [ngClass]="
+                    { 'is-invalid': form.get('soil_temp_max').touched && form.get('soil_temp_max').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('soil_temp_max').touched && form.get('soil_temp_max').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('soil_temp_max').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('soil_temp_max').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Air Humidity Min</span>
+                  <input type="number" name="air_humidity_min"  placeholder="Enter Air Humidity Min " formControlName="air_humidity_min" [ngClass]="
+                    { 'is-invalid':form.get('air_humidity_min').touched && form.get('air_humidity_min').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('air_humidity_min').touched && form.get('air_humidity_min').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('air_humidity_min').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('air_humidity_min').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Air Humidity Max</span>
+                  <input type="number" name="air_humidity_max"  placeholder="Enter Air Humidity Max " formControlName="air_humidity_max" [ngClass]="
+                    { 'is-invalid': form.get('air_humidity_max').touched && form.get('air_humidity_max').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('air_humidity_max').touched && form.get('air_humidity_max').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('air_humidity_max').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('air_humidity_max').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* EC MIN</span>
+                  <input type="number" required name="ec_min" placeholder="Enter EC MIN" formControlName="ec_min" [ngClass]="
+                    { 'is-invalid': form.get('ec_min').touched && form.get('ec_min').invalid}">
+                  <div class="invalid-feedback" *ngIf="form.get('ec_min').touched && form.get('ec_min').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('ec_min').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('ec_min').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* EC MAX
+                  </span>
+                  <input type="number" required name="ec_max"  placeholder="Enter EC MAX" formControlName="ec_max" [ngClass]="
+                    { 'is-invalid': form.get('ec_max').touched && form.get('ec_max').invalid}">
+                  <div class="invalid-feedback" *ngIf="form.get('ec_max').touched && form.get('ec_max').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('ec_max').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('ec_max').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">
+                    * Air Temp MAX</span>
+                  <input type="text" required name="air_temp_max" placeholder="Enter Air Temp MAX" formControlName="air_temp_max"
+                   [ngClass]="
+                    { 'is-invalid': form.get('air_temp_max').touched && form.get('air_temp_max').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('air_temp_max').touched && form.get('air_temp_max').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('air_temp_max').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('air_temp_max').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Air Temp MIN</span>
+                  <input type="text" required name="air_temp_min" placeholder="Enter Air Temp MIN " formControlName="air_temp_min"
+                  [ngClass]="
+                    { 'is-invalid': form.get('air_temp_min').touched && form.get('air_temp_min').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('air_temp_min').touched && form.get('air_temp_min').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('air_temp_min').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('air_temp_min').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Fertilization Interval (days)</span>
+                  <input type="text" required name="fertilization_interval" 
+                    formControlName="fertilization_interval"  placeholder="Enter Fertilization Interval"
+                    [ngClass]="
+                    { 'is-invalid': form.get('fertilization_interval').touched && form.get('fertilization_interval').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('fertilization_interval').touched && form.get('fertilization_interval').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('fertilization_interval').errors.required"> This field is required</div>
+                    <div *ngIf="form.get('fertilization_interval').errors.pattern"> Invalid Number </div>
+                  </div>
+                </div>
+
+
+
+                <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+
+
+                <div class="input-box">
+                  <span class="details">* Spring start</span>
+                  <input type="date" name="spring_start" 
+                    formControlName="spring_start" required [ngClass]="
+                    { 'is-invalid': form.get('spring_start').touched && form.get('spring_start').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is requiredd</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Autumn start</span>
+                  <input type="date" name="autumn_start" 
+                    formControlName="autumn_start" required [ngClass]="
+                    { 'is-invalid': form.get('autumn_start').touched && form.get('autumn_start').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Spring end</span>
+                  <input type="date" required name="spring_end" 
+                    formControlName="spring_end" [ngClass]="
+                    { 'is-invalid': form.get('spring_end').touched && form.get('spring_end').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Autumn end</span>
+                  <input type="date" required name="autumn_end" 
+                    formControlName="autumn_end" [ngClass]="
+                    { 'is-invalid': form.get('autumn_end').touched && form.get('autumn_end').invalid}">
+                  <div class="invalid-feedback">
+                    <div>This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Summer start</span>
+                  <input type="date" name="summer_start" 
+                    formControlName="summer_start" [ngClass]="
+                    { 'is-invalid': form.get('summer_start').touched && form.get('summer_start').invalid}">
+                  <div class="invalid-feedback">
+                    <div>This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Winter start</span>
+                  <input type="date" name="winter_start" 
+                    formControlName="winter_start" [ngClass]="
+                    { 'is-invalid': form.get('winter_start').touched && form.get('winter_start').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Summer end</span>
+                  <input type="date" name="summer_end"  formControlName="summer_end"
+                    required [ngClass]="
+                    { 'is-invalid': form.get('summer_end').touched && form.get('summer_end').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Winter end
+                  </span>
+
+                  <input type="date" name="winter_end" formControlName="winter_end"
+                    required [ngClass]="
+                    { 'is-invalid': form.get('winter_end').touched && form.get('winter_end').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+                <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+
+
+                <div class="input-box">
+                  <span class="details"> Latitude</span>
+                  <input type="text" name="latitude" placeholder="Enter Latitude"  formControlName="latitude"
+                    [ngClass]="
+                    { 'is-invalid': form.get('latitude').touched && form.get('latitude').invalid}">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details"> Longitude</span>
+                  <input type="text" name="longitude"  formControlName="longitude" placeholder="Enter Longitude "
+                    [ngClass]="
+                    { 'is-invalid': form.get('longitude').touched && form.get('longitude').invalid}">
+
+                </div>
+
+
+                <div class="button">
+                  <input type="submit" (click)="onAddSubmit()"  value="Add">
+                  
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
+          </div> -->
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+
+      <div class="searchbox">
+
+
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="search_wrap search_wrap_1">
+          <div class="search_box" style="margin-left: 15px;">
+            <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+              placeholder="search...">
+            <div class="btn btn_common">
+              <i class="fas fa-search"></i>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="card-tools">
+        <button type="button" data-toggle="modal" *ngIf="parent"  data-target=".bd-example-modal-lg" class="btn btn-primary">Add Plant
+        </button>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id <i class="fa fa-sort"></i></th>
+              <th scope="col">Plant Name <i class="fa fa-sort"></i></th>
+              <th scope="col">Sensor Count <i class="fa fa-sort"></i></th>
+              <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
+
+              <th scope="col">Tenant Name <i class="fa fa-sort"></i></th>
+              <th scope="col">User Name <i class="fa fa-sort"></i></th>
+              <th scope="col" *ngIf="parent" >Action</th>
+              <th scope="col" *ngIf="editParent" >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr
+              *ngFor="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: count, currentPage: p }; index as i">
+              <td>{{(p-1) * count+i+1}}</td>
+              <td><a (click)="plantPage(plant)" style="color: blue;">{{plant.name}}</a></td>
+              <td><span>3</span></td>
+              <td><span class="badge bg-success">unit 1 running</span></td>
+
+              <td>{{plant.t_name}}</td>
+              <td>
+                {{plant.u_name}}
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  (click)="editPlant(plant)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+
+                      <button class="btn text-warning btn-sm rounded-0" *ngIf="editParent"  (click)="editPlant(plant)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+
+                  </li>
+                  <li class="list-inline-item">
+                    <button class=" btn text-danger btn-sm rounded-0"  *ngIf="parent"   (click)="deletePlant(plant.id)" type="button"
+                      data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer text-center">
+
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </div>
+    <!-- /.card -->
+
+
+
+
+    <div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Plant</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div style="justify-content: center;">
+
+            <div class="container">
+
+              <h4 style="background-color:#eee;">Information</h4>
+              <div class="content">
+                <form>
+                  <div class="user-details">
+
+
+
+
+                    <div class="input-box">
+                      <span class="details">* Tenant Name</span>
+                      <select class="form-control" name="t_id" [(ngModel)]="userObj.t_id">
+                        <option value="">---Select--- </option>
+                        <option value="{{tenant.id}}" [value]="tenant.id" *ngFor="let tenant of tenantDetails ">
+                          {{tenant.name}} </option>
+
+                      </select>
+
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* User Name</span>
+                      <select class="form-control" name="u_name" [(ngModel)]="userObj.u_name">
+                        <option value="">---Select--- </option>
+                        <option value="{{user.name}}" *ngFor="let user of userDetails ">{{user.name}} </option>
+
+                      </select>
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Plant-Name</span>
+                      <input type="text" required name="name" [(ngModel)]="userObj.name">
+
+                    </div>
+
+                    <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+
+                    <div class="input-box">
+                      <span class="details">* Soil Humidity MIN</span>
+                      <input type="number" required name="soil_humidity_min"  [(ngModel)]="userObj.soil_humidity_min">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Soil Humidity MAX</span>
+                      <input type="number" required name="soil_humidity_max " [(ngModel)]="userObj.soil_humidity_max">
+
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Soil Temp MIN</span>
+                      <input type="number" required name="soil_temp_min" [(ngModel)]="userObj.soil_temp_min">
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Soil Temp MAX</span>
+                      <input type="number" required name="soil_temp_max" [(ngModel)]="userObj.soil_temp_max">
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Air Humidity Min</span>
+                      <input type="number" name="air_humidity_min" [(ngModel)]="userObj.air_humidity_min">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Air Humidity Max</span>
+                      <input type="number" name="air_humidity_max" [(ngModel)]="userObj.air_humidity_max">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* EC MIN</span>
+                      <input type="number" required name="ec_min" [(ngModel)]="userObj.ec_min">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* EC MAX
+                      </span>
+                      <input type="number" required name="ec_max" [(ngModel)]="userObj.ec_max">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">
+                        * Air Temp MAX</span>
+                      <input type="text" required name="air_temp_max" [(ngModel)]="userObj.air_temp_max">
+
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Air Temp MIN</span>
+                      <input type="text" required name="air_temp_min" [(ngModel)]="userObj.air_temp_min">
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Fertilization Intervall (days)</span>
+                      <input type="text" required name="fertilization_interval"
+                        [(ngModel)]="userObj.fertilization_interval">
+
+                    </div>
+
+
+
+                    <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+
+
+                    <div class="input-box">
+                      <span class="details">* Spring start</span>
+                      <input type="date" name="spring_start" [(ngModel)]="userObj.spring_start">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Autumn start</span>
+                      <input type="date" name="autumn_start" [(ngModel)]="userObj.autumn_start">
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Spring end</span>
+                      <input type="date" required name="spring_end" [(ngModel)]="userObj.spring_end">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Autumn end</span>
+                      <input type="date" required name="autumn_end" [(ngModel)]="userObj.autumn_end">
+
+                    </div>
+
+
+                    <div class="input-box">
+                      <span class="details">* Summer start</span>
+                      <input type="date" name="summer_start" [(ngModel)]="userObj.summer_start">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Winter start</span>
+                      <input type="date" name="winter_start" [(ngModel)]="userObj.winter_start">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Summer end</span>
+                      <input type="date" name="summer_end" [(ngModel)]="userObj.summer_end">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details">* Winter end
+                      </span>
+
+                      <input type="date" name="winter_end" [(ngModel)]="userObj.summer_end">
+                    </div>
+
+                    <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+
+
+                    <div class="input-box">
+                      <span class="details"> Latitude</span>
+                      <input type="text" name="latitude" [(ngModel)]="userObj.latitude">
+
+                    </div>
+
+                    <div class="input-box">
+                      <span class="details"> Longitude</span>
+                      <input type="text" name="longitude" [(ngModel)]="userObj.longitude">
+
+                    </div>
+
+
+                    <div class="button">
+
+                      <input type="submit" (click)="updateTen()" value="update">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>

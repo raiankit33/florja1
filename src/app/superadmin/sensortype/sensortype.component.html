@@ -1,0 +1,293 @@
+<div class="content-header">
+
+  <h3 class="ml-4 text-dark">Sensor Type </h3>
+</div>
+<br>
+
+<div class="alert alert-danger text-center" *ngIf="error" role="alert">
+  {{error}}
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Sensor </h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+        <div class="container">
+
+          <h4 style="background-color: #eee;">Sensor Type</h4>
+          <div class="content">
+            <form [formGroup]="form">
+              <div class="user-details">
+
+                <div class="input-box">
+                  <span class="details">* Name</span>
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name"
+                    formControlName="name" [ngClass]="
+                     { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Type</span>
+                  <input type="text" placeholder="Enter type " [(ngModel)]="userObj.sensor_type" required
+                    name="sensor_type" formControlName="sensor_type" [ngClass]="
+                     { 'is-invalid': form.get('sensor_type').touched && form.get('sensor_type').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Sensor Code</span>
+                  <input type="text" placeholder="Enter Sensor Code" [(ngModel)]="userObj.sensor_code" required
+                    name="sensor_code" formControlName="sensor_code" [ngClass]="
+                     { 'is-invalid': form.get('sensor_code').touched && form.get('sensor_code').invalid}">
+                  <div class="invalid-feedback"
+                    *ngIf="form.get('sensor_code').touched && form.get('sensor_code').invalid" class="invalid-feedback">
+                    <div *ngIf="form.get('sensor_code').errors.required"> This field is required</div>
+
+                  </div>
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Manufacture</span>
+                  <input type="text" placeholder="Enter Manufacture" [(ngModel)]="userObj.manufacture" required
+                    name="manufacture" formControlName="manufacture" [ngClass]="
+                     { 'is-invalid': form.get('manufacture').touched && form.get('manufacture').invalid}">
+                  <div *ngIf="form.get('manufacture').touched && form.get('manufacture').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="form.get('manufacture').errors.required"> This field is required</div>
+
+                  </div>
+
+                </div>
+
+
+
+                <div class="input-box">
+                  <span class="details">Sensor Description</span>
+                  <input type="text" placeholder="Enter Description" required [(ngModel)]="userObj.sensor_description"
+                    name="sensor_description" formControlName="sensor_description">
+
+                </div>
+
+
+                <div class="input-box">
+
+                </div>
+
+                <div class="button">
+                  <input type="submit" (click)="onAddSubmit()"  value="Add">
+                
+                </div>
+
+               
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+      <div class="searchbox">
+
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="search_wrap search_wrap_1">
+          <div class="search_box" style="margin-left: 15px;">
+            <input type="text" class="input" placeholder="search...">
+            <div class="btn btn_common">
+              <i class="fas fa-search"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-tools">
+        <button type="button" data-toggle="modal" (click)="openModel()" *ngIf="parent"
+          data-target=".bd-example-modal-lg" class="btn btn-primary">Add sensor Type</button>
+      </div>
+    </div>
+
+
+    <div class="card-body p-0">
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"> Id <i class="fa fa-sort"></i></th>
+              <th scope="col">Sensor Name <i class="fa fa-sort"></i></th>
+              <th scope="col">Sensor Type <i class="fa fa-sort"></i></th>
+              <th scope="col">Sensor Code<i class="fa fa-sort"></i></th>
+              <th scope="col">Manufacture <i class="fa fa-sort"></i></th>
+              <th scope="col">Description<i class="fa fa-sort"></i></th>
+              <th scope="col" *ngIf="parent">Action </th>
+              <th scope="col" *ngIf="editParent">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sen of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+
+              <td>{{(p-1) * count+i+1}}</td>
+              <td>{{sen.name}}</td>
+              <td>{{sen.sensor_type}}</td>
+              <td>{{sen.sensor_code}}</td>
+              <td>{{sen.manufacture}}</td>
+              <td><span>{{sen.sensor_description}}</span></td>
+
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="parent" data-placement="top"
+                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
+
+                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="editParent" data-placement="top"
+                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
+
+                  </li>
+
+            
+
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent" (click)="deleteSensor(sen.id)"
+                      type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer text-center">
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->
+
+
+
+  <!-- edit mode -->
+  <div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add User</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div style="justify-content: center;">
+          <div class="container">
+
+            <h4 style="background-color: #eee;">Sensor Type</h4>
+            <div class="content">
+              <form>
+                <div class="user-details">
+
+                  <div class="input-box">
+                    <span class="details">* Name</span>
+                    <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name">
+
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Type</span>
+                    <input type="text" placeholder="Enter type " [(ngModel)]="userObj.sensor_type" required
+                      name="sensor_type">
+
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Sensor Code</span>
+                    <input type="text" placeholder="Enter Sensor Code" [(ngModel)]="userObj.sensor_code" required
+                      name="sensor_code">
+
+                  </div>
+
+
+                  <div class="input-box">
+                    <span class="details">* Manufacture</span>
+                    <input type="text" placeholder="Enter email" [(ngModel)]="userObj.manufacture" required
+                      name="manufacture">
+
+                  </div>
+
+
+
+                  <div class="input-box">
+                    <span class="details">Sensor Description</span>
+                    <input type="text" placeholder="Enter Description" required [(ngModel)]="userObj.sensor_description"
+                      name="sensor_description">
+
+                  </div>
+
+
+                  <div class="input-box">
+
+                  </div>
+
+                  <div class="button">
+
+                    <input type="submit" (click)="updateTen()" value="Update">
+                  </div>
+
+                
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- edit mode end  -->

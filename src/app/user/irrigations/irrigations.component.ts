@@ -28,8 +28,8 @@ checks = false;
   }
 
   form = new FormGroup({
-    IR_ID: new FormControl(''),
-    IR_name: new FormControl('',Validators.required),
+ 
+    name: new FormControl('',Validators.required),
     // Air_humidity_min: new FormControl('',[Validators.required]),
     // Air_humidity: new FormControl(null, [Validators.required,]),
     // Permission: new FormControl('All Access',Validators.required),
@@ -83,7 +83,7 @@ checks = false;
       this.userService.filter('added click');
       this.form.reset();
       Swal.fire(
-        'Plant has added successfully!',
+        'Irrigation has added successfully!',
         '',
         'success'
       )
@@ -101,7 +101,7 @@ checks = false;
     );
   } 
 
-  deleteIrrigation(IR_ID){
+  deleteIrrigation(id){
    
     Swal.fire({
       title: 'Are you sure?',
@@ -113,7 +113,7 @@ checks = false;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteIrrigation(IR_ID).subscribe( (res:any)=>{
+        this.userService.deleteIrrigation(id).subscribe( (res:any)=>{
           this.getIrrigationDetails();
           
         
@@ -121,7 +121,7 @@ checks = false;
       
         Swal.fire(
           'Deleted!',
-          'Tenant has been deleted.',
+          ' Deleted .',
           'success'
         )
       }

@@ -1,0 +1,327 @@
+<div class="content-header">
+    <h3 class="ml-4 text-dark"> Admin Users </h3>
+  </div>
+  <br>
+  
+  <div class="alert alert-warning alert-dismissible fade show" *ngIf="error" style="width: 60%;" role="alert">
+    <strong>Error!</strong> {{error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Admin</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="refresh()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div style="justify-content: center;">
+          <div class="container">
+  
+            <h4 style="background-color: #eee;">User Management</h4>
+            <div class="content">
+              <form [formGroup]="form">
+                <div class="user-details">
+  
+                  
+            
+  
+                  <div class="input-box">
+                    <span class="details">* Name</span>
+                    <input type="text" placeholder="Enter Name "  required name="name"
+                      formControlName="name" [ngClass]="
+                  { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                    <div class="invalid-feedback">
+                      <div> This field is required</div>
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">* Email</span>
+                    <input type="text" placeholder="Enter Email"  required name="email"
+                      formControlName="email" [ngClass]="
+                     { 'is-invalid': form.get('email').touched && form.get('email').invalid}">
+                    <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                      <div *ngIf="form.get('email').errors.required"> This field is required</div>
+                      <div *ngIf="form.get('email').errors.email"> Email must be valid email address</div>
+                    </div>
+                    <div *ngIf="err">
+                      <span  *ngIf="open" style="color: red;"> {{err}}</span>
+                    </div>
+                  </div>
+  
+                  <div class="input-box">
+                    <span class="details">* Contact</span>
+                    <input type="text" placeholder="Enter Contact"  required name="phone"
+                      formControlName="phone" [ngClass]="
+               { 'is-invalid': form.get('phone').touched && form.get('phone').invalid}">
+                    <div class="invalid-feedback" *ngIf="form.get('phone').touched && form.get('phone').invalid"
+                      class="invalid-feedback">
+                      <div *ngIf="form.get('phone').errors.required"> This field is required</div>
+                      <div *ngIf="form.get('phone').errors.pattern"> Invalid Number </div>
+                    </div>
+                    <div *ngIf="message">
+                      <span  *ngIf="mess" style="color: red;"> {{message}}</span>
+                    </div>
+                  </div>
+
+
+                 
+  
+                  <div class="input-box">
+                    <span class="details">* Permission</span>
+                    <select name="Product code" class="form-control"  name="permission"
+                      style="width: 100%;" formControlName="permission" [ngClass]="
+                                  { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
+                      <option value="">---Select--- </option>
+                      <option value="VIEW">View Only</option>
+                      <option value="EDIT">View/Edit Only </option>
+                     
+  
+                    </select>
+                    <div class="invalid-feedback">
+                      <div> Permission is required</div>
+                    </div>
+                  </div>
+  
+
+               
+
+                  <div class="button">
+  
+                    <input type="submit" (click)="onAddSubmit()"  value="Add">
+  
+                   
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  
+  
+  
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"></h3>
+  
+  
+        <div class="searchbox">
+  
+  
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+            </a>
+  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+  
+          <div class="search_wrap search_wrap_1">
+            <div class="search_box" style="margin-left: 15px;">
+              <input type="text" class="input" placeholder="search...">
+              <div class="btn btn_common">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-tools">
+          <button type="button" data-toggle="modal" (click)="openModel()" *ngIf="parent" data-target=".bd-example-modal-lg"
+            class="btn btn-primary">Add Admin </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div style="overflow-x:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"> Id <i class="fa fa-sort"></i></th>
+                <th scope="col"> User Name <i class="fa fa-sort"></i></th>
+                <th scope="col">Email <i class="fa fa-sort"></i></th>
+                <th scope="col">Admin Name <i class="fa fa-sort"></i></th>
+                <th scope="col">Permission <i class="fa fa-sort"></i></th>
+                <th scope="col"  >Contact <i class="fa fa-sort"></i></th>
+           
+                <th scope="col" *ngIf="parent">Action </th>
+                <th scope="col" *ngIf="editParent">Action </th>
+              </tr>
+            </thead>
+            <tbody>
+  
+  
+              <tr *ngFor='let user of adminDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+  
+                <td>{{(p-1) * count+i+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+                <td class="permission"><span class="badge"  
+                  [ngClass]="{'badge-secondary': user.permission =='VIEW', 'badge-warning' : user.permission =='EDIT'}">{{user.permission}}</span>
+              </td>
+                <td>+91{{user.phone}}</td>
+               
+  
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  (click)="editUser(user)" type="button"
+                        data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                        title="Edit"><i class="fa fa-edit"></i></button>
+      
+                        <!-- sub admin for edit only  -->
+                  
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editUser(user)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" *ngIf="parent" (click)="deleteUser(user.id)" type="button"
+                        data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+  
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer text-center">
+        <nav aria-label="Page navigation example">
+          <div class="pagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- /.card -->
+
+
+    
+  <div class="modal  bd-edit-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit User</h4>
+        <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+        <div class="container">
+
+          <h4 style="background-color: #eee;">User Management</h4>
+          <div class="content">
+            <form >
+              <div class="user-details">
+
+                
+          
+
+                <div class="input-box">
+                  <span class="details">* Name</span>
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name"
+                    >
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <span class="details">* Email</span>
+                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.email" required name="email"
+                    >
+                 
+                  <div *ngIf="err">
+                    <span  *ngIf="open" style="color: red;"> {{err}}</span>
+                  </div>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Contact</span>
+                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.phone" required name="phone"
+                    >
+                   
+                  <div *ngIf="message">
+                    <span  *ngIf="mess" style="color: red;"> {{message}}</span>
+                  </div>
+                </div>
+
+
+                <!-- <div class="input-box">
+                  <span class="details">* Tenant Name</span>
+                  <select class="form-control"   name="id" [(ngModel)]="userObj.id" style="width: 200px;">
+                      <option value="">---Select--- </option>
+                    <option value="{{tenant.id}}" *ngFor = "let tenant of tenantDetails ">{{tenant.name}} </option>
+                 
+                  </select>
+                </div> -->
+
+                <div class="input-box">
+                  <span class="details">* Permission</span>
+                  <select  class="form-control" [(ngModel)]="userObj.permission" name="permission"
+                    style="width: 200px;" >
+                    <option value="">---Select--- </option>
+                    <option value="VIEW">View Only</option>
+                    <option value="EDIT">View/Edit Only</option>
+                
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> Permission is required</div>
+                  </div>
+                </div>
+
+
+                
+                <div class="button">
+
+                  
+
+                  <input type="submit" (click)="updateUser()" *ngIf="isEdit" value="Update">
+                </div>
+
+
+             
+
+              
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -3,12 +3,19 @@
 </div>
 <br>
 
-
+<div class="alert alert-danger text-center" *ngIf="error" role="alert">
+  {{error}}
+</div>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+      <div class="modal-header">
+        <h4 class="modal-title">Add User</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div style="justify-content: center;">
         <div class="container">
 
@@ -56,10 +63,10 @@
                 <div class="input-box">
                   <span class="details">Permission</span>
                   <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
-                    style="width: 200px;" formControlName="permission" [ngClass]="
+                    style="width: 100%;" formControlName="permission" [ngClass]="
                                 { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
-                    <option value="">Choose </option>
-                    <option value="All Access">All Access</option>
+                    <option value="">---SELECT--- </option>
+                    <option value="ALL Access">All Access</option>
                     <option value="Limited Access">Limited Access</option>
                     <option value="No Access">No Access</option>
 
@@ -71,15 +78,12 @@
 
                 <div class="button">
 
-                  <input type="submit" (click)="onAddSubmit()" [disabled]="!form.valid" *ngIf="!isEdit" value="Add">
+                  <input type="submit" (click)="onAddSubmit()"  value="Add">
 
-                  <input type="submit" (click)="updateUser()" *ngIf="isEdit" value="update">
+                 
                 </div>
 
-                <div class="card-tools">
-                  <button type="button" class="button" style="margin: 5px;" class="btn btn-secondary"
-                    data-dismiss="modal">Close</button>
-                </div>
+                
               </div>
             </form>
           </div>
@@ -128,7 +132,7 @@
         </div>
       </div>
       <div class="card-tools">
-        <button type="button" data-toggle="modal" (click)="openModel()" data-target=".bd-example-modal-lg"
+        <button type="button" data-toggle="modal"  *ngIf="tenant" data-target=".bd-example-modal-lg"
           class="btn btn-primary">Add User </button>
       </div>
     </div>
@@ -138,20 +142,21 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">User Id <i class="fa fa-sort"></i></th>
-              <th scope="col">Name <i class="fa fa-sort"></i></th>
+              <th scope="col"> Id <i class="fa fa-sort"></i></th>
+              <th scope="col">User Name <i class="fa fa-sort"></i></th>
               <th scope="col">Email <i class="fa fa-sort"></i></th>
               <th scope="col">Contact <i class="fa fa-sort"></i></th>
               <th scope="col">Permission&nbsp;<i class="fa fa-sort"></i></th>
-              <th scope="col">Action </th>
+              <th scope="col" *ngIf="tenant" >Action </th>
+              <th scope="col" *ngIf="editTenant" >Action </th>
             </tr>
           </thead>
           <tbody>
 
 
-            <tr *ngFor='let user of userDetails |  paginate: { itemsPerPage: 5, currentPage: p } ; index as no'>
+            <tr *ngFor='let user of userDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
 
-              <td>{{no + 1}}</td>
+              <td>{{(p-1) * count+i+1}}</td>
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td>+91{{user.phone}}</td>
@@ -164,12 +169,16 @@
                 <ul class="list-inline m-0">
 
                   <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0" (click)="editUser(user)" type="button"
-                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="tenant" (click)="editUser(user)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+
+                      <button class="btn text-warning btn-sm rounded-0" *ngIf="editTenant" (click)="editUser(user)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
                       title="Edit"><i class="fa fa-edit"></i></button>
                   </li>
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" (click)="deleteUser(user.id)" type="button"
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant"  (click)="deleteUser(user.id)" type="button"
                       data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -194,3 +203,79 @@
     </div>
   </div>
   <!-- /.card -->
+
+
+
+  <div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit User</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+        <div class="container">
+
+          <h4 style="background-color: #eee;">User Management</h4>
+          <div class="content">
+            <form >
+              <div class="user-details">
+
+                
+          
+
+                <div class="input-box">
+                  <span class="details">Name</span>
+                  <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required name="name"
+                  >
+                </div>
+                <div class="input-box">
+                  <span class="details">Email</span>
+                  <input type="text" placeholder="Enter Email" [(ngModel)]="userObj.email" required name="email"
+                  >
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Contact</span>
+                  <input type="text" placeholder="Enter Contact" [(ngModel)]="userObj.phone" required name="phone"
+                  >
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Permission</span>
+                  <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
+                    style="width: 100%;">
+                    <option value="">--- SELECT---</option>
+                    <option value="ALL">All Access</option>
+                    <option value="Limited Access">Limited Access</option>
+                    <option value="No Access">No Access</option>
+
+                  </select>
+                  <div class="invalid-feedback">
+                    <div> Permission is required</div>
+                  </div>
+                </div>
+
+                <div class="button">
+
+                  
+
+                  <input type="submit" (click)="updateUser()"  value="update">
+                </div>
+
+                
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -42,7 +42,7 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown  ">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell " > Ankit Rai </i>
+          <i class="far fa-bell " > {{user.name}} </i>
           
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -57,7 +57,7 @@
             
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Log Out</a>
+          <a  (click)="onLogoutClick()" class="dropdown-item dropdown-footer">Log Out</a>
         </div>
       </li>
       <li class="nav-item ml-2">
@@ -110,6 +110,13 @@
                   </li>
                 
                 </ul>
+
+                <li class="nav-item">
+                  <a routerLink ="subTenant"  class="nav-link ">
+                    <i class="nav-icon fa fa-user"></i>
+                    <p>Sub Tenant </p>
+                  </a>
+                </li>
     
                 <li class="nav-item has-treeview">
                   <a  routerLink ="users"  class="nav-link">
@@ -121,18 +128,20 @@
                   </a>
               
               </li>
+
+              <li class="nav-item has-treeview">
+                <a  routerLink ="notification"  class="nav-link">
+                  <i class="nav-icon fa fa-user"></i>
+                  <p>
+                    Notifications
+                 
+                  </p>
+                </a>
+            
+            </li>
               
     
-                <!-- <li class="nav-item has-treeview">
-                  <a  routerLink ="tenant"   class="nav-link">
-                    <i class="nav-icon fa fa-lock"></i>
-                    <p>
-                      Tenant
-                   
-                    </p>
-                  </a>
-              
-              </li> -->
+  
     
         
   
@@ -168,6 +177,14 @@
 
     
       <!-- Main Footer -->
+      <!-- <footer class="main-footer">
+        <strong>Copyright &copy; 2021 <a href=""></a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          
+        </div>
+      </footer> -->
+    
     
     </div>
     <!-- ./wrapper -->

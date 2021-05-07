@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { AuthService} from '../service/auth.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,15 @@ export class SubadminService {
 
   httpRegisterOptions = {
     headers: new HttpHeaders({ 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+       
     })
+};
 
-}
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+    private authService: AuthService) { }
 
   //for page refresh on user page 
   private _listners = new Subject<any>();
@@ -31,15 +33,22 @@ export class SubadminService {
    }
  
 
+   handleError(error){
+    return throwError(error.message || "server error...........!")
+}
+
+
+// user API 
   registerUser(user){
    
     
     return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/insertUser/insertUser',user).pipe(map(res => res));
 }
 
-getUserDetails(){
-  // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/getUser/getUser',).pipe(map(res => res));
+getUserDetails(createToken){
+
+     
+  return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/getUserPost/getUser',createToken) .pipe(catchError(this.handleError)); 
 
 }
 
@@ -55,6 +64,66 @@ UpdateUser(user){
         
   return this.http.put('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/updateUser/updateUser?id='+user.id,user).pipe(map(res => res));
 
+
+
 }
+
+// sub tenant Api 
+
+addSubTenant(user){
+   
+    
+  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/addTenantbyTenant/addTenantbyTenant',user).pipe(map(res => res));
+}
+
+gettenantDetails(createToken){
+
+   
+return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/getSubTeanant/getSubTeanant',createToken) .pipe(catchError(this.handleError)); 
+
+}
+
+deleteSubTenant(id){
+      
+return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/deleteTenant/deleteTenant/',{'id':id}).pipe(map(res => res));
+
+}
+
+
+
+UpdateSubTenant(user){
+      
+return this.http.put('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/updateTenant/updateTenant?id='+user.id,user).pipe(map(res => res));
+
+
+
+}
+
+
+// notification api
+
+
+
+addNotification(notification){
+        
+  return this.http.post('https://x6szas6o91.execute-api.us-east-2.amazonaws.com/insertNotification/insertNotification',notification)
+}
+
+getNotification(createToken){
+      
+  return this.http.post('https://x6szas6o91.execute-api.us-east-2.amazonaws.com/getTenantNotification/getTenantNotification',createToken)
+  
+  }
+
+  deleteNotification(id){
+        
+    return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/deleteIrrigation/deleteIrrigation/',{'id':id})
+  
+  }
+
+  updateNotification(notification){
+    return this.http.put('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/updateIrrigation/updateIrrigation?id='+notification.id,notification)
+  }
+
 
 }

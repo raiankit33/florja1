@@ -22,9 +22,11 @@ export class UsersComponent implements OnInit {
 
 
   })
-  isEdit = false;
-  p: number = +1;
 
+
+  
+  p: number = +1;
+count=5;
   userDetails: [];
 
   userObj = {
@@ -34,6 +36,11 @@ export class UsersComponent implements OnInit {
     phone: "",
     permission: ""
   };
+  error: string;
+  user: any;
+  AuthToken: any;
+  tenant = false;
+  editTenant = false;
 
   constructor(private subadminService: SubadminService,
     private router: Router) {
@@ -44,19 +51,49 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
+
     this.getUserDetails();
+    if (this.user.permission == 'ALL') {
+      this.tenant = true;
+    } else {
+      if (this.user.permission == 'VIEW') {
+        this.tenant = false
+      } else if (this.user.permission == 'EDIT') {
+
+        this.editTenant = true;
+      } 
+    }
   }
 
-  openModel() {
-    this.isEdit = false;
+  
+
+
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+    Object.keys(formGroup.controls).forEach(field => {  //{2}
+      const control = formGroup.get(field);             //{3}
+      if (control instanceof FormControl) {             //{4}
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {        //{5}
+        this.validateAllFormFields(control);            //{6}
+      }
+    });
   }
 
   onAddSubmit() {
     if (this.form.valid) {
+      let createUserPayload = {
 
-      this.subadminService.registerUser(this.form.value).subscribe(res => {
+        id: this.user.id,
+        name: this.form.value.name,
+        email: this.form.value.email,
+        phone: this.form.value.phone,
+        permission: this.form.value.permission
+      }
+      console.log(createUserPayload);
+      this.subadminService.registerUser(createUserPayload).subscribe(res => {
         console.log(res);
-        this.subadminService.filter('added click');
+        this.subadminService.filter('');
         this.form.reset();
         Swal.fire(
           'User added successfully!',
@@ -65,15 +102,23 @@ export class UsersComponent implements OnInit {
         )
       })
 
+    } else {
+      this.validateAllFormFields(this.form);
     }
   }
 
 
 
   getUserDetails() {
-    this.subadminService.getUserDetails().subscribe((res: any) => {
+    let createToken = {
+      AuthToken: this.user.token,
+      t_id: this.user.id
+    }
+    this.subadminService.getUserDetails(createToken).subscribe((res: any) => {
       this.userDetails = res.data;
 
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
     }
 
     );
@@ -110,7 +155,7 @@ export class UsersComponent implements OnInit {
 
   editUser(user) {
     this.userObj = user;
-    this.isEdit = true;
+    
 
     // this.sharedData.updateSharedData(tenant);
     // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
