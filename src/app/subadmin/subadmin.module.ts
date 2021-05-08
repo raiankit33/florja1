@@ -12,6 +12,13 @@ import { TenprofileComponent } from './tenprofile/tenprofile.component';
 import { SubTenantComponent } from './sub-tenant/sub-tenant.component';
 
 import { SubNotificationComponent } from './sub-notification/sub-notification.component';
+import { MessagingService } from '../service/messaging.service';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+
+import { environment } from '../../environments/environment';
 
 
 @NgModule({
@@ -33,8 +40,12 @@ import { SubNotificationComponent } from './sub-notification/sub-notification.co
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    SubadminRoutingModule
+    SubadminRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [SubadminService],
+  providers: [SubadminService,MessagingService],
 })
 export class SubadminModule { }

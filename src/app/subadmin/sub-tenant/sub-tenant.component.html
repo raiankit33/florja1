@@ -64,11 +64,11 @@
                     formControlName="permission" [ngClass]="
                                   { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
                    
-                    <option value="">---SELECT--- </option>
-                    <option value="ALL"> All Access</option>
+                    <option value="1">---SELECT--- </option>
+                    <option value="ALL"> ALL ACCESS</option>
                    
-                    <option value="VIEW">View Only</option>
-                    <option value="EDIT"> View/Edit</option>
+                    <option value="VIEW">VIEW ONLY</option>
+                    <option value="EDIT"> VIEW/EDIT</option>
                   </select>
                   <div class="invalid-feedback">
                     <div> Permission is required</div>
@@ -133,7 +133,7 @@
       </div>
       <div class="card-tools">
         <button type="button" data-toggle="modal" *ngIf="tenant" (click)="openModel()"
-          data-target=".bd-example-modal-lg" class="btn btn-primary">Add User </button>
+          data-target=".bd-example-modal-lg" class="btn btn-primary">Add Sub Tenant</button>
       </div>
     </div>
     <!-- /.card-header -->
@@ -252,9 +252,10 @@
                     <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
                       style="width: 100%;">
                       <option value="">---SELECT--- </option>
-                      <option value="ALL">All Access</option>
-                      <option value="VIEW">view Only</option>
-                      <option value="EDIT"> View/Edit</option>
+                      <option value="ALL"> ALL Access</option>
+                   
+                      <option value="VIEW">VIEW ONLY</option>
+                      <option value="EDIT"> VIEW/EDIT</option>
 
 
                     </select>
@@ -270,10 +271,7 @@
                     <input type="submit" (click)="updateUser()" value="update">
                   </div>
 
-                  <div class="card-tools">
-                    <button type="button" class="button" style="margin: 5px;" class="btn btn-secondary"
-                      data-dismiss="modal">Close</button>
-                  </div>
+              
                 </div>
               </form>
             </div>

@@ -79,8 +79,9 @@
                       style="width: 100%;" formControlName="permission" [ngClass]="
                                   { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
                       <option value="">---Select--- </option>
-                      <option value="VIEW">View Only</option>
-                      <option value="EDIT">View/Edit Only </option>
+                     
+                      <option value="VIEW">VIEW ONLY </option>
+                      <option value="EDIT">VIEW/EDIT</option>
                      
   
                     </select>
@@ -291,8 +292,9 @@
                   <select  class="form-control" [(ngModel)]="userObj.permission" name="permission"
                     style="width: 200px;" >
                     <option value="">---Select--- </option>
-                    <option value="VIEW">View Only</option>
-                    <option value="EDIT">View/Edit Only</option>
+               
+                    <option value="VIEW">VIEW ONLY </option>
+                    <option value="EDIT">VIEW/EDIT</option>
                 
 
                   </select>

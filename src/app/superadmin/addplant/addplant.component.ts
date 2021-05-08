@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/service/service.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { UserService } from 'src/app/service/user.service';
+import { MessagingService } from '../../service/messaging.service';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addplant',
@@ -55,6 +57,8 @@ export class AddplantComponent implements OnInit {
    constructor(
     private serviceService : ServiceService,
      private userService : UserService,
+     private toastr: ToastrService,
+     private messagingService: MessagingService,
         private sharedData : SharedService,
      private router: Router, )
    {
@@ -240,7 +244,19 @@ export class AddplantComponent implements OnInit {
      })
    }
     
-
+   pushNotification(e){
+    if (e.target.checked == true) {
+      this.toastr.success('Success', 'Message Sent ');
+      this.messagingService.sendPush();
+     
+    }
+    else {
+      
+      
+    }
+    
+   
+   }
    
    editPlant(plant){
     this.userObj = plant;

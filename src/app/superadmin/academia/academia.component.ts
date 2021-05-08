@@ -142,7 +142,7 @@ refresh(){
   getAcademiaDetails(){
     this.serviceService.getAcademiaDetails().subscribe((res:any)=>{
       this.academiaDetails = res.data;
-     
+     console.log(this.academiaDetails)
     },(error)=> {
       this.error = 'Server Down Please try After Sometime ..! '
     }

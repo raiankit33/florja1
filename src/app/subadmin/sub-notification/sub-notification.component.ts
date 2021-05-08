@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessagingService } from '../../service/messaging.service';
 import { SubadminService } from 'src/app/service/subadmin.service';
 import Swal from 'sweetalert2';
 
@@ -31,8 +32,10 @@ export class SubNotificationComponent implements OnInit {
     title : "",
     description :""
   };
+  userDetails: any;
 
   constructor(private subadminService: SubadminService,
+    private messagingService: MessagingService,
     private router: Router) {
     this.subadminService.listen().subscribe((m: any) => {
       console.log(m);
@@ -43,6 +46,7 @@ export class SubNotificationComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getNotificationDetails()
+    this.getUserDetails();
     if (this.user.permission == 'ALL') {
       this.tenant = true;
     } else if (this.user.permission == 'VIEW') {
@@ -62,7 +66,7 @@ export class SubNotificationComponent implements OnInit {
     title: new FormControl('',Validators.required),
    
     description: new FormControl('',Validators.required),
-   
+    u_id: new FormControl('',Validators.required),
 
   })
  
@@ -89,13 +93,14 @@ export class SubNotificationComponent implements OnInit {
         description: this.form.value.description,
        
       }
-      console.log(notification);
+      console.log(notification)
+      this.messagingService.sendPushMessage(this.form.value.name, this.form.value.title, this.form.value.description);
       this.subadminService.addNotification(notification).subscribe(res => {
         console.log(res);
         this.subadminService.filter('');
         this.form.reset();
         Swal.fire(
-          'User added successfully!',
+          'Notification added successfully!',
           '',
           'success'
         )
@@ -146,7 +151,7 @@ export class SubNotificationComponent implements OnInit {
 
         Swal.fire(
           'Deleted!',
-          'Tenant has been deleted.',
+          'Notification has been deleted.',
           'success'
         )
       }
@@ -162,14 +167,36 @@ export class SubNotificationComponent implements OnInit {
     // this.sharedData.updateSharedData(tenant);
     // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
   }
+
+
+  
+
   update() {
     this.subadminService.UpdateSubTenant(this.userObj).subscribe(() => {
+      this.messagingService.sendPushMessage(this.userObj.name,this.userObj.title,this.userObj.description);
       Swal.fire(
         'Success!',
-        'User has Updated.',
+        'Notification Resend .',
         'success'
       )
     })
+  }
+
+
+  
+  getUserDetails() {
+    let createToken = {
+      AuthToken: this.user.token,
+      t_id: this.user.id
+    }
+    this.subadminService.getUserDetails(createToken).subscribe((res: any) => {
+      this.userDetails = res.data;
+
+    }, (error) => {
+      this.error = 'Server Down Please try After Sometime ..! '
+    }
+
+    );
   }
 
 

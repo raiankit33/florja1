@@ -98,4 +98,73 @@ export class MessagingService {
         console.log("error" + error);
       });
   }
+
+
+  sendPushMessageWithTopic(name,title, message,topic){
+    let data = {
+        "notification": {
+            "name":name,
+            "title": title,
+            "body": message,
+            "click_action": "http://localhost:4200/",
+            "icon": "http://url-to-an-icon/icon.png",
+            "sound" : "default"
+        },
+        "to": "/topics/tenant"
+    }
+
+    let postData = JSON.stringify(data);    
+    let url ="https://fcm.googleapis.com/fcm/send" ;
+    this.httpClient.post(url,  postData, {
+      headers: new HttpHeaders()
+      // put the server key here
+          .set('Authorization', 'key=AAAAH9oWOgI:APA91bH-R094W8XEvOwI7qOvFHlmjLjSXnVFsyhGiWIM-haK7rwzkfLerMn69ifTLGmaD5AJByW4p0B8l1ybS0sXWSsXpxed0fmNOzoE0-pYRMDpN859ZxNAcjpFlG4VcOyBWRgl1CkX')
+          .set('Content-Type', 'application/json'),
+     })
+     .subscribe((response: Response) => {
+        console.log(response)
+      },
+      (error: Response) => {
+        console.log(error);
+        console.log("error" + error);
+      });
+  }
+
+
+  sendPush(){
+    let data = {
+        "notification": {
+            
+            "title": 'Plant',
+            "body": 'This plant is under Surveillance ',
+            "click_action": "http://localhost:4200/",
+            "icon": "http://url-to-an-icon/icon.png",
+            "sound" : "default"
+        },
+        "to": "/topics/tenant"
+    }
+
+    let postData = JSON.stringify(data);    
+    let url ="https://fcm.googleapis.com/fcm/send" ;
+    this.httpClient.post(url,  postData, {
+      headers: new HttpHeaders()
+      // put the server key here
+          .set('Authorization', 'key=AAAAH9oWOgI:APA91bH-R094W8XEvOwI7qOvFHlmjLjSXnVFsyhGiWIM-haK7rwzkfLerMn69ifTLGmaD5AJByW4p0B8l1ybS0sXWSsXpxed0fmNOzoE0-pYRMDpN859ZxNAcjpFlG4VcOyBWRgl1CkX')
+          .set('Content-Type', 'application/json'),
+     })
+     .subscribe((response: Response) => {
+        console.log(response)
+      },
+      (error: Response) => {
+        console.log(error);
+        console.log("error" + error);
+      });
+  }
+
+
+
 }
+
+
+
+

@@ -390,6 +390,7 @@
 
               <th scope="col">Tenant Name <i class="fa fa-sort"></i></th>
               <th scope="col">User Name <i class="fa fa-sort"></i></th>
+              <th scope="col">Notification <i class="fa fa-sort"></i></th>
               <th scope="col" *ngIf="parent" >Action</th>
               <th scope="col" *ngIf="editParent" >Action</th>
             </tr>
@@ -407,6 +408,9 @@
               <td>{{plant.t_name}}</td>
               <td>
                 {{plant.u_name}}
+              </td>
+              <td>
+                <input (click)="pushNotification($event)" type="checkbox" [checked]="checks">
               </td>
               <td>
                 <ul class="list-inline m-0">

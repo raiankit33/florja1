@@ -122,6 +122,39 @@
      .container{
       max-width: 100%;
     }
+    .user-details .input-box select{
+      height: 45px;
+      width: 300px;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details .input-box textarea{
+      height: 100px;
+      width: 300px;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details .input-box input{
+      height: 45px;
+      width: 300px;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
     form .user-details .input-box{
         margin-bottom: 15px;
         width: 100%;

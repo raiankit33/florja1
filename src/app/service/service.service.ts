@@ -301,7 +301,7 @@ getIrrigation(createToken){
   
     deleteNotification(id){
           
-      return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/deleteIrrigation/deleteIrrigation/',{'id':id})
+      return this.http.post('https://x6szas6o91.execute-api.us-east-2.amazonaws.com/deleteNotification/deleteNotification/',{'id':id})
     
     }
   

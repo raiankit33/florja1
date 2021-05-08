@@ -47,14 +47,26 @@
                                         <div> This field is required
                                         </div>
                                     </div>
-
-
-
                                 </div>
 
                                 <div class="input-box">
                                 </div>
 
+                                <div class="input-box">
+                                  <span class="details">* Whom To Send</span>
+                                  <select name="Product code" class="form-control"  formControlName="id" name="id" style="width:600px">
+                                    <option >---Select--- </option>
+                                    <option value="">All</option>
+                                    <option  style="background-color:blue; color: white;">User Name</option>
+
+                                    <option value="{{user.id}}" *ngFor="let user of userDetails ">{{user.name}}
+                                    </option>
+                
+                                  </select>
+                                </div>
+
+                                <div class="input-box">
+                                </div>
 
                                 <div class="input-box">
                                     <span class="details">* Description</span>
@@ -147,6 +159,7 @@
                     <th scope="col">Id <i class="fa fa-sort"></i></th>
                     <th scope="col">Name <i class="fa fa-sort"></i></th>
                     <th scope="col">Title <i class="fa fa-sort"></i></th>
+                    <th scope="col">Send To <i class="fa fa-sort"></i></th>
                     <th scope="col">Description <i class="fa fa-sort"></i></th>
                     <th scope="col" *ngIf="tenant">Action </th>
                     <th scope="col" *ngIf="editTenant">Action </th>
@@ -160,19 +173,20 @@
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{notification.name}}</td>
                 <td>{{notification.title}}</td>
+                <td>{{notification.title}}</td>
                 <td>{{notification.description}}</td>
   
                 <td>
                   <ul class="list-inline m-0">
   
                     <li class="list-inline-item">
-                      <button class="btn text-warning btn-sm rounded-0" *ngIf="tenant" (click)="editUser(user)"
+                      <button class="btn btn-warning " *ngIf="tenant" (click)="editUser(user)"
                         type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg"
-                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                        data-placement="top" title="edit"><i class="fa fa-repeat" ></i>resend</button>
   
                       <button class="btn text-warning btn-sm rounded-0" *ngIf="editTenant" (click)="editUser(user)"
-                        type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg"
-                        data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                        type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg"
+                        data-placement="top" title="Resend"><i class="  fa fa-repeat"></i></button>
   
                     </li>
                     <li class="list-inline-item">
@@ -224,7 +238,7 @@
 
                                 <div class="input-box">
                                     <span class="details">* Name</span>
-                                    <input type="text" placeholder="Enter Name " [(ngModel)]="userObj.name" required
+                                    <input type="text" placeholder="Enter Name " disabled [(ngModel)]="userObj.name" required
                                         name="name">
                                 </div>
                                 <div class="input-box">
@@ -233,7 +247,7 @@
 
                                 <div class="input-box">
                                     <span class="details">* Title</span>
-                                    <input type="text" placeholder="Enter Title" [(ngModel)]="userObj.title"
+                                    <input type="text" placeholder="Enter Title" disabled [(ngModel)]="userObj.title"
                                         required name="title">
                                 </div>
 
@@ -244,7 +258,7 @@
 
                                 <div class="input-box">
                                     <span class="details">* Description</span>
-                                    <textarea type="text" placeholder="Enter Description"
+                                    <textarea type="text" placeholder="Enter Description" disabled
                                         [(ngModel)]="userObj.description" required name="description"></textarea>
                                 </div>
 
@@ -254,7 +268,7 @@
 
                                 <div class="button">
 
-                                    <input type="submit" (click)="update()" value="update">
+                                    <input type="submit" (click)="update()" value="Resend">
                                 </div>
 
 

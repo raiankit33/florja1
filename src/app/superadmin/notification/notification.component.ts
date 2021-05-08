@@ -39,6 +39,7 @@ export class NotificationComponent implements OnInit {
   };
   messag: any;
   messages: any;
+  tenantDetails: any;
   
     constructor(
       private serviceService : ServiceService,
@@ -54,6 +55,7 @@ export class NotificationComponent implements OnInit {
     ngOnInit(): void {
       this.user = JSON.parse(localStorage.getItem("user"));
       this.getAcademiaDetails();
+      this.getTenantDetails();
       if(this.user.permission=='all' && this.user.parent_id=="owner"){
         this.parent = true;
           }else{
@@ -72,7 +74,7 @@ export class NotificationComponent implements OnInit {
       title: new FormControl('',Validators.required),
      
       description: new FormControl('',Validators.required),
-     
+      t_id: new FormControl('',Validators.required),
   
     })
   
@@ -111,9 +113,16 @@ export class NotificationComponent implements OnInit {
           name: this.form.value.name,
           title: this.form.value.title,
           description: this.form.value.description,
+          t_id: this.form.value.t_id,
          
         }
-        this.messagingService.sendPushMessage(this.form.value.name, this.form.value.title, this.form.value.description);
+        console.log(notification);
+        if (this.form.value.t_id == '') {
+          this.messagingService.sendPushMessage(this.form.value.name, this.form.value.title, this.form.value.description);
+        } else {
+          this.messagingService.sendPushMessageWithTopic(this.form.value.name,this.form.value.title, this.form.value.description,this.form.value.t_id)
+        }
+        
        console.log(notification)
         this.serviceService.addNotification(notification).subscribe( (res:any)=> {
           if (res.statusCode== 200) {
@@ -176,7 +185,8 @@ export class NotificationComponent implements OnInit {
     update(){
      
       this.serviceService.updateNotification(this.userObj).subscribe(()=>{
-  
+        this.messagingService.sendPushMessage(this.userObj.name,this.userObj.title,this.userObj.description);
+        console.log(this.userObj)
         Swal.fire(
          'Success!',
          'Notification has Updated.',
@@ -186,10 +196,8 @@ export class NotificationComponent implements OnInit {
        
     }
   
-    deleteAcademia(id){
+    deleteNotification(id){
      
-  
-  
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -200,7 +208,7 @@ export class NotificationComponent implements OnInit {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.serviceService.deleteAcademia(id).subscribe( (res:any)=>{
+          this.serviceService.deleteNotification(id).subscribe( (res:any)=>{
             this.getAcademiaDetails();
             
           
@@ -214,5 +222,20 @@ export class NotificationComponent implements OnInit {
         }
       })
     }
+
+
+    getTenantDetails(){
+      let createToken ={
+        AuthToken:this.user.token,
+  
+      }
+      this.serviceService.getTenantDetails(createToken).subscribe((res:any)=>{
+        this.tenantDetails = res.data;
+       
+      },(error)=> {
+        this.error = 'Server Down Please try After Sometime ..! '
+      }
+      );
+    } 
   }
   

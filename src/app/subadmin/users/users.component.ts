@@ -27,7 +27,16 @@ export class UsersComponent implements OnInit {
   
   p: number = +1;
 count=5;
-  userDetails: [];
+  userDetails=[];
+
+//   get sortData() {
+//     return this.userDetails.sort((a, b) => {
+//       return b.name - a.name ;
+//   })
+// }
+
+
+  
 
   userObj = {
 
@@ -47,6 +56,7 @@ count=5;
     this.subadminService.listen().subscribe((m: any) => {
       console.log(m);
       this.getUserDetails();
+     
     })
   }
 
@@ -54,6 +64,7 @@ count=5;
     this.user = JSON.parse(localStorage.getItem("user"));
 
     this.getUserDetails();
+    
     if (this.user.permission == 'ALL') {
       this.tenant = true;
     } else {
@@ -66,7 +77,7 @@ count=5;
     }
   }
 
-  
+
 
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}
@@ -115,14 +126,17 @@ count=5;
       t_id: this.user.id
     }
     this.subadminService.getUserDetails(createToken).subscribe((res: any) => {
+    
       this.userDetails = res.data;
-
+ console.log(this.userDetails,'ggg')
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
 
     );
   }
+
+ 
 
 
   deleteUser(id) {

@@ -66,9 +66,9 @@
                     style="width: 100%;" formControlName="permission" [ngClass]="
                                 { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
                     <option value="">---SELECT--- </option>
-                    <option value="ALL Access">All Access</option>
-                    <option value="Limited Access">Limited Access</option>
-                    <option value="No Access">No Access</option>
+                    <option value="ALL">All ACCESS </option>
+                    <option value="VIEW ">VIEW </option>
+                    <option value="VIEW/EDIT">VIEW/EDIT</option>
 
                   </select>
                   <div class="invalid-feedback">
@@ -161,7 +161,7 @@
               <td>{{user.email}}</td>
               <td>+91{{user.phone}}</td>
               <td class="permission"><span class="badge"
-                  [ngClass]="{'badge-success': user.permission =='All Access', 'badge-warning' : user.permission !='All Access'}">{{user.permission}}</span>
+                  [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='VIEW','badge-secondary' : user.permission =='EDIT'}">{{user.permission}}</span>
               </td>
 
 
@@ -250,9 +250,9 @@
                   <select name="Product code" class="form-control" [(ngModel)]="userObj.permission" name="permission"
                     style="width: 100%;">
                     <option value="">--- SELECT---</option>
-                    <option value="ALL">All Access</option>
-                    <option value="Limited Access">Limited Access</option>
-                    <option value="No Access">No Access</option>
+                    <option value="ALL Access">All ACCESS </option>
+                    <option value="VIEW ">VIEW </option>
+                    <option value="VIEW/EDIT">VIEW/EDIT</option>
 
                   </select>
                   <div class="invalid-feedback">

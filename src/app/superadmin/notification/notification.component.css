@@ -39,7 +39,7 @@
 
   .user-details .input-box textarea{
     height: 100px;
-    width: 600px;
+    width: 500px;
     outline: none;
     font-size: 16px;
     border-radius: 5px;
@@ -50,7 +50,7 @@
   }
   .user-details .input-box input{
     height: 45px;
-    width: 600px;
+    width: 500px;
     outline: none;
     font-size: 16px;
     border-radius: 5px;
