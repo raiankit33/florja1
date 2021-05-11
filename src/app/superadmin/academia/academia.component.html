@@ -25,7 +25,7 @@
       <div style="justify-content: center;">
         <div class="container1">
 
-          <h4 style="background-color: #eee;">Academia Management</h4>
+          <h4 style="background-color: #eee;">&nbsp; Academia Management</h4>
           <div class="content">
             <form [formGroup]="form">
               <div class="user-details">
@@ -84,6 +84,9 @@
                   </div>
                 </div>
 
+                <div class="input-box"  > 
+                </div>
+
                 <div class="button">
                   <input type="submit" (click)="onAddSubmit()"   value="Add">
          
@@ -126,7 +129,7 @@
         </div>
 
         <div class="search_wrap search_wrap_1">
-          <div class="search_box" style="margin-left: 15px;">
+          <div class="search_box" style="margin-left: 16px;">
             <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
               placeholder="search...">
             <div class="btn btn_common">
@@ -223,7 +226,7 @@
       <div style="justify-content: center;">
         <div class="container1">
 
-          <h4 style="background-color: #eee;">Academia Management</h4>
+          <h4 style="background-color: #eee;">&nbsp; Academia Management</h4>
           <div class="content">
             <form  >
               <div class="user-details">
@@ -259,16 +262,12 @@
                   
                 </div>
 
+                <div class="input-box"  > 
+                </div>
+
                 <div class="button">
               
                   <input type="submit" (click)="updateAcademia()"  value="update">
-                </div>
-
-                <div class="alert alert-warning alert-dismissible fade show" *ngIf="err" role="alert">
-                  <strong>Error!</strong> {{err}}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                 </div>
 
                 

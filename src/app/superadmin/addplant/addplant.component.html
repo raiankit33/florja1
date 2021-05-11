@@ -18,7 +18,7 @@
 
         <div class="container">
 
-          <h4 style="background-color:#eee;">Information</h4>
+          <h4 style="background-color:#eee;">&nbsp;Information</h4>
           <div class="content">
             <form [formGroup]="form">
               <div class="user-details">
@@ -66,7 +66,7 @@
                   </div>
                 </div>
 
-                <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+                <h4 style="background-color:#eee;width: 850px;">&nbsp;Measurement Specifics</h4>
 
                 <div class="input-box">
                   <span class="details">* Soil Humidity MIN</span>
@@ -209,7 +209,7 @@
 
 
 
-                <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+                <h4 style="background-color:#eee;width: 850px;">&nbsp; Seasons </h4>
 
 
                 <div class="input-box">
@@ -296,7 +296,7 @@
                   </div>
                 </div>
 
-                <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+                <h4 style="background-color:#eee;width: 850px;">&nbsp; Location </h4>
 
 
                 <div class="input-box">
@@ -361,7 +361,7 @@
         </div>
 
         <div class="search_wrap search_wrap_1">
-          <div class="search_box" style="margin-left: 15px;">
+          <div class="search_box" style="margin-left: 16px;">
             <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
               placeholder="search...">
             <div class="btn btn_common">
@@ -410,7 +410,7 @@
                 {{plant.u_name}}
               </td>
               <td>
-                <input (click)="pushNotification($event)" type="checkbox" [checked]="checks">
+                <input (click)="pushNotification($event,plant)" type="checkbox" [checked]="checks">
               </td>
               <td>
                 <ul class="list-inline m-0">
@@ -468,7 +468,7 @@
 
             <div class="container">
 
-              <h4 style="background-color:#eee;">Information</h4>
+              <h4 style="background-color:#eee;">&nbsp;Information</h4>
               <div class="content">
                 <form>
                   <div class="user-details">
@@ -506,7 +506,7 @@
 
                     </div>
 
-                    <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+                    <h4 style="background-color:#eee;width: 850px;">&nbsp;Measurement Specifics</h4>
 
                     <div class="input-box">
                       <span class="details">* Soil Humidity MIN</span>
@@ -583,7 +583,7 @@
 
 
 
-                    <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+                    <h4 style="background-color:#eee;width: 850px;">&nbsp; Seasons </h4>
 
 
                     <div class="input-box">
@@ -637,7 +637,7 @@
                       <input type="date" name="winter_end" [(ngModel)]="userObj.summer_end">
                     </div>
 
-                    <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+                    <h4 style="background-color:#eee;width: 850px;"> &nbsp;Location </h4>
 
 
                     <div class="input-box">
@@ -655,7 +655,7 @@
 
                     <div class="button">
 
-                      <input type="submit" (click)="updateTen()" value="update">
+                      <input type="submit" (click)="updateTen()" value="Update">
                     </div>
                   </div>
                 </form>

@@ -8,7 +8,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"></h4>
+        <h4 class="modal-title">Add Irrigation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -16,7 +16,7 @@
       <div style="justify-content: center;">
         <div class="container">
 
-          <h4 style="background-color:#eee;">Irrigation Unit Cockpit</h4>
+          <h4 style="background-color:#eee;">&nbsp;Irrigation Unit Cockpit</h4>
           <div class="content">
             <form [formGroup]="form">
               <div class="user-details">
@@ -111,7 +111,7 @@
                 </div>
 
 
-                <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+                <h4 style="background-color:#eee;width: 850px;">&nbsp; Location </h4>
 
 
                 <div class="input-box">
@@ -266,7 +266,7 @@
         </div>
 
         <div class="search_wrap search_wrap_1">
-          <div class="search_box" style="margin-left: 15px;">
+          <div class="search_box" style="margin-left: 16px;">
             <input type="text" class="input" placeholder="search...">
             <div class="btn btn_common">
               <i class="fas fa-search"></i>
@@ -315,7 +315,7 @@
               <td><span class="badge bg-success">active</span></td>
               <td><span class="badge bg-success">80%</span></td>
               <td>
-                <input type="checkbox">
+                <input (click)="pushNotification($event,irrigation)"  type="checkbox" [checked]="checks">
               </td>
               <td>
                 <ul class="list-inline m-0">
@@ -362,7 +362,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title"></h4>
+          <h4 class="modal-title">Edit Irrigation</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -370,7 +370,7 @@
         <div style="justify-content: center;">
           <div class="container">
 
-            <h4 style="background-color:#eee;">Irrigation Unit Cockpit</h4>
+            <h4 style="background-color:#eee;">&nbsp;Irrigation Unit Cockpit</h4>
             <div class="content">
               <form>
                 <div class="user-details">
@@ -446,7 +446,7 @@
                   </div>
 
 
-                  <h4 style="background-color:#eee;width: 850px;"> Location </h4>
+                  <h4 style="background-color:#eee;width: 850px;">&nbsp;Location </h4>
 
 
                   <div class="input-box">

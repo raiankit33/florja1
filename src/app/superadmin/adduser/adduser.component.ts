@@ -51,9 +51,9 @@ export class AdduserComponent implements OnInit {
 
   constructor(
     private serviceService : ServiceService,
-    private subadminService: SubadminService,
+   
     private router: Router) {
-    this.subadminService.listen().subscribe((m: any) => {
+    this.serviceService.listen().subscribe((m: any) => {
       console.log(m);
       this.getUserDetails();
     })
@@ -151,7 +151,7 @@ refresh(){
       this.userDetails = res.data;
       console.log(this.userDetails,'hello');
       if(res.statusCode==404){
-        this.error = "unauthorized "
+        this.error = "Token Mismatch "
       }
 
     },(error)=> {
@@ -180,6 +180,10 @@ getSort(a,b){
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
+        let createToken ={
+          AuthToken:this.user.token,
+    
+        }
         this.serviceService.deleteUser(id).subscribe((res: any) => {
           this.getUserDetails();
 
@@ -206,6 +210,10 @@ getSort(a,b){
     // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
   }
   updateUser() {
+    let createToken ={
+      AuthToken:this.user.token,
+
+    }
     this.serviceService.UpdateUser(this.userObj).subscribe(() => {
       Swal.fire(
         'Success!',

@@ -131,17 +131,17 @@ export class MessagingService {
   }
 
 
-  sendPush(){
+  sendPushToPlant(name){
     let data = {
         "notification": {
             
-            "title": 'Plant',
-            "body": 'This plant is under Surveillance ',
+            "title": name,
+            "body": name +' is is under Surveillance ',
             "click_action": "http://localhost:4200/",
             "icon": "http://url-to-an-icon/icon.png",
             "sound" : "default"
         },
-        "to": "/topics/tenant"
+        "to": "fWNp8P5-q0gEjRHyaeNdY_:APA91bG7uvaEHyltZpOUdwFYhXCuDXalK24jrgi5R6P2UExTOCeXOZZ3ds5tJqmFqT4Kc-4WZk66mGlNcTeb3zurEDHcyMQXYIKd0k1nwYeTENBxjusqPLkHWQXG8Ferr8l9eNK4a1M4"
     }
 
     let postData = JSON.stringify(data);    
@@ -160,6 +160,69 @@ export class MessagingService {
         console.log("error" + error);
       });
   }
+
+
+  sendPushToIrrigation(name){
+    let data = {
+        "notification": {
+            
+            "title": name,
+            "body": name + ' is in  under Surveillance ',
+            "click_action": "http://localhost:4200/",
+            "icon": "http://url-to-an-icon/icon.png",
+            "sound" : "default"
+        },
+        "to": "fWNp8P5-q0gEjRHyaeNdY_:APA91bG7uvaEHyltZpOUdwFYhXCuDXalK24jrgi5R6P2UExTOCeXOZZ3ds5tJqmFqT4Kc-4WZk66mGlNcTeb3zurEDHcyMQXYIKd0k1nwYeTENBxjusqPLkHWQXG8Ferr8l9eNK4a1M4"
+    }
+
+    let postData = JSON.stringify(data);    
+    let url ="https://fcm.googleapis.com/fcm/send" ;
+    this.httpClient.post(url,  postData, {
+      headers: new HttpHeaders()
+      // put the server key here
+          .set('Authorization', 'key=AAAAH9oWOgI:APA91bH-R094W8XEvOwI7qOvFHlmjLjSXnVFsyhGiWIM-haK7rwzkfLerMn69ifTLGmaD5AJByW4p0B8l1ybS0sXWSsXpxed0fmNOzoE0-pYRMDpN859ZxNAcjpFlG4VcOyBWRgl1CkX')
+          .set('Content-Type', 'application/json'),
+     })
+     .subscribe((response: Response) => {
+        console.log(response)
+      },
+      (error: Response) => {
+        console.log(error);
+        console.log("error" + error);
+      });
+  }
+
+
+  sendPushToSensor(name){
+    let data = {
+        "notification": {
+            
+            "title": name,
+            "body": ' Sensor is in  under Surveillance ',
+            "click_action": "http://localhost:4200/",
+            "icon": "http://url-to-an-icon/icon.png",
+            "sound" : "default"
+        },
+        "to": "fWNp8P5-q0gEjRHyaeNdY_:APA91bG7uvaEHyltZpOUdwFYhXCuDXalK24jrgi5R6P2UExTOCeXOZZ3ds5tJqmFqT4Kc-4WZk66mGlNcTeb3zurEDHcyMQXYIKd0k1nwYeTENBxjusqPLkHWQXG8Ferr8l9eNK4a1M4"
+    }
+
+    let postData = JSON.stringify(data);    
+    let url ="https://fcm.googleapis.com/fcm/send" ;
+    this.httpClient.post(url,  postData, {
+      headers: new HttpHeaders()
+      // put the server key here
+          .set('Authorization', 'key=AAAAH9oWOgI:APA91bH-R094W8XEvOwI7qOvFHlmjLjSXnVFsyhGiWIM-haK7rwzkfLerMn69ifTLGmaD5AJByW4p0B8l1ybS0sXWSsXpxed0fmNOzoE0-pYRMDpN859ZxNAcjpFlG4VcOyBWRgl1CkX')
+          .set('Content-Type', 'application/json'),
+     })
+     .subscribe((response: Response) => {
+        console.log(response)
+      },
+      (error: Response) => {
+        console.log(error);
+        console.log("error" + error);
+      });
+  }
+
 
 
 

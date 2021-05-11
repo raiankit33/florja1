@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/service/shared.service';
-import { UserService } from 'src/app/service/user.service';
+import { MessagingService } from '../../service/messaging.service';
 import Swal from 'sweetalert2';
 import { ServiceService } from '../../service/service.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-addirrigation',
@@ -26,6 +28,8 @@ parent=false;
   constructor(
     private service: ServiceService,
     private sharedData: SharedService,
+    private toastr: ToastrService,
+private messagingService: MessagingService,
     private router: Router,
   ) {
     this.service.listen().subscribe((m: any) => {
@@ -167,6 +171,18 @@ parent=false;
       this.validateAllFormFields(this.form);
     }
   }
+
+
+  pushNotification(e,irrigation){
+    if (e.target.checked == true) {
+      this.toastr.success('Success', 'Message Sent ');
+      this.messagingService.sendPushToIrrigation(irrigation.name);
+     
+    }
+    else {
+         
+    }
+   }
 
 
   getIrrigationDetails() {

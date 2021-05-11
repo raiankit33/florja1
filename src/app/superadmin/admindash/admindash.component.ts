@@ -9,7 +9,7 @@ import {Chart} from 'chart.js';
 })
 export class AdmindashComponent implements OnInit {
   show: any;
-  message: any;
+  
 
   constructor() { }
 

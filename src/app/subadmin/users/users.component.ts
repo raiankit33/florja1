@@ -39,11 +39,18 @@ count=5;
   
 
   userObj = {
-
+    token:"",
+    updated_at:"",
+    delete_at:"",
+    password:"",
+    t_id:"",
+    t_name:"",
+    id:"",
     name: "",
     email: "",
     phone: "",
-    permission: ""
+    permission: "",
+    created_at:"",
   };
   error: string;
   user: any;
@@ -127,8 +134,10 @@ count=5;
     }
     this.subadminService.getUserDetails(createToken).subscribe((res: any) => {
     
-      this.userDetails = res.data;
- console.log(this.userDetails,'ggg')
+          this.userDetails = res.data;
+      
+   
+     
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -137,9 +146,9 @@ count=5;
   }
 
  
+  // this.userDetails = this.userDetails.filter(data => data.deleted_at == '')
 
-
-  deleteUser(id) {
+  deleteUser(user) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -150,11 +159,20 @@ count=5;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.subadminService.deleteUser(id).subscribe((res: any) => {
+        let createToken = {
+          userObj : user
+         
+        }
+        this.subadminService.deleteUser(createToken).subscribe(() => {
+       
+          Swal.fire(
+            'Success!',
+            'User has Updated.',
+            'success'
+          )
           this.getUserDetails();
-
-
-        });
+        })
+      
 
         Swal.fire(
           'Deleted!',
@@ -175,6 +193,10 @@ count=5;
     // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
   }
   updateUser() {
+    let createToken = {
+      AuthToken: this.user.token,
+     
+    }
     this.subadminService.UpdateUser(this.userObj).subscribe(() => {
       Swal.fire(
         'Success!',

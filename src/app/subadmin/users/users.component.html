@@ -19,7 +19,7 @@
       <div style="justify-content: center;">
         <div class="container">
 
-          <h4 style="background-color: #eee;">User Management</h4>
+          <h4 style="background-color: #eee;">&nbsp;User Management</h4>
           <div class="content">
             <form [formGroup]="form">
               <div class="user-details">
@@ -76,11 +76,13 @@
                   </div>
                 </div>
 
+                <div class="input-box">
+                </div>
+
                 <div class="button">
 
                   <input type="submit" (click)="onAddSubmit()"  value="Add">
 
-                 
                 </div>
 
                 
@@ -178,7 +180,7 @@
                       title="Edit"><i class="fa fa-edit"></i></button>
                   </li>
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant"  (click)="deleteUser(user.id)" type="button"
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant"  (click)="deleteUser(user)" type="button"
                       data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -219,7 +221,7 @@
       <div style="justify-content: center;">
         <div class="container">
 
-          <h4 style="background-color: #eee;">User Management</h4>
+          <h4 style="background-color: #eee;">&nbsp;User Management</h4>
           <div class="content">
             <form >
               <div class="user-details">
@@ -260,11 +262,11 @@
                   </div>
                 </div>
 
+                <div class="input-box">
+                </div>
+
                 <div class="button">
-
-                  
-
-                  <input type="submit" (click)="updateUser()"  value="update">
+                  <input type="submit" (click)="updateUser()"  value="Update">
                 </div>
 
                 

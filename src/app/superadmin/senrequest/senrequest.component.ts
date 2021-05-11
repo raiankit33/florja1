@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/service/service.service';
+import { ServiceService } from '../../service/service.service';
 import { SharedService } from 'src/app/service/shared.service';
 import * as $ from 'jquery'
 
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+import { MessagingService } from '../../service/messaging.service';
 
 @Component({
   selector: 'app-senrequest',
@@ -28,7 +30,8 @@ isShow=false;
   editParent=false;
   constructor(
     private serviceService : ServiceService,
-
+    private toastr: ToastrService,
+    private messagingService: MessagingService,
         private sharedData : SharedService,
      private router: Router, )
    {
@@ -62,6 +65,9 @@ userObj ={
   
 }
 
+
+
+
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getPlantDetails();
@@ -78,6 +84,8 @@ userObj ={
            this.editParent =true;
          }
         }
+
+     
  
   }
 
@@ -148,6 +156,17 @@ refresh(){
   }
   }
 
+
+  pushNotification(e,sens){
+    if (e.target.checked == true) {
+      this.toastr.success('Success', 'Message Sent ');
+      this.messagingService.sendPushToSensor(sens.name);
+     
+    }
+    else {
+        
+    }   
+   }
 
   getSensorDetails(){
     let createToken ={

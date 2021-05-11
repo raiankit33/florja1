@@ -83,7 +83,7 @@
                   <span class="details">* Permission</span>
                   <select name="Product code" class="form-control" name="permission" style="width: 100%;"
                     formControlName="permission" [ngClass]="
-                                  { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
+ { 'is-invalid': form.get('permission').touched && form.get('permission').invalid}">
                     <option value="">---Select--- </option>
                     <option value="ALL">All ACCESS </option>
                     <option value="VIEW">VIEW ONLY </option>
@@ -97,13 +97,13 @@
 
 
                 <div class="input-box">
-
                 </div>
+
+                <div class="input-box"  > 
+                </div>
+
                 <div class="button">
-
                   <input type="submit" (click)="onAddSubmit()" value="Add">
-
-
                 </div>
 
               </div>
@@ -145,7 +145,7 @@
         </div>
 
         <div class="search_wrap search_wrap_1">
-          <div class="search_box" style="margin-left: 15px;">
+          <div class="search_box" style="margin-left: 16px;">
             <input type="text" class="input" placeholder="search...">
             <div class="btn btn_common">
               <i class="fas fa-search"></i>
@@ -301,12 +301,10 @@
                     </div>
                   </div>
 
-
+                  <div class="input-box"  > 
+                  </div>
 
                   <div class="button">
-
-
-
                     <input type="submit" (click)="updateUser()" *ngIf="isEdit" value="Update">
                   </div>
 

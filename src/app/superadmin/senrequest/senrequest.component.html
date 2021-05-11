@@ -20,7 +20,7 @@
         <div style="justify-content: center;">
           <div class="container">
   
-            <h4 style="background-color: #eee;"> Sensor </h4>
+            <h4 style="background-color: #eee;">&nbsp; Sensor </h4>
             <div class="content">
               <form  [formGroup]="form">
                 <div class="user-details">
@@ -109,13 +109,13 @@
                   </div>
 
 
-                  <div class="input-box"  >
-              
-                   
+                  <div class="input-box"  > 
                   </div>
 
-    
-                     {{error}}
+                  <div class="input-box"  > 
+                  </div>
+
+                 
                   <div class="button">
                     <input type="submit" (click)="onAddSubmit()"  value="Add">
                    
@@ -154,7 +154,7 @@
      </div>
    
       <div class="search_wrap search_wrap_1">
-        <div class="search_box"style="margin-left: 15px;">
+        <div class="search_box"style="margin-left: 16px;">
           <input type="text" class="input" placeholder="search...">
           <div class="btn btn_common">
             <i  class="fas fa-search"></i>
@@ -180,7 +180,7 @@
           <th scope="col">Plant Type <i class="fa fa-sort"></i></th>
          
           <th scope="col">Date <i class="fa fa-sort"></i></th>
-         
+          <th scope="col">Notification <i class="fa fa-sort"></i></th>
           <th scope="col" *ngIf="parent" >Action </th>
           
           <th scope="col" *ngIf="editParent" >Action </th>
@@ -194,7 +194,9 @@
       <td>{{sens.sensor_type}}</td>
       <td>{{sens.plant_name}}</td>
       <td><span >{{sens.created_at}}</span></td>
-     
+      <td>
+        <input (click)="pushNotification($event,sens)" type="checkbox" [checked]="checks">
+      </td>
       <td>   
         <ul class="list-inline m-0">
       
@@ -254,7 +256,7 @@
        <div style="justify-content: center;">
          <div class="container">
  
-           <h4 style="background-color: #eee;"> Sensor </h4>
+           <h4 style="background-color: #eee;">&nbsp; Sensor </h4>
            <div class="content">
              <form  >
                <div class="user-details">

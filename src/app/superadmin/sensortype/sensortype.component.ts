@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class SensortypeComponent implements OnInit {
 
-
+  searchString:any;
   p: number = 1;
   count: number = 5;
   index: any;

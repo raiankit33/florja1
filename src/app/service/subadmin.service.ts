@@ -52,9 +52,9 @@ getUserDetails(createToken){
 
 }
 
-deleteUser(id){
+deleteUser(user){
         
-  return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',{'id':id}).pipe(map(res => res));
+  return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',user).pipe(map(res => res));
 
 }
 

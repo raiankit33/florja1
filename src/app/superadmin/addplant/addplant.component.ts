@@ -244,10 +244,10 @@ export class AddplantComponent implements OnInit {
      })
    }
     
-   pushNotification(e){
+   pushNotification(e,plant){
     if (e.target.checked == true) {
       this.toastr.success('Success', 'Message Sent ');
-      this.messagingService.sendPush();
+      this.messagingService.sendPushToPlant(plant.name);
      
     }
     else {
