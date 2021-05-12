@@ -18,18 +18,12 @@ export class TenantComponent implements OnInit {
   index: any;
 
   isEdit = false;
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
   tenantDetails = [];
   tenant: any;
   statusCode: string;
-
-
-  userObj = {
-    id: "",
-    name: "",
-    email: "",
-    phone: "",
-  
-  };
   name: any;
   error: string;
   user: any;
@@ -39,6 +33,30 @@ export class TenantComponent implements OnInit {
   mess = false;
   parent = false;
   editParent=false;
+
+
+  userObj = {
+    id: "",
+    name: "",
+    email: "",
+    phone: "",
+  updated_at:"",
+  updated_by:"",
+  token:"",
+  permission:"",
+  password:"",
+  parent_name:"",
+  parent_id:"",
+  lastlogin:"",
+  created_by:"",
+  created_at:"",
+  Super_Admin_name:"",
+  Super_Admin_id:"",
+
+
+  };
+  Details =[];
+  InactiveDetail=[];
 
   constructor(
     private serviceService: ServiceService,
@@ -120,6 +138,23 @@ export class TenantComponent implements OnInit {
   refresh() {
     this.form.reset()
   }
+  AllData(){
+ this.allMember = true;
+ this.active =false;
+ this.Inactive =false;
+  }
+
+  ActiveTab(){
+this.active =true;
+this.Inactive =false;
+this.allMember =false;
+  }
+
+  InActiveTab(){
+  this.Inactive =true;
+  this.active =false;
+  this.allMember =false;
+  }
 
   onAddSubmit() {
     if (this.form.valid) {
@@ -181,7 +216,12 @@ export class TenantComponent implements OnInit {
 
     }
     this.serviceService.getTenantDetails(createToken).subscribe((res: any) => {
-      this.tenantDetails = res.data;
+      this.Details = res.data;
+
+      this.tenantDetails = this.Details.filter(data => data.deleted_at == '');
+
+      this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
+
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -195,7 +235,7 @@ export class TenantComponent implements OnInit {
     }, 1000);
   }
 
-  deleteTen(id) {
+  deleteTen(tenant) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -206,7 +246,11 @@ export class TenantComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.serviceService.deleteTenant(id).subscribe((res: any) => {
+        let createToken ={
+          userObj : tenant
+    
+        }
+        this.serviceService.deleteTenant(createToken).subscribe((res: any) => {
           this.getTenantDetails();
         });
 

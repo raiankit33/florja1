@@ -21,6 +21,9 @@ export class SubTenantComponent implements OnInit {
   AuthToken: any;
   tenant = false;
   editTenant = false;
+  active:boolean =true;
+  Inactive:boolean = false;
+  allMember: boolean =false;
 
   userObj = {
 
@@ -29,6 +32,9 @@ export class SubTenantComponent implements OnInit {
     phone: "",
     permission: ""
   };
+  InactiveDetail: any;
+  Details: any;
+  
 
   constructor(private subadminService: SubadminService,
     private router: Router) {
@@ -77,6 +83,23 @@ export class SubTenantComponent implements OnInit {
       }
     });
   }
+  AllTab(){
+    this.allMember = true;
+    this.active =false;
+    this.Inactive =false;
+  }
+
+  ActiveTab(){
+    this.active =true;
+    this.Inactive = false;
+    this.allMember =false;
+  }
+  
+    InActiveTab(){
+    this.Inactive =true;
+    this.active =false;
+    this.allMember = false;
+    }
 
   onAddSubmit() {
     if (this.form.valid) {
@@ -88,9 +111,9 @@ export class SubTenantComponent implements OnInit {
         phone: this.form.value.phone,
         permission: this.form.value.permission
       }
-      console.log(createUserPayload);
+   
       this.subadminService.addSubTenant(createUserPayload).subscribe(res => {
-        console.log(res);
+       
         this.subadminService.filter('');
         this.form.reset();
         Swal.fire(
@@ -113,11 +136,13 @@ export class SubTenantComponent implements OnInit {
   getUserDetails() {
     let createToken = {
       AuthToken: this.user.token,
-     
-
     }
     this.subadminService.gettenantDetails(createToken).subscribe((res: any) => {
       this.tenantDetails = res.data;
+
+      // this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
+
+      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' )
 
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
@@ -138,6 +163,10 @@ export class SubTenantComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
+        let createToken = {
+          AuthToken: this.user.token,
+          // userObj = user;
+        }
         this.subadminService.deleteSubTenant(id).subscribe((res: any) => {
           this.getUserDetails();
 
@@ -146,7 +175,7 @@ export class SubTenantComponent implements OnInit {
 
         Swal.fire(
           'Deleted!',
-          'Tenant has been deleted.',
+          'Sub Tenant has been deleted.',
           'success'
         )
       }
@@ -166,7 +195,7 @@ export class SubTenantComponent implements OnInit {
     this.subadminService.UpdateSubTenant(this.userObj).subscribe(() => {
       Swal.fire(
         'Success!',
-        'User has Updated.',
+        'Sub Tenant has Updated.',
         'success'
       )
     })

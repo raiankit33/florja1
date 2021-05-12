@@ -30,14 +30,9 @@ export class AdduserComponent implements OnInit {
 
   userDetails: [];
 
-  userObj = {
-
-    name: "",
-    email: "",
-    phone: "",
-    id:"",
-    permission: ""
-  };
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
   error: string;
   user: any;
   AuthToken: any;
@@ -48,6 +43,15 @@ export class AdduserComponent implements OnInit {
   message: string;
   parent=false;
   editParent= false;
+
+  userObj = {
+
+    name: "",
+    email: "",
+    phone: "",
+    id:"",
+    permission: ""
+  };
 
   constructor(
     private serviceService : ServiceService,
@@ -96,6 +100,26 @@ export class AdduserComponent implements OnInit {
 refresh(){
   this.form.reset();
 }
+
+
+AllData(){
+  this.allMember = true;
+  this.active =false;
+  this.Inactive =false;
+   }
+ 
+   ActiveTab(){
+ this.active =true;
+ this.Inactive =false;
+ this.allMember =false;
+   }
+ 
+   InActiveTab(){
+   this.Inactive =true;
+   this.active =false;
+   this.allMember =false;
+   }
+   
 
   onAddSubmit() {
     if (this.form.valid) {
@@ -149,7 +173,12 @@ refresh(){
     }
     this.serviceService.getUserDetails(createToken).subscribe((res: any) => {
       this.userDetails = res.data;
-      console.log(this.userDetails,'hello');
+
+      
+
+      // this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
+
+      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
       if(res.statusCode==404){
         this.error = "Token Mismatch "
       }

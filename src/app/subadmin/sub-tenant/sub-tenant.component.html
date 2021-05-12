@@ -119,9 +119,10 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+           
+            <a class="dropdown-item" (click)="AllTab()" >All</a>
+            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
+            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
           </div>
         </div>
 
@@ -155,7 +156,7 @@
               <th scope="col" *ngIf="editTenant">Action </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="active">
 
 
             <tr *ngFor='let user of tenantDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
@@ -189,6 +190,43 @@
                       <i class="fa fa-trash"></i>
                     </button>
                   </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+
+          <tbody *ngIf="Inactive">
+
+
+            <tr *ngFor='let user of InactiveDetail |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+
+              <td>{{(p-1) * count+i+1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>+91{{user.phone}}</td>
+              <td>{{user.parent_name}}</td>
+              <td class="permission"><span class="badge"
+                  [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='EDIT','badge-secondary' : user.permission =='VIEW'}">{{user.permission}}</span>
+              </td>
+
+
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="tenant" (click)="editUser(user)"
+                      type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg"
+                      data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="editTenant" (click)="editUser(user)"
+                      type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg"
+                      data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+
+                  </li>
+                
                 </ul>
               </td>
             </tr>

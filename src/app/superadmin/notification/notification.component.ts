@@ -116,14 +116,14 @@ export class NotificationComponent implements OnInit {
           t_id: this.form.value.t_id,
          
         }
-        console.log(notification);
+      
         if (this.form.value.t_id == '') {
           this.messagingService.sendPushMessage(this.form.value.name, this.form.value.title, this.form.value.description);
         } else {
           this.messagingService.sendPushMessageWithTopic(this.form.value.name,this.form.value.title, this.form.value.description,this.form.value.t_id)
         }
         
-       console.log(notification)
+     
         this.serviceService.addNotification(notification).subscribe( (res:any)=> {
           if (res.statusCode== 200) {
         //     const userId = '2222';

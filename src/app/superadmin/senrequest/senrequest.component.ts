@@ -28,6 +28,11 @@ isShow=false;
   isLoading: boolean= false;
   parent =false;
   editParent=false;
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
+
+  
   constructor(
     private serviceService : ServiceService,
     private toastr: ToastrService,
@@ -121,6 +126,26 @@ userObj ={
 refresh(){
   this.form.reset();
 }
+
+
+AllData(){
+  this.allMember = true;
+  this.active =false;
+  this.Inactive =false;
+   }
+ 
+   ActiveTab(){
+ this.active =true;
+ this.Inactive =false;
+ this.allMember =false;
+   }
+ 
+   InActiveTab(){
+   this.Inactive =true;
+   this.active =false;
+   this.allMember =false;
+   }
+ 
 
   onAddSubmit(){
  

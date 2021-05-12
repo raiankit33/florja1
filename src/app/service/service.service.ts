@@ -53,9 +53,9 @@ getTenantDetails(createToken){
 }
 
 
- deleteTenant(id){
+ deleteTenant(createToken){
         
-  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/deleteTenant/deleteTenant/',{'id':id})
+  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/deleteTenant/deleteTenant/',createToken)
   .pipe(catchError(this.handleError));
 }
 

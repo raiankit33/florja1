@@ -133,9 +133,9 @@
             </a>
   
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" (click)="AllData()">All</a>
+            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
+            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
             </div>
           </div>
   
@@ -163,26 +163,28 @@
                 <th scope="col"> User Name <i class="fa fa-sort"></i></th>
                 <th scope="col">Email <i class="fa fa-sort"></i></th>
                 <th scope="col">Admin Name <i class="fa fa-sort"></i></th>
-                <th scope="col">Permission <i class="fa fa-sort"></i></th>
                 <th scope="col"  >Contact <i class="fa fa-sort"></i></th>
+                <th scope="col">Permission <i class="fa fa-sort"></i></th>
+                <!-- <th scope="col">Status <i class="fa fa-sort"></i></th> -->
+              
            
                 <th scope="col" *ngIf="parent">Action </th>
                 <th scope="col" *ngIf="editParent">Action </th>
               </tr>
             </thead>
-            <tbody>
-  
-  
+
+            <tbody *ngIf="active">
               <tr *ngFor='let user of adminDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
   
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.admin}}</td>
+                <td>+91{{user.phone}}</td>
                 <td class="permission"><span class="badge"  
                   [ngClass]="{'badge-secondary': user.permission =='VIEW', 'badge-warning' : user.permission =='EDIT'}">{{user.permission}}</span>
               </td>
-                <td>+91{{user.phone}}</td>
+                
                
   
   
@@ -213,6 +215,88 @@
   
   
             </tbody>
+
+            <tbody *ngIf="allMember">
+              <tr *ngFor='let user of adminDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+  
+                <td>{{(p-1) * count+i+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+                <td>+91{{user.phone}}</td>
+                <td class="permission"><span class="badge"  
+                  [ngClass]="{'badge-secondary': user.permission =='VIEW', 'badge-warning' : user.permission =='EDIT'}">{{user.permission}}</span>
+              </td>
+                
+               
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  (click)="editUser(user)" type="button"
+                        data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                        title="Edit"><i class="fa fa-edit"></i></button>
+      
+                        <!-- sub admin for edit only  -->
+                  
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editUser(user)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" *ngIf="parent" (click)="deleteUser(user.id)" type="button"
+                        data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="Inactive">
+              <tr *ngFor='let user of adminDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+  
+                <td>{{(p-1) * count+i+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+                <td>+91{{user.phone}}</td>
+                <td class="permission"><span class="badge"  
+                  [ngClass]="{'badge-secondary': user.permission =='VIEW', 'badge-warning' : user.permission =='EDIT'}">{{user.permission}}</span>
+              </td>
+              <td ><span class="badge badge-danger">{{user.status}}</span></td>
+             
+  
+  
+                <td>
+                  <ul class="list-inline m-0">
+  
+                    <li class="list-inline-item">
+                      <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  (click)="editUser(user)" type="button"
+                        data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top"
+                        title="Edit"><i class="fa fa-edit"></i></button>
+      
+                        <!-- sub admin for edit only  -->
+                  
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editUser(user)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                    <li class="list-inline-item">
+                      <button class="btn text-danger btn-sm rounded-0" *ngIf="parent" (click)="deleteUser(user.id)" type="button"
+                        data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+
           </table>
         </div>
       </div>

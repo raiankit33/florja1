@@ -259,9 +259,9 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" (click)="AllTab()" >All</a>
+            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
+            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
           </div>
         </div>
 
@@ -299,9 +299,7 @@
               <th scope="col" *ngIf="editParent">Action</th>
             </tr>
           </thead>
-          <tbody>
-
-
+          <tbody *ngIf = "active">
             <tr
               *ngFor="let irrigation of irrigationDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
               <td>
@@ -344,6 +342,90 @@
 
 
           </tbody>
+
+          <tbody *ngIf = "allMember">
+            <tr
+              *ngFor="let irrigation of irrigationDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              <td>
+                <input type="checkbox" (change)=powerButton($event) [checked]="checks">
+              </td>
+              <td>{{(p-1) * count+i+1}}</td>
+              <td><a (click)="irrigationPage(irrigation)" style="color: blue;">{{irrigation.name}}</a></td>
+              <td>{{irrigation.plant_name}}</td>
+
+              <td>{{irrigation.created_at}}</td>
+              <td><span class="badge bg-success">active</span></td>
+              <td><span class="badge bg-success">80%</span></td>
+              <td>
+                <input (click)="pushNotification($event,irrigation)"  type="checkbox" [checked]="checks">
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="editParent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"
+                      (click)="deleteIrrigation(irrigation.id)" type="button" data-toggle="tooltip" data-placement="top"
+                      title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+          <tbody *ngIf = "Inactive">
+            <tr
+              *ngFor="let irrigation of irrigationDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              <td>
+                <input type="checkbox" (change)=powerButton($event) [checked]="checks">
+              </td>
+              <td>{{(p-1) * count+i+1}}</td>
+              <td><a (click)="irrigationPage(irrigation)" style="color: blue;">{{irrigation.name}}</a></td>
+              <td>{{irrigation.plant_name}}</td>
+
+              <td>{{irrigation.created_at}}</td>
+              <td><span class="badge bg-success">active</span></td>
+              <td><span class="badge bg-success">80%</span></td>
+              <td>
+                <input (click)="pushNotification($event,irrigation)"  type="checkbox" [checked]="checks">
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="editParent"
+                      (click)="editIrrigation(irrigation)" type="button" data-toggle="tooltip" data-placement="top"
+                      data-toggle="modal" data-target=".bd-edit-modal-lg" title="Edit"><i
+                        class="fa fa-edit"></i></button>
+                  </li>
+                 
+                </ul>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+
         </table>
       </div>
     </div>
@@ -399,10 +481,10 @@
 
                   <div class="input-box">
                     <span class="details">* Plant Name</span>
-                    <select class="form-control" name="p_id" [(ngModel)]="userObj.p_id"
+                    <select class="form-control" name="plant_name" [(ngModel)]="userObj.p_id"
                       style="width: 100%;">
                       <option value="">---Select--- </option>
-                      <option value="{{plant.id}}" [value]="plant.id" *ngFor="let plant of plantDetails ">{{plant.name}}
+                      <option  [value]="plant.id" *ngFor="let plant of plantDetails ">{{plant.name}}
                       </option>
 
                     </select>

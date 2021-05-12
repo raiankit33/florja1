@@ -24,8 +24,12 @@ export class AddplantComponent implements OnInit {
   tenantDetails: any;
   error: string;
   userDetails: [];
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
 
   userObj ={
+    id:"",
     name: "",
     soil_humidity_min:"",
     soil_humidity_max: "",
@@ -47,9 +51,12 @@ export class AddplantComponent implements OnInit {
     winter_end:"",
     winter_start: "",
     t_id:"",
+    t_name:"",
+    u_id:"",
     u_name:"",
     latitude:"",
-    longitude:""
+    longitude:"",
+    created_at:"",
   }
   parent=false;
   editParent =false;
@@ -156,6 +163,23 @@ export class AddplantComponent implements OnInit {
  }
  
 
+ AllData(){
+  this.allMember = true;
+  this.active =false;
+  this.Inactive =false;
+   }
+ 
+   ActiveTab(){
+ this.active =true;
+ this.Inactive =false;
+ this.allMember =false;
+   }
+ 
+   InActiveTab(){
+   this.Inactive =true;
+   this.active =false;
+   this.allMember =false;
+   }
  
    onAddSubmit(){
  
@@ -187,7 +211,7 @@ export class AddplantComponent implements OnInit {
         latitude: this.form.value.latitude,
         longitude: this.form.value.longitude
       }
-
+console.log(createPlant)
      this.serviceService.registerPlant(createPlant).subscribe( res=> {
        console.log(res);
        this.serviceService.filter('');
@@ -212,6 +236,9 @@ export class AddplantComponent implements OnInit {
      this.serviceService.getPlantDetails(createToken).subscribe((res:any)=>{
        this.plantDetails = res.data;
       
+      //  this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
+
+      //  this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
      }
      
      );

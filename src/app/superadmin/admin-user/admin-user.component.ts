@@ -28,15 +28,10 @@ export class AdminUserComponent implements OnInit {
   count : number = 5;
 
   adminDetails: [];
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
 
-  userObj = {
-
-    name: "",
-    email: "",
-    phone: "",
-   
-    permission: ""
-  };
   error: string;
   user: any;
   AuthToken: any;
@@ -48,6 +43,26 @@ export class AdminUserComponent implements OnInit {
   parent=false;
   editParent = false;
 
+
+  userObj = {
+  id :"",
+    name: "",
+    email: "",
+    phone: "",
+    permission: "",
+    admin: "",
+    created_by: "",
+    created_at: "",
+    lastlogin:"",
+    updated_at:"",
+    updated_by:"",
+    parent_id:"",
+    password: "",
+    token: "",
+ 
+    
+  };
+  InactiveDetail: any;
 
   constructor(
     private serviceService : ServiceService,
@@ -94,6 +109,25 @@ refresh(){
   this.form.reset();
 }
 
+
+AllData(){
+  this.allMember = true;
+  this.active =false;
+  this.Inactive =false;
+   }
+ 
+   ActiveTab(){
+ this.active =true;
+ this.Inactive =false;
+ this.allMember =false;
+   }
+ 
+   InActiveTab(){
+   this.Inactive =true;
+   this.active =false;
+   this.allMember =false;
+   }
+
   onAddSubmit() {
     if (this.form.valid) {
   let createUserPayload = {
@@ -137,6 +171,12 @@ refresh(){
     }
     this.serviceService.getAdminDetails(createToken).subscribe((res: any) => {
       this.adminDetails = res.data;
+
+      
+      // this.adminDetails = this.Details.filter(data => data.deleted_at === '');
+
+      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
+
       if(res.statusCode==404){
         this.error = "unauthorized "
       }

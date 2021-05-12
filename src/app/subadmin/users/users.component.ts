@@ -24,46 +24,47 @@ export class UsersComponent implements OnInit {
   })
 
 
-  
+  active: Boolean = true;
+  Inactive: boolean = false;
+  allMember : boolean =false;
   p: number = +1;
-count=5;
-  userDetails=[];
+  count = 5;
+  userDetails = [];
 
-//   get sortData() {
-//     return this.userDetails.sort((a, b) => {
-//       return b.name - a.name ;
-//   })
-// }
-
-
-  
-
-  userObj = {
-    token:"",
-    updated_at:"",
-    delete_at:"",
-    password:"",
-    t_id:"",
-    t_name:"",
-    id:"",
-    name: "",
-    email: "",
-    phone: "",
-    permission: "",
-    created_at:"",
-  };
   error: string;
   user: any;
   AuthToken: any;
   tenant = false;
   editTenant = false;
+  Details = [];
+
+
+  userObj = {
+    token: "",
+    updated_at: "",
+    delete_at: "",
+    password: "",
+    t_id: "",
+    t_name: "",
+    id: "",
+    name: "",
+    email: "",
+    phone: "",
+    permission: "",
+    created_at: "",
+  };
+  InactiveDetail: any[];
+  err1: string;
+  open: boolean;
+  err2: string;
+  mess: boolean;
 
   constructor(private subadminService: SubadminService,
     private router: Router) {
     this.subadminService.listen().subscribe((m: any) => {
       console.log(m);
       this.getUserDetails();
-     
+
     })
   }
 
@@ -71,7 +72,7 @@ count=5;
     this.user = JSON.parse(localStorage.getItem("user"));
 
     this.getUserDetails();
-    
+
     if (this.user.permission == 'ALL') {
       this.tenant = true;
     } else {
@@ -80,7 +81,7 @@ count=5;
       } else if (this.user.permission == 'EDIT') {
 
         this.editTenant = true;
-      } 
+      }
     }
   }
 
@@ -98,6 +99,24 @@ count=5;
     });
   }
 
+  AllTab(){
+    this.allMember = true;
+    this.active =false;
+    this.Inactive =false;
+  }
+
+  ActiveTab(){
+    this.active =true;
+    this.Inactive = false;
+    this.allMember =false;
+  }
+  
+    InActiveTab(){
+    this.Inactive =true;
+    this.active =false;
+    this.allMember = false;
+    }
+    
   onAddSubmit() {
     if (this.form.valid) {
       let createUserPayload = {
@@ -109,15 +128,28 @@ count=5;
         permission: this.form.value.permission
       }
       console.log(createUserPayload);
-      this.subadminService.registerUser(createUserPayload).subscribe(res => {
-        console.log(res);
-        this.subadminService.filter('');
+      this.subadminService.registerUser(createUserPayload).subscribe(  (res:any) => {
+        if (res.statusCode== 200) {
+          this.subadminService.filter('');
         this.form.reset();
         Swal.fire(
           'User added successfully!',
           '',
           'success'
         )
+        }else if(res.statusCode== 403){
+          this.err1 = "This email is already registered."
+          this.open = true;
+          setTimeout(() => {
+            this.open = false
+          }, 3000);
+        }else{
+          this.err2 = "This Phone no is already registered."
+          this.mess = true;
+          setTimeout(() => {
+            this.mess = false
+          }, 3000);
+        }
       })
 
     } else {
@@ -125,7 +157,7 @@ count=5;
     }
   }
 
-
+array =[];
 
   getUserDetails() {
     let createToken = {
@@ -133,11 +165,14 @@ count=5;
       t_id: this.user.id
     }
     this.subadminService.getUserDetails(createToken).subscribe((res: any) => {
-    
-          this.userDetails = res.data;
-      
-   
-     
+      this.Details = res.data;
+
+      this.userDetails = this.Details.filter(data => data.deleted_at === '');
+
+       this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' )
+
+  
+
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }
@@ -145,8 +180,7 @@ count=5;
     );
   }
 
- 
-  // this.userDetails = this.userDetails.filter(data => data.deleted_at == '')
+
 
   deleteUser(user) {
     Swal.fire({
@@ -160,19 +194,13 @@ count=5;
     }).then((result) => {
       if (result.isConfirmed) {
         let createToken = {
-          userObj : user
-         
+          userObj: user
+
         }
         this.subadminService.deleteUser(createToken).subscribe(() => {
-       
-          Swal.fire(
-            'Success!',
-            'User has Updated.',
-            'success'
-          )
           this.getUserDetails();
         })
-      
+
 
         Swal.fire(
           'Deleted!',
@@ -187,7 +215,7 @@ count=5;
 
   editUser(user) {
     this.userObj = user;
-    
+
 
     // this.sharedData.updateSharedData(tenant);
     // this.router.navigate(['superadmin/edit',{id:tenant._id}]);
@@ -195,7 +223,7 @@ count=5;
   updateUser() {
     let createToken = {
       AuthToken: this.user.token,
-     
+
     }
     this.subadminService.UpdateUser(this.userObj).subscribe(() => {
       Swal.fire(

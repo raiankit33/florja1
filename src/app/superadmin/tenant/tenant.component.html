@@ -116,9 +116,9 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" (click)="AllData()">All</a>
+            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
+            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
           </div>
         </div>
 
@@ -149,11 +149,13 @@
               <th scope="col">Email <i class="fa fa-sort"></i></th>
               <th scope="col">Contact <i class="fa fa-sort"></i></th>
               <th scope="col" (click)="sortData('tenant_id')">Created at <i class="fa fa-sort"></i></th>
+              <th scope="col">Status <i class="fa fa-sort"></i></th>
               <th scope="col" *ngIf="parent " >Action </th>
               <th scope="col" *ngIf="editParent">Action </th>
 
           </thead>
-          <tbody>
+
+          <tbody *ngIf ="active">
 
             <tr
               *ngFor="let tenant of tenantDetails | orderBy:key:reverse |  filter:name | paginate: { itemsPerPage: count, currentPage: p } ; let i = index">
@@ -163,6 +165,7 @@
               <td>{{tenant.email}}</td>
               <td>+91{{tenant.phone}}</td>
               <td>{{tenant.created_at}}</td>
+              <td ><span class="badge badge-success">{{tenant.status}}</span></td>
               <td>
                 <ul class="list-inline m-0">
 
@@ -179,11 +182,85 @@
                   </li>
                    <!-- sub admin for edit only  -->
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"  (click)="deleteTen(tenant.id)" type="button"
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"  (click)="deleteTen(tenant)" type="button"
                       data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
                   </li>
+                </ul>
+              </td>
+            </tr>
+
+          </tbody>
+
+          <tbody *ngIf ="allMember">
+
+            <tr
+              *ngFor="let tenant of Details | orderBy:key:reverse |  filter:name | paginate: { itemsPerPage: count, currentPage: p } ; let i = index">
+
+              <td>{{(p-1) * count+i+1}}</td>
+              <td>{{tenant.name}}</td>
+              <td>{{tenant.email}}</td>
+              <td>+91{{tenant.phone}}</td>
+              <td>{{tenant.created_at}}</td>
+              <td class="status"><span class="badge"  
+                [ngClass]="{'badge-success': tenant.status =='Active', 'badge-danger' : tenant.status =='Inactive'}">{{tenant.status}}</span>
+            </td>
+ 
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                  <!-- sub admin for edit only  -->
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                   <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent"  (click)="deleteTen(tenant)" type="button"
+                      data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+          </tbody>
+
+          <tbody *ngIf ="Inactive">
+
+            <tr
+              *ngFor="let tenant of InactiveDetail | orderBy:key:reverse |  filter:name | paginate: { itemsPerPage: count, currentPage: p } ; let i = index">
+
+              <td>{{(p-1) * count+i+1}}</td>
+              <td>{{tenant.name}}</td>
+              <td>{{tenant.email}}</td>
+              <td>+91{{tenant.phone}}</td>
+              <td>{{tenant.created_at}}</td>
+              <td ><span class="badge badge-danger">{{tenant.status}}</span></td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="parent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                  <!-- sub admin for edit only  -->
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf=" editParent"  type="button" data-toggle="tooltip"
+                      data-toggle="modal" data-target=".bd-modal-lg" data-placement="top" (click)="editTen(tenant)"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                   <!-- sub admin for edit only  -->
+                
                 </ul>
               </td>
             </tr>

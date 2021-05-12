@@ -24,6 +24,10 @@ export class AddirrigationComponent implements OnInit {
   plantDetails: any;
 parent=false;
   editParent= false;
+  active: Boolean = true;
+  Inactive: boolean = false;
+  allMember : boolean =false;
+  
 
   constructor(
     private service: ServiceService,
@@ -119,6 +123,7 @@ private messagingService: MessagingService,
 
 
   userObj = {
+    id:"",
     name: "",
     watering_duration: "",
     irrigation_ping_interval: "",
@@ -137,6 +142,7 @@ private messagingService: MessagingService,
     strega_URL: "",
     status: "",
     p_id: "",
+    plant_name:""
   }
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}
@@ -154,9 +160,28 @@ private messagingService: MessagingService,
     this.form.reset()
   }
 
+
+  AllTab(){
+    this.allMember = true;
+    this.active =false;
+    this.Inactive =false;
+  }
+
+  ActiveTab(){
+    this.active =true;
+    this.Inactive = false;
+    this.allMember =false;
+  }
+  
+    InActiveTab(){
+    this.Inactive =true;
+    this.active =false;
+    this.allMember = false;
+    }
+
   onAddSubmit() {
     if (this.form.valid) {
-    
+    console.log(this.form.value)
       this.service.addIrrigation(this.form.value).subscribe(res => {
         this.service.filter('');
         this.form.reset();
