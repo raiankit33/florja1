@@ -24,9 +24,7 @@ export class AddirrigationComponent implements OnInit {
   plantDetails: any;
 parent=false;
   editParent= false;
-  active: Boolean = true;
-  Inactive: boolean = false;
-  allMember : boolean =false;
+
   
 
   constructor(
@@ -161,23 +159,7 @@ private messagingService: MessagingService,
   }
 
 
-  AllTab(){
-    this.allMember = true;
-    this.active =false;
-    this.Inactive =false;
-  }
 
-  ActiveTab(){
-    this.active =true;
-    this.Inactive = false;
-    this.allMember =false;
-  }
-  
-    InActiveTab(){
-    this.Inactive =true;
-    this.active =false;
-    this.allMember = false;
-    }
 
   onAddSubmit() {
     if (this.form.valid) {

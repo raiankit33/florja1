@@ -220,7 +220,7 @@ this.allMember =false;
 
       this.tenantDetails = this.Details.filter(data => data.deleted_at == '');
 
-      this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
+      this.InactiveDetail = this.Details.filter(data => data.deleted_at != '' );
 
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
@@ -235,6 +235,7 @@ this.allMember =false;
     }, 1000);
   }
 
+  delete:any
   deleteTen(tenant) {
     Swal.fire({
       title: 'Are you sure?',
@@ -246,11 +247,8 @@ this.allMember =false;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let createToken ={
-          userObj : tenant
-    
-        }
-        this.serviceService.deleteTenant(createToken).subscribe((res: any) => {
+        this.delete = JSON.stringify(tenant)
+        this.serviceService.deleteTenant(this.delete).subscribe((res: any) => {
           this.getTenantDetails();
         });
 

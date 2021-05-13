@@ -1,0 +1,303 @@
+.content-wrapper {
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #eee;
+}
+
+
+
+
+
+  /* // feed post css */
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+  }
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #1da1f2;
+  }
+  ::selection{
+    color: #fff;
+    background: #1da1f2;
+  }
+  .wrapper{
+    background: #fff;
+    max-width: 840px;
+   margin-left: 55px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 25px 25px 15px 25px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+  }
+  .input-box{
+    padding-top: 10px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .input-box .tweet-area{
+    position: relative;
+    min-height: 130px;
+    max-height: 130px;
+    overflow-y: auto;
+  }
+  .tweet-area::-webkit-scrollbar{
+    width: 0px;
+  }
+  .tweet-area .placeholder{
+    position: absolute;
+    margin-top: -3px;
+    font-size: 22px;
+    color: #98A5B1;
+    pointer-events: none;
+  }
+  .tweet-area .input{
+    outline: none;
+    font-size: 17px;
+    min-height: inherit;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .tweet-area .editable{
+    position: relative;
+    z-index: 5;
+  }
+  .tweet-area .readonly{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: transparent;
+    background: transparent;
+  }
+  .readonly .highlight{
+    background: #fd9bb0;
+  }
+  .input-box .privacy{
+    color: #1da1f2;
+    margin: 15px 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .privacy:hover, .icons li:hover{
+    background: #e7f5fe;
+  }
+  .privacy i{
+    font-size: 18px;
+  }
+  .privacy span{
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 7px;
+  }
+  .bottom{
+    display: flex;
+    margin-top: 13px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bottom .icons{
+    display: inline-flex;
+  }
+  .icons li{
+    list-style: none;
+    color: #1da1f2;
+    font-size: 20px;
+    margin: 0 2px;
+    height: 38px;
+    width: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+  }
+  .bottom .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bottom .counter{
+    color: #333;
+    display: none;
+    font-weight: 500;
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #aab8c2;
+  }
+  .bottom button{
+    padding: 9px 18px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    background: #1da1f2;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: background 0.2s ease;
+  }
+  .bottom button.active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .bottom button:hover{
+    background: #0d8bd9;
+  }
+
+
+/*Profile Card CSS*/
+
+.profile-card{
+    background: linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8)), url(../../../assets/avatar.png) no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 90px;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  
+  .profile-card img.profile-photo{
+    border: 7px solid #fff;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    top: -30px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+  }
+  
+  .profile-card h5 a{
+    font-size: 15px;
+  }
+  
+  .profile-card a{
+    font-size: 12px;
+  }
+
+
+
+
+  /***************
+ * card design * 
+ ***************/
+ .box{
+  display: flex;
+  direction: jus;
+margin: 10px;
+     
+}
+
+.card{
+  width: 840px;
+  margin-left: 55px;
+}
+
+.card-tools{
+  text-align: right;
+  margin-left: 600px;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.card-text{
+  font-size: 20px;
+}
+
+
+
+
+/* Header left */
+.header__left {
+  flex: 1;
+}
+
+.author__name:hover,
+.post__date:hover {
+  text-decoration: underline;
+}
+
+.author__verified,
+.post__privacy,
+.options__icon {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  /* background-image: url(../images/icons-list-1.png); */
+  background-size: 7.1rem 43.2rem;
+  background-repeat: no-repeat;
+  background-position: -1.7rem -38.6rem;
+}
+
+.author__name {
+  margin-right: 0.2rem;
+}
+
+.post__author-pic {
+  float: left;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.8rem;
+  border-radius: 50%;
+  box-shadow: 0 0.1rem 0.2rem var(--box-shadow);
+  transition: filter 0.2s ease;
+}
+
+.post__author-pic:hover {
+  filter: brightness(0.95);
+}
+
+.post__author {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--black2);
+}
+
+.post__date {
+  display: block;
+  float: left;
+  font-size: 1.3rem;
+  color: var(--black1);
+}
+
+/* Dot between post author and post date */
+.post__date-privacy-separator {
+  position: relative;
+  bottom: 0.1rem;
+}
+
+.post__privacy {
+  /* background-image: url(../images/icons-list-2.png); */
+  background-size: 2.6rem 89.4rem;
+  background-position: 0 -78.2rem;
+  opacity: 0.6;
+}
+
+
+@media(max-width: 459px){
+   .card{
+     width: 400px;
+   }
+  }

@@ -180,7 +180,7 @@ array =[];
     );
   }
 
-
+delete :any;
 
   deleteUser(user) {
     Swal.fire({
@@ -193,11 +193,8 @@ array =[];
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let createToken = {
-          userObj: user
-
-        }
-        this.subadminService.deleteUser(createToken).subscribe(() => {
+        this.delete = JSON.stringify(user)
+        this.subadminService.deleteUser(this.delete).subscribe(() => {
           this.getUserDetails();
         })
 

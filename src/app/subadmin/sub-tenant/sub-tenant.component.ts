@@ -1,3 +1,4 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ export class SubTenantComponent implements OnInit {
  
   p: number = +1;
   count=5;
-  tenantDetails: [];
+  tenantDetails =[];
   error: string;
   user: any;
   AuthToken: any;
@@ -25,15 +26,29 @@ export class SubTenantComponent implements OnInit {
   Inactive:boolean = false;
   allMember: boolean =false;
 
-  userObj = {
 
+  userObj = {
+    id: "",
     name: "",
     email: "",
     phone: "",
-    permission: ""
+  updated_at:"",
+  updated_by:"",
+  token:"",
+  permission:"",
+  password:"",
+  parent_name:"",
+  parent_id:"",
+  lastlogin:"",
+  created_by:"",
+  created_at:"",
+  Super_Admin_name:"",
+  Super_Admin_id:"",
+
+
   };
-  InactiveDetail: any;
-  Details: any;
+  InactiveDetail = [];
+  Details =[];
   
 
   constructor(private subadminService: SubadminService,
@@ -138,11 +153,11 @@ export class SubTenantComponent implements OnInit {
       AuthToken: this.user.token,
     }
     this.subadminService.gettenantDetails(createToken).subscribe((res: any) => {
-      this.tenantDetails = res.data;
+      this.Details = res.data;
 
-      // this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
+      this.tenantDetails = this.Details.filter(data => data.deleted_at == '');
 
-      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' )
+      this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' )
 
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
@@ -151,8 +166,9 @@ export class SubTenantComponent implements OnInit {
     );
   }
 
+delete : any;
 
-  deleteUser(id) {
+  deleteUser(user) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -163,11 +179,12 @@ export class SubTenantComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let createToken = {
-          AuthToken: this.user.token,
-          // userObj = user;
-        }
-        this.subadminService.deleteSubTenant(id).subscribe((res: any) => {
+       
+    
+          this.delete = JSON.stringify(user)
+           
+       
+        this.subadminService.deleteSubTenant(this.delete).subscribe((res: any) => {
           this.getUserDetails();
 
 

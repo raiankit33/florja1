@@ -28,9 +28,6 @@ isShow=false;
   isLoading: boolean= false;
   parent =false;
   editParent=false;
-  active:boolean = true;
-  Inactive:boolean = false;
-  allMember:boolean = false;
 
   
   constructor(
@@ -67,6 +64,7 @@ userObj ={
   interval:"",
   latitude: "",
   longitude: "",
+  interval_moist_sensor:""
   
 }
 
@@ -128,23 +126,7 @@ refresh(){
 }
 
 
-AllData(){
-  this.allMember = true;
-  this.active =false;
-  this.Inactive =false;
-   }
- 
-   ActiveTab(){
- this.active =true;
- this.Inactive =false;
- this.allMember =false;
-   }
- 
-   InActiveTab(){
-   this.Inactive =true;
-   this.active =false;
-   this.allMember =false;
-   }
+
  
 
   onAddSubmit(){

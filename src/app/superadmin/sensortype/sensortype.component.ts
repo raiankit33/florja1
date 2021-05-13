@@ -21,9 +21,7 @@ export class SensortypeComponent implements OnInit {
   tenant: any;
   name: any;
   error: string;
-  active:boolean = true;
-  Inactive:boolean = false;
-  allMember:boolean = false;
+
 
 
 
@@ -120,23 +118,6 @@ export class SensortypeComponent implements OnInit {
   }
 
 
-  AllData(){
-    this.allMember = true;
-    this.active =false;
-    this.Inactive =false;
-     }
-   
-     ActiveTab(){
-   this.active =true;
-   this.Inactive =false;
-   this.allMember =false;
-     }
-   
-     InActiveTab(){
-     this.Inactive =true;
-     this.active =false;
-     this.allMember =false;
-     }
 
   onAddSubmit() {
     if (this.form.valid) {
@@ -160,9 +141,7 @@ export class SensortypeComponent implements OnInit {
     this.serviceService.getSensorDetails().subscribe((res: any) => {
       this.sensorDetails = res.data;
 
-      // this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
 
-      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
     }

@@ -30,6 +30,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 
 import { environment } from '../../environments/environment';
+import { SocialsComponent } from './socials/socials.component';
 
 
 // import { AsyncPipe } from '../../../node_modules/@angular/common';
@@ -50,7 +51,8 @@ import { environment } from '../../environments/environment';
         AddirrigationComponent,
         IrrigationdetailsComponent,
         AdminUserComponent,
-        NotificationComponent
+        NotificationComponent,
+        SocialsComponent
       ],
   imports: [
     CommonModule,

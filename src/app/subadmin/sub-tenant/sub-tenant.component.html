@@ -152,6 +152,7 @@
               <th scope="col">Contact <i class="fa fa-sort"></i></th>
               <th scope="col">Tenant Name <i class="fa fa-sort"></i></th>
               <th scope="col">Permission&nbsp;<i class="fa fa-sort"></i></th>
+              <th scope="col">Status&nbsp;<i class="fa fa-sort"></i></th>
               <th scope="col" *ngIf="tenant">Action </th>
               <th scope="col" *ngIf="editTenant">Action </th>
             </tr>
@@ -169,7 +170,7 @@
               <td class="permission"><span class="badge"
                   [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='EDIT','badge-secondary' : user.permission =='VIEW'}">{{user.permission}}</span>
               </td>
-
+              <td>{{user.status}}</td>
 
               <td>
                 <ul class="list-inline m-0">
@@ -185,7 +186,49 @@
 
                   </li>
                   <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant" (click)="deleteUser(user.id)"
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant" (click)="deleteUser(user)"
+                      type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+
+          <tbody *ngIf="allMember">
+
+
+            <tr *ngFor='let user of Details |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+
+              <td>{{(p-1) * count+i+1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>+91{{user.phone}}</td>
+              <td>{{user.parent_name}}</td>
+              <td class="permission"><span class="badge"
+                  [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='EDIT','badge-secondary' : user.permission =='VIEW'}">{{user.permission}}</span>
+              </td>
+              <td>{{user.status}}</td>
+
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="tenant" (click)="editUser(user)"
+                      type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg"
+                      data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+
+                    <button class="btn text-warning btn-sm rounded-0" *ngIf="editTenant" (click)="editUser(user)"
+                      type="button" data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg"
+                      data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+
+                  </li>
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant" (click)="deleteUser(user)"
                       type="button" data-toggle="tooltip" data-placement="top" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -211,7 +254,7 @@
               <td class="permission"><span class="badge"
                   [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='EDIT','badge-secondary' : user.permission =='VIEW'}">{{user.permission}}</span>
               </td>
-
+              <td>{{user.status}}</td>
 
               <td>
                 <ul class="list-inline m-0">
@@ -226,7 +269,12 @@
                       data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
 
                   </li>
-                
+                  <li class="list-inline-item">
+                    <button class="btn text-danger btn-sm rounded-0" *ngIf="tenant" (click)="deleteUser(user)"
+                      type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
                 </ul>
               </td>
             </tr>

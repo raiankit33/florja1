@@ -147,9 +147,9 @@
        </a>
      
        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" (click)="AllData()">All</a>
-        <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
-        <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
+        <a class="dropdown-item" >All</a>
+        <a class="dropdown-item"  >Active</a>
+        <a class="dropdown-item"  >Inactive</a>
        </div>
      </div>
    
@@ -187,7 +187,7 @@
         </tr>
       </thead>
 
-      <tbody ngIf="active">
+      <tbody >
         <tr *ngFor="let sens of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
    
       <td >{{no+1}}</td>
@@ -230,87 +230,7 @@
       
       </tbody>
 
-      <tbody ngIf="allMember">
-        <tr *ngFor="let sens of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
-   
-      <td >{{no+1}}</td>
-      <td>{{sens.name}}</td>
-      <td>{{sens.sensor_type}}</td>
-      <td>{{sens.plant_name}}</td>
-      <td><span >{{sens.created_at}}</span></td>
-      <td>
-        <input (click)="pushNotification($event,sens)" type="checkbox" [checked]="checks">
-      </td>
-      <td>   
-        <ul class="list-inline m-0">
-      
-          <li class="list-inline-item">
-            <button class="btn text-warning btn-sm rounded-0"  type="button"
-              data-toggle="tooltip" data-toggle="modal" *ngIf="parent" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
-              title="Edit"><i class="fa fa-edit"></i></button>
-          </li>
-          <li class="list-inline-item" *ngIf="editParent" >
-            <button class="btn text-warning btn-sm rounded-0"  type="button"
-              data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
-              title="Edit"><i class="fa fa-edit"></i></button>
-          </li>
-          <li class="list-inline-item">
-              <button class="btn text-danger btn-sm rounded-0" 
-              (click)="deleteSensor(sens.id)"
-              *ngIf="parent" 
-           
-               type="button" data-toggle="tooltip"
-              
-                data-placement="top" title="Delete">
-                <i class="fa fa-trash"></i>
-              </button>
-          </li>
-      </ul>
-    </td>
-      </tr>
-
-      </tbody>
-
-      <tbody ngIf="Inactive">
-        <tr *ngFor="let sens of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
-   
-      <td >{{no+1}}</td>
-      <td>{{sens.name}}</td>
-      <td>{{sens.sensor_type}}</td>
-      <td>{{sens.plant_name}}</td>
-      <td><span >{{sens.created_at}}</span></td>
-      <td>
-        <input (click)="pushNotification($event,sens)" type="checkbox" [checked]="checks">
-      </td>
-      <td>   
-        <ul class="list-inline m-0">
-      
-          <li class="list-inline-item">
-            <button class="btn text-warning btn-sm rounded-0"  type="button"
-              data-toggle="tooltip" data-toggle="modal" *ngIf="parent" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
-              title="Edit"><i class="fa fa-edit"></i></button>
-          </li>
-          <li class="list-inline-item" *ngIf="editParent" >
-            <button class="btn text-warning btn-sm rounded-0"  type="button"
-              data-toggle="tooltip" data-toggle="modal" data-target=".bd-edit-modal-lg" data-placement="top" (click)="editSens(sens)"
-              title="Edit"><i class="fa fa-edit"></i></button>
-          </li>
-          <li class="list-inline-item">
-              <button class="btn text-danger btn-sm rounded-0" 
-              (click)="deleteSensor(sens.id)"
-              *ngIf="parent" 
-           
-               type="button" data-toggle="tooltip"
-              
-                data-placement="top" title="Delete">
-                <i class="fa fa-trash"></i>
-              </button>
-          </li>
-      </ul>
-    </td>
-      </tr>
  
-      </tbody>
     </table>
     </div>
    </div>
@@ -376,7 +296,7 @@
 
                  <div class="input-box">
                    <span class="details">* Interval Moist Sensor (minutes)</span>
-                   <input type="text" required name="interval" placeholder="Enter Interval Time"  [(ngModel)]="userObj.interval" >
+                   <input type="text" required name="interval" placeholder="Enter Interval Time"  [(ngModel)]="userObj.interval_moist_sensor" >
                   
                  </div>
 

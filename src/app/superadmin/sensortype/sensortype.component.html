@@ -122,9 +122,9 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" (click)="AllData()">All</a>
-            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
-            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
+            <!-- <a class="dropdown-item" >All</a>
+            <a class="dropdown-item" >Active</a>
+            <a class="dropdown-item"  >Inactive</a> -->
           </div>
         </div>
 
@@ -161,7 +161,7 @@
             </tr>
           </thead>
 
-          <tbody *ngIf="active">
+          <tbody >
             <tr *ngFor="let sen of sensorDetails| filter:searchString |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
 
               <td>{{(p-1) * count+i+1}}</td>
@@ -201,74 +201,7 @@
 
           </tbody>
 
-          <tbody *ngIf="allMember">
-            <tr *ngFor="let sen of sensorDetails| filter:searchString |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
-
-              <td>{{(p-1) * count+i+1}}</td>
-              <td>{{sen.name}}</td>
-              <td>{{sen.sensor_type}}</td>
-              <td>{{sen.sensor_code}}</td>
-              <td>{{sen.manufacture}}</td>
-              <td><span>{{sen.sensor_description}}</span></td>
-
-              <td>
-                <ul class="list-inline m-0">
-
-                  <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="parent" data-placement="top"
-                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
-
-                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="editParent" data-placement="top"
-                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
-
-                  </li>
-
-            
-
-                  <li class="list-inline-item">
-                    <button class="btn text-danger btn-sm rounded-0" *ngIf="parent" (click)="deleteSensor(sen.id)"
-                      type="button" data-toggle="tooltip" data-placement="top" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-
-
-
-          </tbody>
-
-          <tbody *ngIf="Inactive">
-            <tr *ngFor="let sen of sensorDetails| filter:searchString |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
-
-              <td>{{(p-1) * count+i+1}}</td>
-              <td>{{sen.name}}</td>
-              <td>{{sen.sensor_type}}</td>
-              <td>{{sen.sensor_code}}</td>
-              <td>{{sen.manufacture}}</td>
-              <td><span>{{sen.sensor_description}}</span></td>
-
-              <td>
-                <ul class="list-inline m-0">
-
-                  <li class="list-inline-item">
-                    <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="parent" data-placement="top"
-                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
-
-                      <button class="btn text-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
-                      data-toggle="modal" data-target=".bd-edit-modal-lg" *ngIf="editParent" data-placement="top"
-                      (click)="editSensor(sen)" title="Edit"><i class="fa fa-edit"></i></button>
-
-                  </li>
-
-                </ul>
-              </td>
-            </tr>
-          </tbody>
+       
 
         </table>
       </div>

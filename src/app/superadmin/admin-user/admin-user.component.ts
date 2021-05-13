@@ -27,7 +27,7 @@ export class AdminUserComponent implements OnInit {
   p: number = 1;
   count : number = 5;
 
-  adminDetails: [];
+  adminDetails= [];
   active:boolean = true;
   Inactive:boolean = false;
   allMember:boolean = false;
@@ -62,7 +62,8 @@ export class AdminUserComponent implements OnInit {
  
     
   };
-  InactiveDetail: any;
+  InactiveDetail=[];
+  Details=[];
 
   constructor(
     private serviceService : ServiceService,
@@ -170,12 +171,12 @@ AllData(){
   id: this.user.id
     }
     this.serviceService.getAdminDetails(createToken).subscribe((res: any) => {
-      this.adminDetails = res.data;
+      this.Details = res.data;
 
       
-      // this.adminDetails = this.Details.filter(data => data.deleted_at === '');
+      this.adminDetails = this.Details.filter(data => data.deleted_at === '');
 
-      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
+      this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
 
       if(res.statusCode==404){
         this.error = "unauthorized "
@@ -187,9 +188,10 @@ AllData(){
 
     );
   }
+ 
+  delete :any;
 
-
-  deleteUser(id) {
+  deleteUser(user) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -200,7 +202,8 @@ AllData(){
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.serviceService.deleteAdminUser(id).subscribe((res: any) => {
+        this.delete = JSON.stringify(user)
+        this.serviceService.deleteAdminUser(this.delete).subscribe((res: any) => {
           this.getUserDetails();
 
 

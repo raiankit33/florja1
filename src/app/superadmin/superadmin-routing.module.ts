@@ -17,6 +17,7 @@ import { AddirrigationComponent } from './addirrigation/addirrigation.component'
 import { IrrigationdetailsComponent } from './addirrigation/irrigationdetails/irrigationdetails.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { NotificationComponent } from './notification/notification.component';
+import { SocialsComponent } from './socials/socials.component';
 
 const routes: Routes = [
   { path: '', component: SuperadminComponent,
@@ -34,6 +35,7 @@ const routes: Routes = [
     { path: 'irrigation', component:AddirrigationComponent},
     { path: 'irrigationDetail', component:IrrigationdetailsComponent},
     { path: 'notification', component:NotificationComponent},
+    { path: 'social', component:SocialsComponent},
     
   ] 
 }];
