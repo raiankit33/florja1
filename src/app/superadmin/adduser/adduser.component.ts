@@ -130,7 +130,8 @@ AllData(){
     email: this.form.value.email,
     phone:this.form.value.phone,
     id:this.form.value.id,
-    permission:this.form.value.permission
+    permission:this.form.value.permission,
+    token:this.user.token
   }
   
 

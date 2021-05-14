@@ -121,7 +121,15 @@ export class SensortypeComponent implements OnInit {
 
   onAddSubmit() {
     if (this.form.valid) {
-      this.serviceService.addSensor(this.form.value).subscribe(res => {
+      let type = {
+        name:this.form.value.name,
+        sensor_type:this.form.value.sensor_type,
+        sensor_code:this.form.value.sensor_code,
+        manufacture: this.form.value.manufacture,
+        sensor_description: this.form.value.sensor_description,
+        token : this.user.token
+      }
+      this.serviceService.addSensor(type).subscribe(res => {
         console.log(res);
         this.serviceService.filter('');
         this.form.reset();
@@ -138,7 +146,11 @@ export class SensortypeComponent implements OnInit {
 
 
   getSensorDetails() {
-    this.serviceService.getSensorDetails().subscribe((res: any) => {
+    let createToken ={
+      AuthToken:this.user.token,
+      
+    }
+    this.serviceService.getSensorDetails(createToken).subscribe((res: any) => {
       this.sensorDetails = res.data;
 
 

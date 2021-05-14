@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
-import { ServiceService } from 'src/app/service/service.service';
+
 import Swal from 'sweetalert2';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
-  selector: 'app-socials',
-  templateUrl: './socials.component.html',
-  styleUrls: ['./socials.component.css']
+  selector: 'app-sub-social',
+  templateUrl: './sub-social.component.html',
+  styleUrls: ['./sub-social.component.css']
 })
-export class SocialsComponent implements OnInit {
+export class SubSocialComponent implements OnInit {
 
   showMe: boolean = false;
   public imagePath;

@@ -209,7 +209,8 @@ export class AddplantComponent implements OnInit {
         winter_end:this.form.value.winter_end,
         winter_start: this.form.value.winter_start,
         latitude: this.form.value.latitude,
-        longitude: this.form.value.longitude
+        longitude: this.form.value.longitude,
+        token:this.user.token
       }
 console.log(createPlant)
      this.serviceService.registerPlant(createPlant).subscribe( res=> {

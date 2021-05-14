@@ -142,6 +142,7 @@ refresh(){
        interval: this.form.value.interval,
        latitude: this.form.value.latitude,
        longitude: this.form.value.longitude,
+       token:this.user.token
      
      }
 
@@ -260,7 +261,11 @@ refresh(){
 
 
    getSensorType(){
-    this.serviceService.getSensorDetails().subscribe((res:any)=>{
+    let createToken ={
+      AuthToken:this.user.token,
+      
+    }
+    this.serviceService.getSensorDetails(createToken).subscribe((res:any)=>{
       this.sensorType = res.data;
      
     },(error)=> {

@@ -75,6 +75,7 @@ private messagingService: MessagingService,
     strega_URL: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
     p_id: new FormControl('', Validators.required),
+   
   })
 
 
@@ -163,8 +164,12 @@ private messagingService: MessagingService,
 
   onAddSubmit() {
     if (this.form.valid) {
+     
+      let token = {
+        token :this.user.token
+      }
     console.log(this.form.value)
-      this.service.addIrrigation(this.form.value).subscribe(res => {
+      this.service.addIrrigation(this.form.value,token).subscribe(res => {
         this.service.filter('');
         this.form.reset();
         Swal.fire(

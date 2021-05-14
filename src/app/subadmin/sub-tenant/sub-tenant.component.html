@@ -212,7 +212,10 @@
               <td class="permission"><span class="badge"
                   [ngClass]="{'badge-success': user.permission =='ALL', 'badge-warning' : user.permission =='EDIT','badge-secondary' : user.permission =='VIEW'}">{{user.permission}}</span>
               </td>
-              <td>{{user.status}}</td>
+              <td class="status"><span class="badge"
+                [ngClass]="{'badge-success': user.status =='Active', 'badge-danger' : user.status =='Inactive'}">{{user.status}}</span>
+            </td>
+            
 
               <td>
                 <ul class="list-inline m-0">

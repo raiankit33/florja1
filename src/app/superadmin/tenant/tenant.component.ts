@@ -52,6 +52,7 @@ export class TenantComponent implements OnInit {
   created_at:"",
   Super_Admin_name:"",
   Super_Admin_id:"",
+  AuthToken:""
 
 
   };
@@ -164,6 +165,7 @@ this.allMember =false;
         email: this.form.value.email,
         phone: this.form.value.phone,
         t_name: this.form.value.t_name,
+        AuthToken : this.user.token
        
 
       }
@@ -194,7 +196,7 @@ this.allMember =false;
     } else {
       this.validateAllFormFields(this.form);
     } (error) => {
-
+      this.error = 'Server Down Please try After Sometime ..! '
     }
   }
 
@@ -235,7 +237,6 @@ this.allMember =false;
     }, 1000);
   }
 
-  delete:any
   deleteTen(tenant) {
     Swal.fire({
       title: 'Are you sure?',
@@ -247,8 +248,13 @@ this.allMember =false;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.delete = JSON.stringify(tenant)
-        this.serviceService.deleteTenant(this.delete).subscribe((res: any) => {
+        let createToken ={
+          id : tenant.id,
+          AuthToken:this.user.token,
+          
+        }
+
+        this.serviceService.deleteTenant(createToken).subscribe((res: any) => {
           this.getTenantDetails();
         });
 

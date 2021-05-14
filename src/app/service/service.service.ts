@@ -53,9 +53,9 @@ getTenantDetails(createToken){
 }
 
 
- deleteTenant(createToken){
+ deleteTenant(token){
         
-  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/deleteTenant/deleteTenant/',createToken)
+  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/deleteTenant/deleteTenant/',token)
   .pipe(catchError(this.handleError));
 }
 
@@ -165,9 +165,9 @@ addSensor(sensor){
  }
 
  
- getSensorDetails(){
+ getSensorDetails(createToken){
         
-  return this.http.get('https://h074tqxcm0.execute-api.us-east-2.amazonaws.com/getSensorType/getSensorType  ').pipe(catchError(this.handleError));
+  return this.http.post('https://h074tqxcm0.execute-api.us-east-2.amazonaws.com/getSensorType/getSensorType',createToken).pipe(catchError(this.handleError));
 
 }
 
@@ -263,9 +263,9 @@ getUser(id){
 
 //irrigation 
 
-addIrrigation(irrigation){
+addIrrigation(irrigation,token){
         
-  return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/insertIrrigation/insertIrrigation',irrigation).pipe(map(res => res));
+  return this.http.post('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/insertIrrigation/insertIrrigation',irrigation,token).pipe(map(res => res));
 }
 
 getIrrigation(createToken){
@@ -308,5 +308,30 @@ getIrrigation(createToken){
     updateNotification(notification){
       return this.http.put('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/updateIrrigation/updateIrrigation?id='+notification.id,notification)
     }
+
+
+
+    // social page api
+
+addPost(social){
+        
+  return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/insertFeed/insertFeed',social).pipe(map(res => res))
+  .pipe(catchError(this.handleError));
+ }
+
+ getFeedDetails(createToken){
+        
+  return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/getFeed/getFeed',createToken)
+  
+  }
+
+
+  deletePost(id){
+          
+    return this.http.post('https://x6szas6o91.execute-api.us-east-2.amazonaws.com/deleteNotification/deleteNotification/',{'id':id})
+  
+  }
+
+
 
 }

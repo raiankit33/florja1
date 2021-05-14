@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 
 import { environment } from '../../environments/environment';
+import { SubSocialComponent } from './sub-social/sub-social.component';
 
 
 @NgModule({
@@ -34,7 +35,11 @@ import { environment } from '../../environments/environment';
      
    
      
-      SubNotificationComponent],
+      SubNotificationComponent,
+     
+   
+     
+      SubSocialComponent],
   imports: [
     CommonModule,
     FormsModule,

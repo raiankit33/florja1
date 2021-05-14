@@ -125,7 +125,8 @@ export class UsersComponent implements OnInit {
         name: this.form.value.name,
         email: this.form.value.email,
         phone: this.form.value.phone,
-        permission: this.form.value.permission
+        permission: this.form.value.permission,
+        token:this.user.token,
       }
       console.log(createUserPayload);
       this.subadminService.registerUser(createUserPayload).subscribe(  (res:any) => {
