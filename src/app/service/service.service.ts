@@ -63,6 +63,16 @@ updateTenant(tenant){
   return this.http.put('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/updateTenant/updateTenant?id='+tenant.id,tenant)
 }
 
+activateTen(ten){
+        
+  return this.http.post('https://9368fefpvb.execute-api.us-east-2.amazonaws.com/activateTenant/activateTenant',ten)
+  .pipe(catchError(this.handleError));
+
+
+}
+
+
+
 // add user
 
 
@@ -81,9 +91,9 @@ return this.http.post('https://tquaq9cwkj.execute-api.us-east-2.amazonaws.com/ge
 
 }
 
-deleteUser(id){
+deleteUser(token){
       
-return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',{'id':id})
+return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',token)
 
 }
 
@@ -311,7 +321,7 @@ getIrrigation(createToken){
 
 
 
-    // social page api
+    // social page api 
 
 addPost(social){
         
@@ -328,10 +338,10 @@ addPost(social){
 
   deletePost(id){
           
-    return this.http.post('https://x6szas6o91.execute-api.us-east-2.amazonaws.com/deleteNotification/deleteNotification/',{'id':id})
+    return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/deleteFeed/deleteFeed/',{'id':id})
   
   }
-
+  // social page api //
 
 
 }

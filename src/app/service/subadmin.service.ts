@@ -52,21 +52,19 @@ getUserDetails(createToken){
 
 }
 
-deleteUser(user){
+deleteUser(token){
         
-  return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',user).pipe(map(res => res));
+  return this.http.post('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/deleteUser/deleteUser/',token).pipe(map(res => res));
 
 }
-
-
 
 UpdateUser(user){
         
   return this.http.put('https://7lp2aoag6f.execute-api.us-east-2.amazonaws.com/updateUser/updateUser?id='+user.id,user).pipe(map(res => res));
 
-
-
 }
+
+
 
 // sub tenant Api 
 
@@ -125,5 +123,25 @@ getNotification(createToken){
     return this.http.put('https://7cebxqik7b.execute-api.us-east-2.amazonaws.com/updateIrrigation/updateIrrigation?id='+notification.id,notification)
   }
 
+
+  addPost(social){
+        
+    return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/insertFeed/insertFeed',social).pipe(map(res => res))
+    .pipe(catchError(this.handleError));
+   }
+  
+   getFeedDetails(createToken){
+          
+    return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/getFeed/getFeed',createToken)
+    
+    }
+  
+  
+    deletePost(id){
+            
+      return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/deleteFeed/deleteFeed/',{'id':id})
+    
+    }
+    // social page api //
 
 }

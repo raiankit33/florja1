@@ -194,8 +194,12 @@ delete :any;
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.delete = JSON.stringify(user)
-        this.subadminService.deleteUser(this.delete).subscribe(() => {
+      let createToken = {
+        id : user.id,
+        AuthToken : this.user.token
+      }
+        
+        this.subadminService.deleteUser(createToken).subscribe(() => {
           this.getUserDetails();
         })
 
@@ -231,6 +235,10 @@ delete :any;
       )
     })
   }
+
+
+
+
 
 
 }

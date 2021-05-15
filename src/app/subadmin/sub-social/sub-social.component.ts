@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import Swal from 'sweetalert2';
-import { ServiceService } from 'src/app/service/service.service';
+import { SubadminService } from 'src/app/service/subadmin.service';
 
 @Component({
   selector: 'app-sub-social',
@@ -18,10 +18,10 @@ export class SubSocialComponent implements OnInit {
   imgURL: any;
   public message: string;
   user: any;
-  feedDetails =[];
+  feedDetails = [];
 
   constructor(
-    private serviceService: ServiceService,
+    private subadmin: SubadminService,
     private toastr: ToastrService,
 
   ) { }
@@ -94,31 +94,22 @@ export class SubSocialComponent implements OnInit {
   onPost() {
 
     if (this.form.valid) {
-
-
       let social = {
-
         user_name: this.user.name,
         feed: this.form.value.feed,
         image: this.base64Output,
-        token: this.user.token,
-
-
+        AuthToken: this.user.token,
       }
       console.log(social)
-      this.serviceService.addPost(social).subscribe(res => {
- this.getFeedDetails();
-        this.serviceService.filter('');
+      this.subadmin.addPost(social).subscribe(res => {
+        this.getFeedDetails();
         this.form.reset();
-
         Swal.fire(
           'Post has added successfully!',
           '',
           'success'
         )
       })
-
-
     } else {
 
     }
@@ -131,47 +122,19 @@ export class SubSocialComponent implements OnInit {
       AuthToken: this.user.token,
 
     }
-    this.serviceService.getFeedDetails(createToken).subscribe((res: any) => {
+    this.subadmin.getFeedDetails(createToken).subscribe((res: any) => {
       this.feedDetails = res.data;
-
-      
- console.log(this.feedDetails)
-    }
-
-    );
+    });
   }
 
-  deletePost(id){
-   
-     
-          this.serviceService.deleteSensor(id).subscribe((res: any) => {
-            this.getFeedDetails();
-          });
-  
-          Swal.fire(
-            'Deleted!',
-            'Post deleted.',
-            'success'
-          )
-        }
-      
-    
-  
-
-
-
-  // onFileSelected(event) {
-  //   this.convertFile(event.target.files[0]).subscribe(base64 => {
-  //     this.base64Output = base64;
-  //   });
-  // }
-
-  // convertFile(file : File) : Observable<string> {
-  //   const result = new ReplaySubject<string>(1);
-  //   const reader = new FileReader();
-  //   reader.readAsBinaryString(file);
-  //   reader.onload = (event) => result.next(btoa(event.target.result.toString()));
-  //   return result;
-  // }
-
+  deletePost(id) {
+    this.subadmin.deletePost(id).subscribe((res: any) => {
+      this.getFeedDetails();
+    });
+    Swal.fire(
+      'Deleted!',
+      'Post deleted.',
+      'success'
+    )
+  }
 }

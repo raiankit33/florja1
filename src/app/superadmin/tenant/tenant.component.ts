@@ -185,12 +185,14 @@ this.allMember =false;
           setTimeout(() => {
             this.open = false
           }, 3000);
-        } else {
+        } else if(data.statusCode == 404) {
           this.message = "This Phone no is already registered.",
             this.mess = true;
           setTimeout(() => {
             this.mess = false
           }, 3000);
+        }else{
+          
         }
       })
     } else {
@@ -226,6 +228,12 @@ this.allMember =false;
 
     }, (error) => {
       this.error = 'Server Down Please try After Sometime ..! '
+      // Swal.fire(
+        
+        
+      //  'Server Down Please try After Sometime ..! ',
+      //   'success'
+      // )
     }
     );
   }
@@ -253,7 +261,7 @@ this.allMember =false;
           AuthToken:this.user.token,
           
         }
-
+        console.log(createToken)
         this.serviceService.deleteTenant(createToken).subscribe((res: any) => {
           this.getTenantDetails();
         });
@@ -266,6 +274,10 @@ this.allMember =false;
       }
     })
   }
+
+
+
+
 
   editTen(tenant) {
     this.userObj = tenant;
@@ -284,6 +296,41 @@ this.allMember =false;
       )
     })
   }
+  
+
+
+  Ten(tenant) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to Activate this Tenant!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Activate!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let activate ={
+          id :tenant.id,
+          AuthToken:this.user.token
+        }
+       
+        this.serviceService.activateTen(activate).subscribe(() => {
+          this.getTenantDetails();
+          Swal.fire(
+            'Success!',
+            'Tenant Activated.',
+            'success'
+          )
+        });
+
+        
+      }})
+  }
+
+
+  
+
 
 
 

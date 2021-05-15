@@ -15,10 +15,11 @@ export class SocialsComponent implements OnInit {
 
   showMe: boolean = false;
   public imagePath;
-  imgURL: any;
+  imgHide: boolean = true;
+  imgURL : any;
   public message: string;
   user: any;
-  feedDetails =[];
+  feedDetails = [];
 
   constructor(
     private serviceService: ServiceService,
@@ -29,6 +30,9 @@ export class SocialsComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.getFeedDetails();
+
+    
+
   }
 
 
@@ -76,6 +80,7 @@ export class SocialsComponent implements OnInit {
       return null
     } else {
       this.convertFile(event.target.files[0]).subscribe(base64 => {
+      
         this.base64Output = base64;
       });
     }
@@ -94,31 +99,24 @@ export class SocialsComponent implements OnInit {
   onPost() {
 
     if (this.form.valid) {
-
-
       let social = {
-
         user_name: this.user.name,
         feed: this.form.value.feed,
         image: this.base64Output,
-        token: this.user.token,
-
-
+        AuthToken: this.user.token,
       }
+   
+  
       console.log(social)
       this.serviceService.addPost(social).subscribe(res => {
- this.getFeedDetails();
-        this.serviceService.filter('');
+        this.getFeedDetails();
         this.form.reset();
-
         Swal.fire(
           'Post has added successfully!',
           '',
           'success'
         )
       })
-
-
     } else {
 
     }
@@ -129,49 +127,28 @@ export class SocialsComponent implements OnInit {
   getFeedDetails() {
     let createToken = {
       AuthToken: this.user.token,
-
     }
     this.serviceService.getFeedDetails(createToken).subscribe((res: any) => {
       this.feedDetails = res.data;
-
-      
- console.log(this.feedDetails)
+   
     }
 
     );
   }
 
-  deletePost(id){
-   
-     
-          this.serviceService.deleteSensor(id).subscribe((res: any) => {
-            this.getFeedDetails();
-          });
-  
-          Swal.fire(
-            'Deleted!',
-            'Post deleted.',
-            'success'
-          )
-        }
-      
-    
-  
+  deletePost(id) {
+
+    this.serviceService.deletePost(id).subscribe((res: any) => {
+      this.getFeedDetails();
+      Swal.fire(
+        'Deleted!',
+        'Post deleted.',
+        'success'
+      )
+    });
 
 
+  }
 
-  // onFileSelected(event) {
-  //   this.convertFile(event.target.files[0]).subscribe(base64 => {
-  //     this.base64Output = base64;
-  //   });
-  // }
-
-  // convertFile(file : File) : Observable<string> {
-  //   const result = new ReplaySubject<string>(1);
-  //   const reader = new FileReader();
-  //   reader.readAsBinaryString(file);
-  //   reader.onload = (event) => result.next(btoa(event.target.result.toString()));
-  //   return result;
-  // }
 
 }

@@ -27,12 +27,12 @@ export class AdduserComponent implements OnInit {
   isEdit = false;
   p: number = 1;
   count : number = 5;
+  active: Boolean = true;
+  Inactive: boolean = false;
+  allMember : boolean =false;
+  userDetails= [];
 
-  userDetails: [];
-
-  active:boolean = true;
-  Inactive:boolean = false;
-  allMember:boolean = false;
+ 
   error: string;
   user: any;
   AuthToken: any;
@@ -52,6 +52,8 @@ export class AdduserComponent implements OnInit {
     id:"",
     permission: ""
   };
+  InactiveDetail = [];
+  Details = [];
 
   constructor(
     private serviceService : ServiceService,
@@ -173,13 +175,11 @@ AllData(){
 
     }
     this.serviceService.getUserDetails(createToken).subscribe((res: any) => {
-      this.userDetails = res.data;
+      this.Details = res.data;
 
-      
+      this.userDetails = this.Details.filter(data => data.deleted_at === '');
 
-      // this.tenantDetails = this.Details.filter(data => data.deleted_at === '');
-
-      // this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
+      this.InactiveDetail = this.Details.filter(data => data.deleted_at !== '' );
       if(res.statusCode==404){
         this.error = "Token Mismatch "
       }
@@ -199,7 +199,7 @@ getSort(a,b){
  
 }
 
-  deleteUser(id) {
+  deleteUser(user) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -210,11 +210,11 @@ getSort(a,b){
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let createToken ={
-          AuthToken:this.user.token,
-    
+        let createToken = {
+          id : user.id,
+          AuthToken : this.user.token
         }
-        this.serviceService.deleteUser(id).subscribe((res: any) => {
+        this.serviceService.deleteUser(createToken).subscribe((res: any) => {
           this.getUserDetails();
 
 

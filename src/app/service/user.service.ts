@@ -84,6 +84,28 @@ getIrrigationDetails(){
   }
 
   
+    // social page api 
+
+addPost(social){
+        
+  return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/insertFeed/insertFeed',social).pipe(map(res => res))
+
+ }
+
+ getFeedDetails(createToken){
+        
+  return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/getFeed/getFeed',createToken)
+  
+  }
+
+
+  deletePost(id){
+          
+    return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/deleteFeed/deleteFeed/',{'id':id})
+  
+  }
+  // social page api //
+
 
 
 }
