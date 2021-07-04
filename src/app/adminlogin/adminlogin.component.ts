@@ -16,6 +16,7 @@ export class AdminloginComponent implements OnInit {
 
   email: String;
   password: String;
+  isLoading : boolean = false
 
   constructor(
     private authService: AuthService,
@@ -34,33 +35,33 @@ export class AdminloginComponent implements OnInit {
   })
 
   onLoginSubmit() {
-    // const user = {
-    //   email: this.email,
-    //   password: this.password
-
-    // }
+  
     if (this.form.valid) {
+      this.isLoading = true
       this.authService.authenticateAdmin(this.form.value)
         .subscribe(
           (data) => {
             if (data.statusCode == 200)   
             {
               if (data.user.parent_id == "owner") {
+                this.isLoading =false
                 this.authService.storeUserData(data.token, data.user);
-                this.router.navigate(['superadmin/adminDash']);
+                this.router.navigate(['florja/adminDash']);
                
                 this.toastr.success('Success ! logged In');
               } else {
+                this.isLoading =false
                 this.authService.storeUserData(data.token, data.user);
-                this.router.navigate(['superadmin']);
+                this.router.navigate(['florja']);
                 this.toastr.success('Success ! logged In');
                
               }
 
             } else {
-              console.log('error');
+           
+              this.isLoading =false
               this.toastr.error('Oops', 'Invalid Email/Password ');
-              this.router.navigate(['login']);
+              this.router.navigate(['adminlogin']);
             }
           },
           (error) => {

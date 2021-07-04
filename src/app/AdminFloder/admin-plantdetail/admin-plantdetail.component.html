@@ -1,0 +1,390 @@
+<div class="container">
+
+    <h4 style="background-color:#eee;">Information</h4>
+    <div class="content">
+      <form >
+        <div class="user-details">
+
+
+          <div class="input-box">
+            <span class="details">*Plant-Name</span>
+            <input type="text" value="{{userObj.name}}" disabled >
+          
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Tenant Name</span>
+            <input type="text" value="{{userObj.t_name}}" disabled >
+           <span></span>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">User Name</span>
+            <input type="text" value="{{userObj.u_name}}" disabled >
+         
+            
+          </div>
+         
+
+          <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+
+          <div class="input-box">
+            <span class="details">Soil Humidity MIN</span>
+            <input type="text" value="{{userObj.soil_humidity_min}}" disabled >
+         
+          </div>
+
+          <div class="input-box">
+            <span class="details">Soil Humidity MAX</span>
+            <input type="text" value="{{userObj.soil_humidity_max}}" disabled >
+        
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Soil Temp MIN</span>
+            <input type="text" value="{{userObj.soil_temp_min}}" disabled >
+        
+          </div>
+
+          <div class="input-box">
+            <span class="details">Soil Temp MAX</span>
+            <input type="text" value="{{userObj.soil_temp_max}}" disabled >
+           
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Air Humidity Min</span>
+            <input type="text" value="{{userObj.air_humidity_min}}" disabled >
+          
+          </div>
+
+          <div class="input-box">
+            <span class="details">Air Humidity Max</span>
+            <input type="text" value="{{userObj.air_humidity_max}}" disabled >
+      
+          </div>
+
+          <div class="input-box">
+            <span class="details">EC MIN</span>
+            <input type="text" value="{{userObj.ec_min}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">EC MAX
+            </span>
+            <input type="text" value="{{userObj.ec_max}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">
+              Air Temp MAX</span>
+              <input type="text" value="{{userObj.air_temp_max}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">
+              Air Temp MIN</span>
+              <input type="text" value="{{userObj.air_temp_min}}" disabled >
+              
+          </div>
+
+
+          <div class="input-box">
+            <span class="details"> Fertilization Intervall (days)</span>
+              <input type="text" value="{{userObj.fertilization_interval}}" disabled >
+              <span></span>
+          </div>
+
+
+
+          <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+
+
+          <div class="input-box">
+            <span class="details">Spring start</span>
+            <input type="text" value="{{userObj.spring_start}}" disabled >
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Autumn start</span>
+            <input type="text" value="{{userObj.autumn_start}}" disabled >
+            
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Spring end</span>
+            <input type="text" value="{{userObj.spring_end}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">Autumn end</span>
+            <input type="text" value="{{userObj.autumn_end}}" disabled >
+           
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Summer start</span>
+            <input type="text" value="{{userObj.summer_start}}" disabled >
+   
+          </div>
+
+          <div class="input-box">
+            <span class="details">Winter start</span>
+            <input type="text" value="{{userObj.winter_start}}" disabled >
+          
+          </div>
+
+          <div class="input-box">
+            <span class="details">Summer end</span>
+            <input type="text" value="{{userObj.summer_end}}" disabled >
+         
+          </div>
+
+          <div class="input-box">
+            <span class="details">Winter end </span>
+            <input type="text" value="{{userObj.winter_end}}" disabled >
+            <span></span>
+          </div>
+       
+<button class="btn btn-primary" data-toggle="modal"  data-target=".bd-edit-modal-lg" >edit </button>
+          <!-- <div class="button">
+            <input type="submit" (click)="onAddSubmit()" value="Add">
+            <input type="submit" (click)="updateTen()" *ngIf="isEdit" value="update">
+          </div> -->
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Plant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+
+        <div class="container">
+
+          <h4 style="background-color:#eee;">&nbsp;Information</h4>
+          <div class="content">
+            <form>
+              <div class="user-details">
+
+
+
+
+                <div class="input-box">
+                  <span class="details">* Tenant Name</span>
+                  <select class="form-control" name="t_id" [(ngModel)]="userObj.t_id">
+                    <option value="">---Select--- </option>
+                    <option [value]="tenant.id" *ngFor="let tenant of tenantDetails ">
+                      {{tenant.name}} </option>
+
+                  </select>
+
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* User Name</span>
+                  <select class="form-control" required name="u_name" [(ngModel)]="userObj.u_name">
+                    <option value="">---Select--- </option>
+                    <option value="{{user.id}}" *ngFor="let user of userDetails ">{{user.name}} </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Plant-Name</span>
+                  <input type="text" required name="name" [(ngModel)]="userObj.name">
+
+                </div>
+
+                <h4 style="background-color:#eee;width: 850px;">&nbsp;Measurement Specifics</h4>
+
+                <div class="input-box">
+                  <span class="details">* Soil Humidity MIN</span>
+                  <input type="number" required name="soil_humidity_min" [(ngModel)]="userObj.soil_humidity_min">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Soil Humidity MAX</span>
+                  <input type="number" required name="soil_humidity_max " [(ngModel)]="userObj.soil_humidity_max">
+
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Soil Temp MIN</span>
+                  <input type="number" required name="soil_temp_min" [(ngModel)]="userObj.soil_temp_min">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Soil Temp MAX</span>
+                  <input type="number" required name="soil_temp_max" [(ngModel)]="userObj.soil_temp_max">
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Air Humidity Min</span>
+                  <input type="number" name="air_humidity_min" [(ngModel)]="userObj.air_humidity_min">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Air Humidity Max</span>
+                  <input type="number" name="air_humidity_max" [(ngModel)]="userObj.air_humidity_max">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* EC MIN</span>
+                  <input type="number" required name="ec_min" [(ngModel)]="userObj.ec_min">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* EC MAX
+                  </span>
+                  <input type="number" required name="ec_max" [(ngModel)]="userObj.ec_max">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">
+                    * Air Temp MAX</span>
+                  <input type="text" required name="air_temp_max" [(ngModel)]="userObj.air_temp_max">
+
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Air Temp MIN</span>
+                  <input type="text" required name="air_temp_min" [(ngModel)]="userObj.air_temp_min">
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Fertilization Intervall (days)</span>
+                  <input type="text" required name="fertilization_interval"
+                    [(ngModel)]="userObj.fertilization_interval">
+
+                </div>
+
+
+
+                <h4 style="background-color:#eee;width: 850px;">&nbsp; Seasons </h4>
+
+
+                <div class="input-box">
+                  <span class="details">* Spring start</span>
+                  <input type="date" name="spring_start" [(ngModel)]="userObj.spring_start">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Autumn start</span>
+                  <input type="date" name="autumn_start" [(ngModel)]="userObj.autumn_start">
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Spring end</span>
+                  <input type="date" required name="spring_end" [(ngModel)]="userObj.spring_end">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Autumn end</span>
+                  <input type="date" required name="autumn_end" [(ngModel)]="userObj.autumn_end">
+
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">* Summer start</span>
+                  <input type="date" name="summer_start" [(ngModel)]="userObj.summer_start">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Winter start</span>
+                  <input type="date" name="winter_start" [(ngModel)]="userObj.winter_start">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Summer end</span>
+                  <input type="date" name="summer_end" [(ngModel)]="userObj.summer_end">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details">* Winter end
+                  </span>
+
+                  <input type="date" name="winter_end" [(ngModel)]="userObj.summer_end">
+                </div>
+
+                <h4 style="background-color:#eee;width: 850px;"> &nbsp;Location </h4>
+
+
+                <div class="input-box">
+                  <span class="details"> Latitude</span>
+                  <input type="text" name="latitude" [(ngModel)]="userObj.latitude">
+
+                </div>
+
+                <div class="input-box">
+                  <span class="details"> Longitude</span>
+                  <input type="text" name="longitude" [(ngModel)]="userObj.longitude">
+
+                </div>
+
+
+                <div class="button">
+
+                  <input type="submit" (click)="updateTen()" value="Update">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+</div>

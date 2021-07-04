@@ -137,9 +137,9 @@ getNotification(createToken){
     }
   
   
-    deletePost(id){
+    deletePost(m){
             
-      return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/deleteFeed/deleteFeed/',{'id':id})
+      return this.http.post('https://z4ln9rgil4.execute-api.us-east-2.amazonaws.com/deleteFeed/deleteFeed/',m)
     
     }
     // social page api //

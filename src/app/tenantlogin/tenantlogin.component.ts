@@ -16,6 +16,7 @@ export class TenantloginComponent implements OnInit {
 
   email: String;
   password: String;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -41,24 +42,28 @@ export class TenantloginComponent implements OnInit {
 
     // }
     if (this.form.valid) {
+      this.isLoading =true
       this.authService.authenticateTenant(this.form.value)
         .subscribe(
           (data) => {
             if (data.statusCode == 200) {
               if (data.user.parent_id == 'null') {
+                this.isLoading =false
                 this.authService.storeUserData(data.token, data.user);
-              this.router.navigate(['subadmin']);
+              this.router.navigate(['florja']);
               this.toastr.success('Success ! logged In');
               } else {
+                this.isLoading =false
                 this.authService.storeUserData(data.token, data.user);
-              this.router.navigate(['subadmin']);
+              this.router.navigate(['florja']);
               this.toastr.success('Success ! logged In');
               }
             
             } else {
               console.log('error');
-              this.toastr.error('Oops', 'Failed to logged In');
-              this.router.navigate(['login']);
+              this.isLoading =false
+              this.toastr.error('Oops', 'Invalid Email/Password ');
+              this.router.navigate(['tlogin']);
             }
           },
           (error) => {

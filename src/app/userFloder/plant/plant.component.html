@@ -1,0 +1,455 @@
+<div class="content-header">
+  <h3 class="ml-4 mt-6 text-dark">Plants</h3>
+</div>
+<br>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Plant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="justify-content: center;">
+
+        <div class="container">
+
+          <h4 style="background-color:#eee;">Information</h4>
+          <div class="content">
+            <form [formGroup]="form">
+              <div class="user-details">
+
+
+                <div class="input-box">
+                  <span class="details">*Plant-Name</span>
+                  <input type="text" required name="name" [(ngModel)]="userObj.name" formControlName="name" [ngClass]="
+                  { 'is-invalid': form.get('name').touched && form.get('name').invalid}">
+                  <div class="invalid-feedback">
+                    <div> This field is required</div>
+                  </div>
+                </div>
+             
+
+                <h4 style="background-color:#eee;width: 850px;">Measurement Specifics</h4>
+
+                <div class="input-box">
+                  <span class="details">Soil Humidity MIN</span>
+                  <input type="text" required name="soil_humidity_min" [(ngModel)]="userObj.soil_humidity_min"  formControlName="soil_humidity_min" [ngClass]="
+                  { 'is-invalid': form.get('soil_humidity_min').touched && form.get('soil_humidity_min').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Soil Humidity MAX</span>
+                  <input type="text" required name="soil_humidity_max "  [(ngModel)]="userObj.soil_humidity_max" formControlName="soil_humidity_max" [ngClass]="
+                  { 'is-invalid': form.get('soil_humidity_max').touched && form.get('soil_humidity_max').invalid}">
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">Soil Temp MIN</span>
+                  <input type="text" required name="soil_temp_min"  [(ngModel)]="userObj.soil_temp_min" formControlName="soil_temp_min" [ngClass]="
+                  { 'is-invalid': form.get('soil_temp_min').touched && form.get('soil_temp_min').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Soil Temp MAX</span>
+                  <input type="text" required name="soil_temp_max"  [(ngModel)]="userObj.soil_temp_max" formControlName="soil_temp_max" [ngClass]="
+                  { 'is-invalid': form.get('soil_temp_max').touched && form.get('soil_temp_max').invalid}">
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">Air Humidity Min</span>
+                  <input type="text" name="air_humidity_min" formControlName="air_humidity_min" [(ngModel)]="userObj.air_humidity_min" [ngClass]="
+                  { 'is-invalid':form.get('air_humidity_min').touched && form.get('air_humidity_min').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Air Humidity Max</span>
+                  <input type="text" name="air_humidity_max" formControlName="air_humidity_max" [(ngModel)]="userObj.air_humidity_max" [ngClass]="
+                  { 'is-invalid': form.get('air_humidity_max').touched && form.get('air_humidity_max').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">EC MIN</span>
+                  <input type="text" required name="ec_min" formControlName="ec_min" [(ngModel)]="userObj.ec_min" [ngClass]="
+                  { 'is-invalid': form.get('ec_min').touched && form.get('ec_min').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">EC MAX
+                  </span>
+                  <input type="text" required name="ec_max" formControlName="ec_max" [(ngModel)]="userObj.ec_max" [ngClass]="
+                  { 'is-invalid': form.get('ec_max').touched && form.get('ec_max').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">
+                    Air Temp MAX</span>
+                  <input type="text" required name="air_temp_max" formControlName="air_temp_max" [(ngModel)]="userObj.air_temp_max" [ngClass]="
+                  { 'is-invalid': form.get('air_temp_max').touched && form.get('air_temp_max').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">
+                    Air Temp MIN</span>
+                  <input type="text" required name="air_temp_min" formControlName="air_temp_min"[(ngModel)]="userObj.air_temp_min" [ngClass]="
+                  { 'is-invalid': form.get('air_temp_min').touched && form.get('air_temp_min').invalid}">
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">
+
+                    Fertilization Intervall (days)</span>
+                  <input type="text" required name="fertilization_interval" [(ngModel)]="userObj.fertilization_interval" formControlName="fertilization_interval"
+                    [ngClass]="
+                  { 'is-invalid': form.get('fertilization_interval').touched && form.get('fertilization_interval').invalid}">
+                </div>
+
+
+
+                <h4 style="background-color:#eee;width: 850px;"> Seasons </h4>
+
+
+                <div class="input-box">
+                  <span class="details">Spring start</span>
+                  <input type="date" name="spring_start"  [(ngModel)]="userObj.spring_start"  formControlName="spring_start" required [ngClass]="
+                  { 'is-invalid': form.get('spring_start').touched && form.get('spring_start').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">
+                    Autumn start</span>
+                  <input type="date" name="autumn_start" [(ngModel)]="userObj.autumn_start" formControlName="autumn_start" required [ngClass]="
+                  { 'is-invalid': form.get('autumn_start').touched && form.get('autumn_start').invalid}">
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">Spring end</span>
+                  <input type="date" required name="spring_end" [(ngModel)]="userObj.spring_end" formControlName="spring_end" [ngClass]="
+                  { 'is-invalid': form.get('spring_end').touched && form.get('spring_end').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Autumn end</span>
+                  <input type="date" required name="autumn_end" [(ngModel)]="userObj.autumn_end" formControlName="autumn_end" [ngClass]="
+                  { 'is-invalid': form.get('autumn_end').touched && form.get('autumn_end').invalid}">
+                </div>
+
+
+                <div class="input-box">
+                  <span class="details">Summer start</span>
+                  <input type="date" name="summer_start" [(ngModel)]="userObj.summer_start" formControlName="summer_start" [ngClass]="
+                  { 'is-invalid': form.get('summer_start').touched && form.get('summer_start').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Winter start</span>
+                  <input type="date" name="winter_start" [(ngModel)]="userObj.winter_start"  formControlName="winter_start" [ngClass]="
+                  { 'is-invalid': form.get('winter_start').touched && form.get('winter_start').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Summer end</span>
+                  <input type="date" name="summer_end" [(ngModel)]="userObj.summer_end"  formControlName="summer_end" required [ngClass]="
+                  { 'is-invalid': form.get('summer_end').touched && form.get('summer_end').invalid}">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Winter end
+                  </span>
+                  <input type="date" name="winter_end"  [(ngModel)]="userObj.summer_end" formControlName="winter_end" required [ngClass]="
+                  { 'is-invalid': form.get('winter_end').touched && form.get('winter_end').invalid}">
+                </div>
+
+
+                <div class="button">
+                  <input type="submit" (click)="onAddSubmit()" *ngIf="!isEdit"  value="Add">
+                  <input type="submit" (click)="updateTen()" *ngIf="isEdit" value="update">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+
+      <div class="searchbox">
+
+
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="search_wrap search_wrap_1">
+          <div class="search_box" style="margin-left: 15px;">
+            <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+              placeholder="search...">
+            <div class="btn btn_common">
+              <i class="fas fa-search"></i>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="card-tools">
+        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary">Add Plant   
+        </button>
+       
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+ 
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Plant Id <i class="fa fa-sort"></i></th>
+              <th scope="col" aria-colspan="2">Name <i class="fa fa-sort"></i></th>
+              <th scope="col">Sensor Count <i class="fa fa-sort"></i></th>
+              <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
+
+              <th scope="col">Last Measurement <i class="fa fa-sort"></i></th>
+              <th scope="col">Notification <i class="fa fa-sort"></i></th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr
+              *ngFor="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
+              <td>{{no+1}}</td>
+              <td><a (click)="plantPage(plant)">{{plant.name}}</a></td>
+              <td><span>3</span></td>
+              <td><span class="badge bg-success">unit 1 running</span></td>
+
+              <td>{{plant.created_at}}</td>
+              <td>
+                <input type="checkbox">
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" (click)="editPlant(plant)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class=" btn text-danger btn-sm rounded-0" (click)="deletePlant(plant.id)" type="button"
+                      data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+            <!--               <tr>
+                    <td>P-0001</td>
+                    <td>plant 2</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
+                    
+                    <td>3/16/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+  
+                  <tr>
+                    <td>P-0002</td>
+                    <td>plant 3</td>
+                    <td><span class="badge "style="background-color: orange;color: white;">need check</span></td>
+                    <td><span class="badge bg-danger">unit 2 blackout</span></td>
+                    
+                    <td>3/16/21,12:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+  
+                  <tr>
+                    <td>P-0003</td>
+                    <td>plant 4</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge bg-success">unit 1 running</span></td>
+                   
+                    <td>3/06/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+  
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+  
+                
+                  </tr>
+  
+                  <tr>
+                    <td>P-0004</td>
+                    <td>plant 5</td>
+                    <td><span class="badge " style="background-color: darkorange;color: white;">need check</span></td>
+                    <td><span class="badge bg-success">unit 2 running</span></td>
+                  
+                    <td>3/16/21,11:40</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr> -->
+
+            <!-- <tr >
+                    <td>P-0005</td>
+                    <td>plant 6</td>
+                    <td><span class="badge bg-success">good </span></td>
+                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
+                    
+                    <td>5/16/21,11:00</td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>  
+                      <ul class="list-inline m-0">
+              
+                        <li class="list-inline-item">
+                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                      </li>
+                        <li class="list-inline-item">
+                          <button class=" btn text-danger btn-sm rounded-0" 
+                         
+                       
+                       
+                           type="button" data-toggle="tooltip"
+                          
+                            data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                      </li>
+                    </ul>
+                  </td>
+                  </tr>
+                -->
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer text-center">
+
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </div>
+    <!-- /.card -->

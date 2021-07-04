@@ -85,3 +85,14 @@ section{
   background-size: cover;
   height: 100vh;
 }
+
+
+@media screen and (max-width: 600px) {
+  nav .logo{
+    color: white;
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 70px;
+    padding-left: 60px;
+  }
+}

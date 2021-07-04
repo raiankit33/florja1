@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-academialogin',
@@ -13,10 +14,11 @@ export class AcademialoginComponent implements OnInit {
 
   email: String;
   password: String;
-
+  isLoading :boolean = false
+ 
   constructor(
     private authService: AuthService,
-
+    private toastr: ToastrService,
 
     private router: Router,) { }
 
@@ -38,17 +40,20 @@ export class AcademialoginComponent implements OnInit {
 
     // }
     if(this.form.valid){
+      this.isLoading =true
     this.authService.authenticateAcademia(this.form.value)
       .subscribe(
         (data) => {
           if(data.statusCode==200){
+            this.isLoading =false
             this.authService.storeUserData(data.token, data.user);
-          this.router.navigate(['']);
-          alert('Success ! logged In')
+          this.router.navigate(['florja']);
+          this.toastr.success('Success ! logged In');
           }else{
-            console.log('error');
-            alert("fail to logged In")
-            this.router.navigate(['login']);
+            this.isLoading =false
+            console.log('error'); 
+            this.toastr.error('Oops', 'Invalid Email/Password ');
+            this.router.navigate(['alogin']);
           }
         },
         (error) => {

@@ -16,7 +16,7 @@ export class UloginComponent implements OnInit {
 
   email: String;
   password: String;
- 
+  isLoading : boolean =false
 
   constructor(
     private authService: AuthService,
@@ -41,20 +41,23 @@ export class UloginComponent implements OnInit {
     //   password: this.password
 
     // }
+    this.isLoading = true
     if(this.form.valid){
     this.authService.authenticateUser(this.form.value)
       .subscribe(
         (data) => {
           if(data.statusCode==200){
+            this.isLoading =false
             // localStorage.setItem('AuthToken', data.token);
             this.authService.storeUserData(data.token, data.user);
             this.toastr.success('Success ! logged In');
-            this.router.navigate(['user/dashboad']);
+            this.router.navigate(['florja/dashboad']);
         
           } else {
             console.log('error');
-            this.toastr.error('Oops','Failed to logged In');
-            this.router.navigate(['login']);
+            this.isLoading =false
+            this.toastr.error('Oops', 'Invalid Email/Password ');
+            this.router.navigate(['/']);
           }
         },
         (error) => {

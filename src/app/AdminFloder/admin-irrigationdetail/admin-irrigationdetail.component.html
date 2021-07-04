@@ -1,0 +1,135 @@
+<div class="container">
+  
+    <h4 style="background-color:#eee;">Information</h4>
+    <div class="content">
+      <form >
+        <div class="user-details">
+
+
+          <div class="input-box">
+            <span class="details">Irrigation Unit Name</span>
+            <input type="text" value="{{userObj.name}}" disabled >
+          
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Watering Duration Time (minutes)</span>
+            <input type="text" value="{{userObj.watering_duration}}" disabled >
+           <span></span>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Irrigation Ping Interval (minute)</span>
+            <input type="text" value="{{userObj.irrigation_ping_interval}}" disabled >
+         
+            
+          </div>
+         
+          <div class="input-box">
+            <span class="details">Plant Name</span>
+            <input type="text" value="{{userObj.plant_name}}" disabled >
+         
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Last Ping
+            </span>
+            <div class="input-group" >
+              <input type="date"  value="{{userObj.last_ping_date}}"  class="form-control" 
+              placeholder="date">
+              <input type="time" value="{{userObj.last_ping_time}}"   class="form-control ">
+          </div>
+            
+          </div>
+
+          <div class="input-box">
+            <span class="details">Water Usage (in liter)</span>
+            <input type="text" value="{{userObj.water_usage}}" disabled >
+        
+          </div>
+
+          <div class="input-box">
+            <span class="details">* Sync System Time
+            </span>
+            <div class="input-group"  >
+              <input type="date"  value="{{userObj.sync_system_date}}" class="form-control" >
+              <input type="time"   value="{{userObj.sync_system_time}}" class="form-control">
+              
+          </div>
+            
+          </div>
+
+          <h4 style="background-color:#eee;width: 850px;">Location </h4>
+
+          <div class="input-box">
+            <span class="details">Irrigation Unit Cluster</span>
+            <input type="text" value="{{userObj.irrigation_unit_cluster}}" disabled >
+         
+          </div>
+
+          <div class="input-box">
+            <span class="details">Payload</span>
+            <input type="text" value="{{userObj.payload}}" disabled >
+        
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Irrigation Latitude</span>
+            <input type="text" value="{{userObj.irrigation_unit_latitude}}" disabled >
+        
+          </div>
+
+          <div class="input-box">
+            <span class="details">Irrigation Longitude</span>
+            <input type="text" value="{{userObj.irrigation_unit_longitude}}" disabled >
+           
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Schedul</span>
+            <input type="text" value="{{userObj.schedule}}" disabled >
+          
+          </div>
+
+          <div class="input-box">
+            <span class="details">Valve</span>
+            <input type="text" value="{{userObj.valve}}" disabled >
+      
+          </div>
+
+          <div class="input-box">
+            <span class="details">Vent Type</span>
+            <input type="text" value="{{userObj.vent_type}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">Strega URL
+            </span>
+            <input type="text" value="{{userObj.strega_URL}}" disabled >
+           
+          </div>
+
+          <div class="input-box">
+            <span class="details">
+                Status</span>
+              <input type="text" value="{{userObj.status}}" disabled >
+           
+          </div>
+
+         
+
+
+          <div class="button">
+            <input type="submit" value="edit">
+       
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

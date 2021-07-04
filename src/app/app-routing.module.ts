@@ -14,9 +14,10 @@ const routes: Routes = [
   {path:'alogin',component:AcademialoginComponent},
   {path:'adminlogin',component:AdminloginComponent},
 
-  { path: 'superadmin', loadChildren: () => import('./superadmin/superadmin.module').then(m => m.SuperadminModule) },
-  { path: 'subadmin', loadChildren: () => import('./subadmin/subadmin.module').then(m => m.SubadminModule) },
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+
+
+  { path: 'florja', loadChildren: () => import('./florja/florja.module').then(m => m.FlorjaModule) },
+
  
 ];
 
