@@ -150,10 +150,19 @@ AllData(){
           '',
           'success'
         )
-        }else{
-
-        }
-       
+      }else if(res.statusCode== 403){
+        this.err = "This email is already registered."
+        this.open = true;
+        setTimeout(() => {
+          this.open = false
+        }, 3000);
+      }else{
+        this.message = "This Phone no is already registered."
+        this.mess = true;
+        setTimeout(() => {
+          this.mess = false
+        }, 3000);
+      }
       })
 
     }else{

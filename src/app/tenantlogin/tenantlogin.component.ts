@@ -75,6 +75,11 @@ export class TenantloginComponent implements OnInit {
     }
   }
 
+
+  forget(){
+    this.router.navigate(['tForget']);
+  }
+
 }
 
 

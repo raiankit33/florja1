@@ -58,6 +58,7 @@ export class TenUserComponent implements OnInit {
   open: boolean;
   err2: string;
   mess: boolean;
+  name: string;
 
   constructor(private subadminService: SubadminService,
     private router: Router) {
@@ -115,6 +116,16 @@ export class TenUserComponent implements OnInit {
     this.Inactive =true;
     this.active =false;
     this.allMember = false;
+    }
+
+    Search() {
+      if (this.name == "") {
+        this.getUserDetails();
+      } else {
+        this.Details = this.Details.filter(res => {
+          return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+        })
+      }
     }
     
   onAddSubmit() {

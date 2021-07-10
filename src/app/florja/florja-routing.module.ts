@@ -45,6 +45,8 @@ import { AdminUserComponent } from '../AdminFloder/admin-user/admin-user.compone
 
 //
 import { AcadDashoadComponent } from '../Academiafloder/acad-dashoad/acad-dashoad.component';
+import { SensorDetailComponent } from '../AdminFloder/admin-sensor/sensor-detail/sensor-detail.component';
+
 
 
 const routes: Routes = [{ path: '', component: FlorjaComponent,
@@ -56,6 +58,8 @@ children:[
     { path: 'tenant', component:AdminTenantComponent},
     { path: 'adminUser', component:AdminSubadminComponent},
     { path: 'userN', component:AdminUserComponent},
+    { path: 'sensorDetail', component:SensorDetailComponent},
+    
     
     { path: 'stype', component:AdminSentypeComponent},
     { path: 'plant', component:AdminPlantComponent},

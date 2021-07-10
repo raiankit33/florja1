@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit , Inject, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { AuthService } from '../service/auth.service';
   templateUrl: './florja.component.html',
   styleUrls: ['./florja.component.css']
 })
-export class FlorjaComponent implements OnInit {
+export class FlorjaComponent implements OnInit , AfterViewInit{
 
   user: any;
   admin:boolean = false;
@@ -17,6 +18,8 @@ export class FlorjaComponent implements OnInit {
   hideTenant: boolean =false;
   hideAdminUser: boolean =false;
   constructor(
+    @Inject(DOCUMENT) private document,
+    private elementRef: ElementRef,
     private authService: AuthService,
     private router: Router,
   ) { }
@@ -63,11 +66,32 @@ export class FlorjaComponent implements OnInit {
     }
   }
 
+
+  ngAfterViewInit() {
+    const s = this.document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateFunction';
+    const __this = this;
+                       
+    s.onload = function () { __this.afterScriptAdded(); };
+    this.elementRef.nativeElement.appendChild(s);
+  }
+
   onLogoutClick(){
     this.authService.logout();
     
     this.router.navigate(['/adminlogin']);
     return false;
+}
+
+afterScriptAdded() {
+  const params= {
+    width: '350px',
+    height: '420px',
+  };
+  if (typeof (window['functionFromExternalScript']) === 'function') {
+    window['functionFromExternalScript'](params);
+  }
 }
 
 

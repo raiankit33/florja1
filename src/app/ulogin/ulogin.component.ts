@@ -69,6 +69,11 @@ export class UloginComponent implements OnInit {
   }
 }
 
+
+forget(){
+  this.router.navigate(['userForget']);
+}
+
 }
 
 

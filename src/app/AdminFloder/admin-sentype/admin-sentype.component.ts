@@ -94,15 +94,15 @@ export class AdminSentypeComponent implements OnInit {
 
   }
 
-  // Search(){
-  //   if(this.name == ""){
-  //     this.getSensorDetails();
-  //   }else{
-  //     this.sensorDetails = this.tenantDetails.filter(res =>{
-  //       return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
-  //     })
-  //   }
-  // }
+  Search(){
+    if(this.name == ""){
+      this.getSensorDetails();
+    }else{
+      this.sensorDetails = this.sensorDetails.filter(res =>{
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
 
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}

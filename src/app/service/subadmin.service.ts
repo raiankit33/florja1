@@ -38,6 +38,17 @@ export class SubadminService {
 }
 
 
+
+//
+
+tForget(f) {
+
+  return this.http.post('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/forgotpassword/forgotpassword', f)
+    .pipe(catchError(this.handleError));
+}
+//
+
+
 // user API 
   registerUser(user){
    

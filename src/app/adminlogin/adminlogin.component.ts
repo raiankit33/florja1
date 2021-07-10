@@ -17,6 +17,7 @@ export class AdminloginComponent implements OnInit {
   email: String;
   password: String;
   isLoading : boolean = false
+  fieldTextType: boolean;
 
   constructor(
     private authService: AuthService,
@@ -33,6 +34,8 @@ export class AdminloginComponent implements OnInit {
 
 
   })
+
+ 
 
   onLoginSubmit() {
   
@@ -71,6 +74,10 @@ export class AdminloginComponent implements OnInit {
           }
         );
     }
+  }
+
+  forget(){
+    this.router.navigate(['forget']);
   }
 
 }

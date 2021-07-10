@@ -15,6 +15,10 @@ export class PlantComponent implements OnInit {
   name:any;
   isEdit=false;
   p: number =1 ;
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
+
   userObj ={
     name: "",
     soil_humidity_min:"",
@@ -38,6 +42,8 @@ export class PlantComponent implements OnInit {
     winter_start: ""
   }
   user: any;
+  activeDetails: any;
+  InactiveDetail: any;
  
    constructor(
      private userService : UserService,
@@ -104,7 +110,23 @@ export class PlantComponent implements OnInit {
      }
    }
 
-
+   AllData(){
+    this.allMember = true;
+    this.active =false;
+    this.Inactive =false;
+     }
+   
+     ActiveTab(){
+   this.active =true;
+   this.Inactive =false;
+   this.allMember =false;
+     }
+   
+     InActiveTab(){
+     this.Inactive =true;
+     this.active =false;
+     this.allMember =false;
+     }
  
    onAddSubmit(){
  
@@ -155,7 +177,11 @@ export class PlantComponent implements OnInit {
     }
      this.userService.getPlantDetails(createToken).subscribe((res:any)=>{
        this.plantDetails = res.data;
-      
+
+       this.activeDetails = this.plantDetails.filter(data => data.status == 'Active');
+
+       this.InactiveDetail = this.plantDetails.filter(data => data.status == 'Inactive' );
+      console.log(res)
      }
      
      );
@@ -173,17 +199,21 @@ export class PlantComponent implements OnInit {
        confirmButtonText: 'Yes, delete it!'
      }).then((result) => {
        if (result.isConfirmed) {
-         this.userService.deletePlant(id).subscribe( (res:any)=>{
+         let d ={
+           id : id,
+           AuthToken : this.user.token
+         }
+         this.userService.deletePlant(d).subscribe( (res:any)=>{
            this.getPlantDetails();
-           
+           Swal.fire(
+            'Deleted!',
+            'Tenant  deleted.',
+            'success'
+          )
          
          });
        
-         Swal.fire(
-           'Deleted!',
-           'Tenant has been deleted.',
-           'success'
-         )
+        
        }
      })
    }
@@ -204,7 +234,7 @@ export class PlantComponent implements OnInit {
  
     Swal.fire(
      'Success!',
-     'plant has been Updated.',
+     'plant  Updated.',
      'success'
    )
      })

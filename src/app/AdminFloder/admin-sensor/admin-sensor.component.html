@@ -87,14 +87,38 @@
                    
                   </div>
 
-    
-                  <div class="form-group">
+                  
+                  <!-- <div class="form-group">
                     <label for="exampleInputFile">* End Point URL</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="url"  name="url"  placeholder="Enter End Point URl" formControlName="url" class="form-control" [ngClass]="
                         { 'is-invalid': form.get('url').touched && form.get('url').invalid}" style="width: 300px;">
                        
+
+                        
+                      </div>
+                      <div class="invalid-feedback">
+                        <div> This field is required</div>
+                      </div>
+                      <button class="btn btn-primary" style="background-color: #255ad9;" [disabled]="isLoading" (click)="toggleLoading()">
+                        <img *ngIf="isLoading" style="width : 24px" src="../../../assets/image/Rolling-1s-200px.gif" />
+                        Test 
+                      </button>
+                     
+                    </div>
+                 
+                  </div> -->
+    
+                  <div class="form-group">
+                    <label for="exampleInputFile">* State</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="url"  name="url"  placeholder="Enter End Point URl" formControlName="url" class="form-control" [ngClass]="
+                        { 'is-invalid': form.get('url').touched && form.get('url').invalid}" style="width: 300px;">
+                       
+
+                        
                       </div>
                       <div class="invalid-feedback">
                         <div> This field is required</div>
@@ -155,7 +179,7 @@
    
       <div class="search_wrap search_wrap_1">
         <div class="search_box"style="margin-left: 16px;">
-          <input type="text" class="input" placeholder="search...">
+          <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="search...">
           <div class="btn btn_common">
             <i  class="fas fa-search"></i>
           </div>
@@ -188,11 +212,11 @@
         </tr>
       </thead>
 
-      <tbody *ngIf="active" >
-        <tr *ngFor="let sens of activeDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
+      <tbody *ngIf="active"  >
+        <tr *ngFor="let sens of activeDetails |  filter:name   |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
    
       <td >{{no+1}}</td>
-      <td>{{sens.name}}</td>
+      <td (click)="sensorPage(sens)" style="cursor: pointer; color: blue;"><span class="notranslate">{{sens.name}}</span></td>
       <td>{{sens.sensor_type}}</td>
       <td>{{sens.plant_name}}</td>
       <td><span >{{sens.created_at}}</span></td>
@@ -233,7 +257,7 @@
       </tbody>
 
       <tbody *ngIf="allMember">
-        <tr *ngFor="let sens of sensorDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
+        <tr *ngFor="let sens of sensorDetails |  filter:name   |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
    
       <td >{{no+1}}</td>
       <td>{{sens.name}}</td>
@@ -281,7 +305,7 @@
 
 
       <tbody *ngIf="Inactive" >
-        <tr *ngFor="let sens of InactiveDetail |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
+        <tr *ngFor="let sens of InactiveDetail |  filter:name   |  paginate: { itemsPerPage: count, currentPage: p } ; index as no">
    
       <td >{{no+1}}</td>
       <td>{{sens.name}}</td>

@@ -33,6 +33,8 @@ isShow=false;
   allMember : boolean =false;
   activeDetails: any[];
   InactiveDetail: any[];
+  name: string;
+  weatherData: any[];
   
   constructor(
     private serviceService : ServiceService,
@@ -105,11 +107,19 @@ userObj ={
 
   toggleLoading = () => {
     this.isLoading = true;
-
+let weather ={
+  q : this.form.value.url,
+  // key : "d9ef64e70ede4ad8bc591311210807&q"
+}
     //Faking an API call
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
+  
+    this.serviceService.weatherAPI(weather).subscribe((res:any)=>{
+ 
+        this.weatherData = res
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 3000);
+    })
   };
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}
@@ -145,7 +155,15 @@ AllData(){
    this.allMember =false;
    }
    
-
+   Search() {
+    if (this.name == "") {
+      this.getSensorDetail();
+    } else {
+      this.sensorDetails = this.sensorDetails.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
  
 
   onAddSubmit(){
@@ -161,7 +179,8 @@ AllData(){
        interval: this.form.value.interval,
        latitude: this.form.value.latitude,
        longitude: this.form.value.longitude,
-       AuthToken:this.user.token
+       AuthToken:this.user.token,
+       data : this.weatherData
      
      }
 
@@ -212,7 +231,10 @@ AllData(){
      );
    } 
 
-
+   sensorPage(irrigation) {
+    this.sharedData.updateSharedData(irrigation);
+    this.router.navigate(['florja/sensorDetail', { id: irrigation.id }]);
+  }
   
 
    editSens(sens){

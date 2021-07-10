@@ -1,0 +1,16 @@
+{  
+    "login": {  
+        "title": "Super Admin Login ",  
+        "username.label": "Username",  
+        "username.placeholder": "Email",  
+        "password.label": "Password",  
+        "password.placeholder": "Password",  
+        "button.name": "Login",  
+        "forgotpassword.link": "Forgot Password ?",  
+        "register.link": "Create New Account",  
+        "button.en": "English",  
+        "button.ta": "Tamil",  
+        "button.fr": "French",  
+        "button.zh": "Chinese"  
+    }  
+} 

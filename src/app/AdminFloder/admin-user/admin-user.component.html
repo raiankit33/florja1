@@ -149,7 +149,7 @@
   
           <div class="search_wrap search_wrap_1">
             <div class="search_box" style="margin-left: 16px;">
-              <input type="text" class="input" placeholder="search...">
+              <input type="text" class="input"  name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="search...">
               <div class="btn btn_common">
                 <i class="fas fa-search"></i>
               </div>
@@ -158,7 +158,8 @@
         </div>
         <div class="card-tools">
           <button type="button" data-toggle="modal" (click)="openModel()" *ngIf="parent"
-            data-target=".bd-example-modal-lg" class="btn btn-primary">Add User </button>
+            data-target=".bd-example-modal-lg" class="btn btn-outline-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Add User </button>
+            
         </div>
       </div>
       <!-- /.card-header -->
@@ -178,7 +179,7 @@
               </tr>
             </thead>
             <tbody *ngIf ="active">
-              <tr *ngFor='let user of userDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
+              <tr *ngFor='let user of userDetails   |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i'>
   
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{user.name}}</td>

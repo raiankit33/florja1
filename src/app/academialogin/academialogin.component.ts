@@ -65,6 +65,11 @@ export class AcademialoginComponent implements OnInit {
   }
 }
 
+forget(){
+  this.router.navigate(['academiaForget']);
+}
+
+
 }
 
 

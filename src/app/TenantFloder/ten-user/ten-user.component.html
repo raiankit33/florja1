@@ -132,7 +132,7 @@
   
           <div class="search_wrap search_wrap_1">
             <div class="search_box" style="margin-left: 15px;">
-              <input type="text" class="input" placeholder="search...">
+              <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="search...">
               <div class="btn btn_common">
                 <i class="fas fa-search"></i>
               </div>
@@ -163,7 +163,7 @@
             <tbody *ngIf ='active'>
   
   
-              <tr *ngFor='let user of userDetails |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
+              <tr *ngFor='let user of userDetails  |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
   
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{user.name}}</td>
@@ -204,7 +204,7 @@
             <tbody *ngIf ='allMember'>
   
   
-              <tr *ngFor='let user of Details |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
+              <tr *ngFor='let user of Details  |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
   
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{user.name}}</td>
@@ -247,7 +247,7 @@
             <tbody *ngIf ='Inactive'>
   
   
-              <tr *ngFor='let user of InactiveDetail |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
+              <tr *ngFor='let user of InactiveDetail  |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i' >
   
                 <td>{{(p-1) * count+i+1}}</td>
                 <td>{{user.name}}</td>

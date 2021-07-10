@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class TenTenantComponent implements OnInit {
 
- 
+ name : string
   p: number = +1;
   count=5;
   tenantDetails =[];
@@ -84,7 +84,15 @@ export class TenTenantComponent implements OnInit {
   })
 
  
-
+  Search() {
+    if (this.name == "") {
+      this.getUserDetails();
+    } else {
+      this.Details = this.Details.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}
     Object.keys(formGroup.controls).forEach(field => {  //{2}

@@ -207,9 +207,9 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" (click)="AllData()">All</a>
+            <a class="dropdown-item" (click)="ActiveTab()" >Active</a>
+            <a class="dropdown-item" (click)="InActiveTab()" >Inactive</a>
           </div>
         </div>
 
@@ -244,21 +244,59 @@
               <th scope="col">Irrigation Status <i class="fa fa-sort"></i></th>
 
               <th scope="col">Last Measurement <i class="fa fa-sort"></i></th>
+              
+              <th scope="col">Status <i class="fa fa-sort"></i></th>
               <th scope="col">Notification <i class="fa fa-sort"></i></th>
               <th scope="col">Action</th>
             </tr>
           </thead>
-          <tbody>
-
+          <tbody *ngIf="active">
 
             <tr
-              *ngFor="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
+              *ngFor="let plant of activeDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
               <td>{{no+1}}</td>
               <td><a (click)="plantPage(plant)">{{plant.name}}</a></td>
               <td><span>3</span></td>
               <td><span class="badge bg-success">unit 1 running</span></td>
 
               <td>{{plant.created_at}}</td>
+              <td ><span class="badge badge-success">{{plant.status}}</span></td>
+              <td>
+                <input type="checkbox">
+              </td>
+            
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" (click)="editPlant(plant)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class=" btn text-danger btn-sm rounded-0" (click)="deletePlant(plant.id)" type="button"
+                      data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+         
+          </tbody>
+
+          <tbody *ngIf="Inactive">
+
+            <tr
+              *ngFor="let plant of InactiveDetail | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
+              <td>{{no+1}}</td>
+              <td><a (click)="plantPage(plant)">{{plant.name}}</a></td>
+              <td><span>3</span></td>
+              <td><span class="badge bg-success">unit 1 running</span></td>
+
+              <td>{{plant.created_at}}</td>
+              <td ><span class="badge badge-danger">{{plant.status}}</span></td>
               <td>
                 <input type="checkbox">
               </td>
@@ -280,165 +318,45 @@
               </td>
             </tr>
 
-            <!--               <tr>
-                    <td>P-0001</td>
-                    <td>plant 2</td>
-                    <td><span class="badge bg-success">good </span></td>
-                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
-                    
-                    <td>3/16/21,11:00</td>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td>  
-                      <ul class="list-inline m-0">
-              
-                        <li class="list-inline-item">
-                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                      </li>
-                        <li class="list-inline-item">
-                          <button class=" btn text-danger btn-sm rounded-0" 
-                         
-                       
-                       
-                           type="button" data-toggle="tooltip"
-                          
-                            data-placement="top" title="Delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </li>
-                    </ul>
-                  </td>
-                  </tr>
-  
-                  <tr>
-                    <td>P-0002</td>
-                    <td>plant 3</td>
-                    <td><span class="badge "style="background-color: orange;color: white;">need check</span></td>
-                    <td><span class="badge bg-danger">unit 2 blackout</span></td>
-                    
-                    <td>3/16/21,12:00</td>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td>  
-                      <ul class="list-inline m-0">
-              
-                        <li class="list-inline-item">
-                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                      </li>
-                        <li class="list-inline-item">
-                          <button class=" btn text-danger btn-sm rounded-0" 
-                         
-                       
-                       
-                           type="button" data-toggle="tooltip"
-                          
-                            data-placement="top" title="Delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </li>
-                    </ul>
-                  </td>
-                  </tr>
-  
-                  <tr>
-                    <td>P-0003</td>
-                    <td>plant 4</td>
-                    <td><span class="badge bg-success">good </span></td>
-                    <td><span class="badge bg-success">unit 1 running</span></td>
-                   
-                    <td>3/06/21,11:00</td>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-  
-                    <td>  
-                      <ul class="list-inline m-0">
-              
-                        <li class="list-inline-item">
-                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                      </li>
-                        <li class="list-inline-item">
-                          <button class=" btn text-danger btn-sm rounded-0" 
-                         
-                       
-                       
-                           type="button" data-toggle="tooltip"
-                          
-                            data-placement="top" title="Delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </li>
-                    </ul>
-                  </td>
-  
-                
-                  </tr>
-  
-                  <tr>
-                    <td>P-0004</td>
-                    <td>plant 5</td>
-                    <td><span class="badge " style="background-color: darkorange;color: white;">need check</span></td>
-                    <td><span class="badge bg-success">unit 2 running</span></td>
-                  
-                    <td>3/16/21,11:40</td>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td>  
-                      <ul class="list-inline m-0">
-              
-                        <li class="list-inline-item">
-                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                      </li>
-                        <li class="list-inline-item">
-                          <button class=" btn text-danger btn-sm rounded-0" 
-                         
-                       
-                       
-                           type="button" data-toggle="tooltip"
-                          
-                            data-placement="top" title="Delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </li>
-                    </ul>
-                  </td>
-                  </tr> -->
+         
+          </tbody>
 
-            <!-- <tr >
-                    <td>P-0005</td>
-                    <td>plant 6</td>
-                    <td><span class="badge bg-success">good </span></td>
-                    <td><span class="badge "  style="background-color: darkorange;color: white;">no action</span></td>
-                    
-                    <td>5/16/21,11:00</td>
-                    <td>
-                      <input type="checkbox">
-                    </td>
-                    <td>  
-                      <ul class="list-inline m-0">
-              
-                        <li class="list-inline-item">
-                          <button class="btn text-warning btn-sm rounded-0"  type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                      </li>
-                        <li class="list-inline-item">
-                          <button class=" btn text-danger btn-sm rounded-0" 
-                         
-                       
-                       
-                           type="button" data-toggle="tooltip"
-                          
-                            data-placement="top" title="Delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </li>
-                    </ul>
-                  </td>
-                  </tr>
-                -->
 
+          <tbody *ngIf="allMember">
+
+            <tr
+              *ngFor="let plant of plantDetails | filter:name |  paginate: { itemsPerPage: 5, currentPage: p }; index as no">
+              <td>{{no+1}}</td>
+              <td><a (click)="plantPage(plant)">{{plant.name}}</a></td>
+              <td><span>3</span></td>
+              <td><span class="badge bg-success">unit 1 running</span></td>
+
+              <td>{{plant.created_at}}</td>
+              <td class="status"><span class="badge"  
+                [ngClass]="{'badge-success': plant.status =='Active', 'badge-danger' : plant.status =='Inactive'}">{{plant.status}}</span>
+            </td>
+              <td>
+                <input type="checkbox">
+              </td>
+              <td>
+                <ul class="list-inline m-0">
+
+                  <li class="list-inline-item">
+                    <button class="btn text-warning btn-sm rounded-0" (click)="editPlant(plant)" type="button"
+                      data-toggle="tooltip" data-toggle="modal" data-target=".bd-example-modal-lg" data-placement="top"
+                      title="Edit"><i class="fa fa-edit"></i></button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button class=" btn text-danger btn-sm rounded-0" (click)="deletePlant(plant.id)" type="button"
+                      data-toggle="tooltip" data-placement="top" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+
+         
           </tbody>
 
         </table>

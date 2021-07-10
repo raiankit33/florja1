@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="input-box">
-                  <span class="details"> Watering Duration Time (minutes)</span>
+                  <span class="details">* Watering Duration Time (minutes)</span>
                   <input type="text" required name="watering_duration" placeholder=" Enter Watering Duration Time " formControlName="watering_duration" [ngClass]="
                   { 'is-invalid': form.get('watering_duration').touched && form.get('watering_duration').invalid}">
                   <div class="invalid-feedback">
@@ -285,7 +285,7 @@
 
         <div class="search_wrap search_wrap_1">
           <div class="search_box" style="margin-left: 16px;">
-            <input type="text" class="input" placeholder="search...">
+            <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="search...">
             <div class="btn btn_common">
               <i class="fas fa-search"></i>
             </div>
@@ -319,7 +319,7 @@
           </thead>
           <tbody *ngIf="active">
             <tr
-              *ngFor="let irrigation of activeDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              *ngFor="let irrigation of activeDetails  |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
               <td>
                 <input type="checkbox" (change)=powerButton($event) [checked]="checks">
               </td>
@@ -363,7 +363,7 @@
 
           <tbody *ngIf="allMember">
             <tr
-              *ngFor="let irrigation of irrigationDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              *ngFor="let irrigation of irrigationDetails |  filter:name   |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
               <td>
                 <input type="checkbox" (change)=powerButton($event) [checked]="checks">
               </td>
@@ -409,7 +409,7 @@
 
           <tbody *ngIf="Inactive">
             <tr
-              *ngFor="let irrigation of InactiveDetails  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
+              *ngFor="let irrigation of InactiveDetails  |  filter:name  |  paginate: { itemsPerPage: count, currentPage: p } ; index as i ">
               <td>
                 <input type="checkbox" (change)=powerButton($event) [checked]="checks">
               </td>

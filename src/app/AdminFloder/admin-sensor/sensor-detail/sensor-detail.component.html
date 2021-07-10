@@ -1,0 +1,375 @@
+<br><br>
+<br>
+  <div class="container-fluid">
+    <!-- Info boxes -->
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text"> Plant Name</span>
+            <span class="info-box-number">
+              {{userObj.plant_name}}
+              <small></small>
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">sensor_type</span>
+            <span class="info-box-number">{{userObj.sensor_type}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      </div>
+
+
+<!-- <div class="container"> -->
+
+ 
+
+      
+
+  <!-- <div class="content">
+  
+      <div class="user-details">
+
+
+        <div class="input-box">
+          <span class="details">plant_name</span>
+          <input type="text" value="{{userObj.plant_name}}" disabled>
+
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">sensor_type</span>
+          <input type="text" value="{{userObj.sensor_type}}" disabled>
+
+
+        </div>
+
+
+       <div class="input-box">
+          <span class="details">status</span>
+          <input type="text" value="{{userObj.status}}" disabled>
+
+
+        </div> 
+
+        <h4 style="background-color:#eee; width: 800px;">Weather</h4>
+
+        <div class="input-box">
+          <span class="details">feelslike_c</span>
+          <input type="text" value="{{userObj.data.current.feelslike_c}}" disabled>
+
+
+        </div>
+
+        <div class="input-box">
+          <span class="details"> feelslike_f </span>
+          <input type="text" value="{{userObj.data.current.feelslike_f}}" disabled>
+          <span></span>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">gust_kph</span>
+          <input type="text" value="{{userObj.data.current.gust_kph}}" disabled>
+
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">gust_mph</span>
+          <input type="text" value="{{userObj.data.current.gust_mph}}" disabled>
+
+
+        </div>
+
+
+
+        <div class="input-box">
+          <span class="details">humidity</span>
+          <input type="text" value="{{userObj.data.current.humidity}}" disabled>
+
+        </div>
+
+
+
+
+        <div class="input-box">
+          <span class="details">is_day</span>
+          <input type="text" value="{{userObj.data.current.is_day}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">last_updated</span>
+          <input type="text" value="{{userObj.data.current.last_updated}}" disabled>
+
+        </div>
+
+
+        <div class="input-box">
+          <span class="details">last_updated_epoch</span>
+          <input type="text" value="{{userObj.data.current.last_updated_epoch}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">precip_in</span>
+          <input type="text" value="{{userObj.data.current.precip_in}}" disabled>
+
+        </div>
+
+
+        <div class="input-box">
+          <span class="details">precip_mm</span>
+          <input type="text" value="{{userObj.data.current.precip_mm}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">pressure_in</span>
+          <input type="text" value="{{userObj.data.current.pressure_in}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">pressure_mb</span>
+          <input type="text" value="{{userObj.data.current.pressure_mb}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">temp_c
+          </span>
+          <input type="text" value="{{userObj.data.current.temp_c}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">
+            temp_f</span>
+          <input type="text" value="{{userObj.data.current.temp_f}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            wind_degree</span>
+          <input type="text" value="{{userObj.data.current.wind_degree}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            wind_direction</span>
+          <input type="text" value="{{userObj.data.current.wind_dir}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            wind_kph</span>
+          <input type="text" value="{{userObj.data.current.wind_kph}}" disabled>
+
+        </div>
+
+        <h4 style="background-color:#eee; width: 800px;">Location</h4>
+
+        <div class="input-box">
+          <span class="details">
+            localtime</span>
+          <input type="text" value="{{userObj.data.location.localtime}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            localtime_epoch</span>
+          <input type="text" value="{{userObj.data.location.localtime_epoch}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            lon</span>
+          <input type="text" value="{{userObj.data.location.lon}}" disabled>
+
+        </div>
+        <div class="input-box">
+          <span class="details">
+            temp_f</span>
+          <input type="text" value="{{userObj.data.location.name}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">
+            region</span>
+          <input type="text" value="{{userObj.data.location.region}}" disabled>
+
+        </div>
+
+        <div class="input-box">
+          <span class="details">
+            tz_id</span>
+          <input type="text" value="{{userObj.data.location.tz_id}}" disabled>
+
+        </div>
+
+
+        <div class="button">
+          <input type="submit" value="edit">
+
+        </div>
+      </div>
+   
+  </div>  -->
+<!-- </div> -->
+
+</div>
+
+<br>
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+
+      <div class="searchbox">
+
+        <!-- <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-filter" aria-hidden="true"></i>
+        </a>
+      
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+         <a class="dropdown-item" (click)="AllData()">All</a>
+         <a class="dropdown-item" (click)="ActiveTab()">Active</a>
+         <a class="dropdown-item" (click)="InActiveTab()">Inactive</a>
+        </div>
+      </div> -->
+
+        <div class="search_wrap search_wrap_1">
+          <!-- <div class="search_box"style="margin-left: 16px;">
+           <input type="text" class="input" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="search...">
+           <div class="btn btn_common">
+             <i  class="fas fa-search"></i>
+           </div>
+         </div> -->
+        </div>
+      </div>
+      <div class="card-tools">
+
+      </div>
+    </div>
+
+
+    <div class="card-body p-0">
+      <div style="overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+            
+
+              <th scope="col">feelslike_c</th>
+              <th scope="col">feelslike_f</th>
+              <th scope="col"> gust_kph</th>
+              <th scope="col"> gust_mph
+               </th>
+              <th scope="col">humidity</th>
+              <th scope="col">is_day</th>
+              <th scope="col">last_updated</th>
+              <th scope="col">last_updated_epoch</th>
+              <th scope="col">precip_in</th>
+              <th scope="col">precip_mm</th>
+              <th scope="col">pressure_in</th>
+              <th scope="col">pressure_mb</th>
+              <th scope="col">temp_c</th>
+              <th scope="col"> temp_f</th>
+              <th scope="col">wind_degree
+               </th>
+              <th scope="col"> wind_direction</th>
+              <th scope="col">wind_kph</th>
+              <th scope="col">localtime</th>
+              <th scope="col"> localtime_epoch</th>
+              <th scope="col">lon</th>
+              <th scope="col">temp_f</th>
+              <th scope="col"> region</th>
+              <th scope="col"> tz_id</th>
+         
+
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr >
+              <td >1</td>
+          
+              <td >{{userObj.data.current.feelslike_c}}</td>
+              <td >{{userObj.data.current.feelslike_c}}</td>
+              
+              <td >{{userObj.data.current.gust_kph}}</td>
+              <td >{{userObj.data.current.gust_mph}}</td>
+              
+              <td >{{userObj.data.current.humidity}}</td>
+              <td >{{userObj.data.current.is_day}}</td>
+              
+              <td >{{userObj.data.current.last_updated}}</td>
+              <td >{{userObj.data.current.last_updated_epoch}}</td>
+              
+              <td >{{userObj.data.current.precip_in}}</td>
+              <td >{{userObj.data.current.precip_mm}}</td>
+              
+              <td >{{userObj.data.current.pressure_in}}</td>
+              <td >{{userObj.data.current.pressure_mb}}</td>
+              
+              <td >{{userObj.data.current.temp_c}}</td>
+              <td >{{userObj.data.current.temp_f}}</td>
+              
+              <td >{{userObj.data.current.wind_degree}}</td>
+              <td >{{userObj.data.current.wind_dir}}</td>
+              
+              <td >{{userObj.data.current.wind_kph}}</td>
+              <td >{{userObj.data.location.localtime}}</td>
+              
+              <td >{{userObj.data.location.localtime_epoch}}</td>
+              <td >{{userObj.data.location.lon}}</td>
+
+              
+              <td >{{userObj.data.location.name}}</td>
+              <td >{{userObj.data.location.region}}</td>
+              
+              <td >{{userObj.data.location.tz_id}}</td>
+            
+
+              
+
+
+          </tbody>
+
+
+
+
+
+
+        </table>
+      </div>
+    </div>
+ 
+    <div class="card-footer text-center">
+
+    </div>
+  </div>

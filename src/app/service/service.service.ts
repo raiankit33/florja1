@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpClientModule, HttpParams } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
 import { Observable, Subject, throwError } from 'rxjs';
+import { __param } from 'tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ServiceService {
 
   httpRegisterOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/json'
+      "key" : "d9ef64e70ede4ad8bc591311210807&"
     })
 
   }
@@ -34,8 +36,21 @@ export class ServiceService {
     this._listners.next(filterBy);
   }
 
+//forget api superadmin
+
+aForget(f) {
+
+  return this.http.post('https://ttdlf73wib.execute-api.us-east-2.amazonaws.com/forgotpassword/forgotpassword', f)
+    .pipe(catchError(this.handleError));
+}
+
+//weather Api 
+weatherAPI(f) {
 
 
+  return this.http.get('http://api.weatherapi.com/v1/current.json'+"?key="+"d9ef64e70ede4ad8bc591311210807"+"&q="+f.q  )
+    .pipe(catchError(this.handleError));
+}
 
   // Tenant api start 
 

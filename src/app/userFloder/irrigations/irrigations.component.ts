@@ -14,6 +14,13 @@ export class IrrigationsComponent implements OnInit {
   isEdit =false;
 checks = false;
   irrigationDetails =[];
+
+  active:boolean = true;
+  Inactive:boolean = false;
+  allMember:boolean = false;
+
+
+  user: any;
   constructor(
     private userService : UserService,
     private router: Router,) {
@@ -24,6 +31,7 @@ checks = false;
      }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.getIrrigationDetails();
   }
 
@@ -92,7 +100,28 @@ checks = false;
   } 
   }
 
+  AllData(){
+    this.allMember = true;
+    this.active =false;
+    this.Inactive =false;
+     }
+   
+     ActiveTab(){
+   this.active =true;
+   this.Inactive =false;
+   this.allMember =false;
+     }
+   
+     InActiveTab(){
+     this.Inactive =true;
+     this.active =false;
+     this.allMember =false;
+     }
+
   getIrrigationDetails(){
+    let token ={
+      AuthToken : this.user.token
+    }
     this.userService.getIrrigationDetails().subscribe((res:any)=>{
       this.irrigationDetails = res.data;
      

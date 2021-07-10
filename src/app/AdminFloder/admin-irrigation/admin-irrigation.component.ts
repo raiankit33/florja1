@@ -32,6 +32,7 @@ parent1=false;
   allMember:boolean = false;
   activeDetails: any;
   InactiveDetails: any[];
+  name: string;
 
   
 
@@ -192,6 +193,15 @@ private messagingService: MessagingService,
      }
 
 
+     Search() {
+      if (this.name == "") {
+        this.getIrrigationDetails();
+      } else {
+        this.irrigationDetails = this.irrigationDetails.filter(res => {
+          return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+        })
+      }
+    }
 
   onAddSubmit() {
     if (this.form.valid) {

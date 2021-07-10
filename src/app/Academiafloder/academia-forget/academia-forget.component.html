@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+
+
+    
+
+
+<div class="background">
+    <br>
+    <div class="center">
+    <div class="wrapper">
+      <div class="title">
+   Forget password?</div>
+    <form [formGroup]="form"  >
+      <p >Don't worry ! just fill your email and we'll help you reset your password</p>
+      <br>
+        <div class="field">
+          <input type="email" required class="form-control"  name="email" formControlName="email"  >
+         <div class="invalid-feedback">
+           <div > Email is required</div>
+         </div>
+          <label>Email</label>
+        </div>
+    
+  
+      
+        <div class="content">
+          <div class="checkbox">
+        
+          </div>
+   
+    </div>
+    <div class="field">
+   
+          <button class="btnn" (click)="onForget()" type="submit" > Sent</button>
+          <button class="btnn mt-3" (click)="back()" > Back</button>
+        </div>
+       
+    <br>
+    <br>
+    </form>
+    </div>
+    </div>
+    </div>

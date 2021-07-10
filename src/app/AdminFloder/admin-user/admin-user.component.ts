@@ -12,16 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class AdminUserComponent implements OnInit {
 
-  form = new FormGroup({
-  
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
-    permission: new FormControl('All Access', Validators.required),
-    id: new FormControl('', Validators.required),
+  name :string
 
-
-  })
+ 
 
   
   isEdit = false;
@@ -85,6 +78,26 @@ export class AdminUserComponent implements OnInit {
     this.isEdit = false;
   }
 
+  form = new FormGroup({
+  
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl(null, [Validators.required, Validators.pattern("[0-9 ]{10}")]),
+    permission: new FormControl('All Access', Validators.required),
+    id: new FormControl('', Validators.required),
+
+
+  })
+
+  Search() {
+    if (this.name == "") {
+      this.getUserDetails();
+    } else {
+      this.Details = this.Details.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      })
+    }
+  }
 
   validateAllFormFields(formGroup: FormGroup) {         //{1}
   Object.keys(formGroup.controls).forEach(field => {  //{2}

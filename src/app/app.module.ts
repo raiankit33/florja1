@@ -66,6 +66,11 @@ import {NgxImageCompressService} from 'ngx-image-compress';
 import { AdminIrrigationdetailComponent } from './AdminFloder/admin-irrigationdetail/admin-irrigationdetail.component';
 import { AdminTenantComponent } from './AdminFloder/admin-tenant/admin-tenant.component';
 import { AcadDashoadComponent } from './Academiafloder/acad-dashoad/acad-dashoad.component';
+import { ForgetPasswordComponent } from './AdminFloder/forget-password/forget-password.component';
+import { TenantForgetComponent } from './TenantFloder/tenant-forget/tenant-forget.component';
+import { UserForgetComponent } from './userFloder/user-forget/user-forget.component';
+import { AcademiaForgetComponent } from './Academiafloder/academia-forget/academia-forget.component';
+import { SensorDetailComponent } from './AdminFloder/admin-sensor/sensor-detail/sensor-detail.component';
 
 
 @NgModule({
@@ -114,6 +119,11 @@ import { AcadDashoadComponent } from './Academiafloder/acad-dashoad/acad-dashoad
     AdminIrrigationdetailComponent,
     AdminTenantComponent,
     AcadDashoadComponent,
+    ForgetPasswordComponent,
+    TenantForgetComponent,
+    UserForgetComponent,
+    AcademiaForgetComponent,
+    SensorDetailComponent,
 
    
     
